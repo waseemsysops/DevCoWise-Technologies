@@ -46,7 +46,7 @@ export default function InsightsView({ blogPosts, isDark }: InsightsViewProps) {
                 ? 'bg-primary text-white shadow-md'
                 : isDark
                   ? 'bg-card-dark border border-gray-800 text-gray-300 hover:bg-gray-800'
-                  : 'bg-white border border-gray-150 text-gray-600 hover:bg-gray-50'
+                  : 'bg-white border border-gray-200 text-gray-600 hover:bg-gray-50'
             }`}
           >
             {cat}
@@ -61,7 +61,7 @@ export default function InsightsView({ blogPosts, isDark }: InsightsViewProps) {
             key={post.id}
             onClick={() => setReadingPost(post)}
             className={`p-6 sm:p-8 rounded-3xl border flex flex-col justify-between space-y-6 cursor-pointer transition-all duration-300 hover:-translate-y-1 ${
-              isDark ? 'bg-card-dark border-gray-800 hover:border-gray-700' : 'bg-white border-gray-150 shadow-sm hover:shadow-lg'
+              isDark ? 'bg-card-dark border-gray-800 hover:border-gray-700' : 'bg-white border-gray-200 shadow-sm hover:shadow-lg'
             }`}
           >
             <div className="space-y-4">
@@ -109,7 +109,7 @@ export default function InsightsView({ blogPosts, isDark }: InsightsViewProps) {
         <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
           <div 
             className={`w-full max-w-2xl rounded-3xl p-6 md:p-8 border shadow-2xl relative my-8 max-h-[90vh] overflow-y-auto ${
-              isDark ? 'bg-card-dark border-gray-800 text-white' : 'bg-white border-gray-150 text-gray-900'
+              isDark ? 'bg-card-dark border-gray-800 text-white' : 'bg-white border-gray-200 text-gray-900'
             }`}
           >
             <button
@@ -145,7 +145,7 @@ export default function InsightsView({ blogPosts, isDark }: InsightsViewProps) {
 
               {/* SLA footer */}
               <div className="border-t border-gray-800/10 dark:border-gray-100/10 pt-4 text-[10px] text-gray-400 font-mono flex items-center justify-between">
-                <span>DEVCOWISE CORPORATE ARCHIVES</span>
+                <span>VENTUREDIVE CORPORATE ARCHIVES</span>
                 <span>SECURED CORE DOCUMENT</span>
               </div>
             </div>

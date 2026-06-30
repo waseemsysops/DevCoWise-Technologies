@@ -100,7 +100,7 @@ export default function CaseStudiesView({ isDark }: { isDark: boolean }) {
           <div 
             key={study.id}
             className={`p-6 rounded-2xl border flex flex-col justify-between space-y-4 cursor-pointer transition-all duration-300 hover:-translate-y-1 ${
-              isDark ? 'bg-card-dark border-gray-800 hover:border-gray-700' : 'bg-white border-gray-150 shadow-sm hover:shadow-md'
+              isDark ? 'bg-card-dark border-gray-800 hover:border-gray-700' : 'bg-white border-gray-200 shadow-sm hover:shadow-md'
             }`}
             onClick={() => setSelectedStudy(study)}
           >
@@ -133,7 +133,7 @@ export default function CaseStudiesView({ isDark }: { isDark: boolean }) {
         <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
           <div 
             className={`w-full max-w-3xl rounded-3xl p-6 md:p-8 border shadow-2xl relative my-8 transition-all max-h-[90vh] overflow-y-auto ${
-              isDark ? 'bg-card-dark border-gray-800 text-white' : 'bg-white border-gray-150 text-gray-900'
+              isDark ? 'bg-card-dark border-gray-800 text-white' : 'bg-white border-gray-200 text-gray-900'
             }`}
           >
             <button

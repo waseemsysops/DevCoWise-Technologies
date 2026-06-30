@@ -81,7 +81,7 @@ export default function ContactView({ onSubmitInquiry, isDark }: ContactViewProp
           Systems Audit Scoping
         </span>
         <h1 className="text-4xl font-extrabold tracking-tight font-display">Initiate System Proposals</h1>
-        <p className={`text-sm leading-relaxed ${isDark ? 'text-gray-355' : 'text-gray-650'}`}>
+        <p className={`text-sm leading-relaxed ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
           Secure our consulting architects. Fill out our systems requirements form or connect with our international offices below.
         </p>
       </section>
@@ -101,7 +101,7 @@ export default function ContactView({ onSubmitInquiry, isDark }: ContactViewProp
                     ? 'bg-primary text-white shadow'
                     : isDark 
                       ? 'bg-card-dark border border-gray-800 text-gray-400 hover:text-white' 
-                      : 'bg-white border border-gray-150 text-gray-600 hover:bg-gray-50'
+                      : 'bg-white border border-gray-200 text-gray-600 hover:bg-gray-50'
                 }`}
               >
                 {off.country}
@@ -110,7 +110,7 @@ export default function ContactView({ onSubmitInquiry, isDark }: ContactViewProp
           </div>
 
           <div className={`p-6 rounded-2xl border space-y-4 ${
-            isDark ? 'bg-card-dark border-gray-800' : 'bg-white border-gray-150 shadow-sm'
+            isDark ? 'bg-card-dark border-gray-800' : 'bg-white border-gray-200 shadow-sm'
           }`}>
             <h3 className="font-bold text-sm tracking-wide font-display">{currentOffice.city}, {currentOffice.country}</h3>
             
@@ -134,7 +134,7 @@ export default function ContactView({ onSubmitInquiry, isDark }: ContactViewProp
         {/* 3. CORE PROPOSAL FORM */}
         <div className="lg:col-span-7">
           <div className={`p-8 rounded-3xl border space-y-6 ${
-            isDark ? 'bg-card-dark border-gray-800 text-white' : 'bg-white border-gray-150 shadow-lg text-gray-950'
+            isDark ? 'bg-card-dark border-gray-800 text-white' : 'bg-white border-gray-200 shadow-lg text-gray-950'
           }`} id="contact-form-pane">
             <div className="flex items-center space-x-2.5 border-b border-gray-800/10 dark:border-gray-100/10 pb-4">
               <MessageSquare className="w-5 h-5 text-primary" />

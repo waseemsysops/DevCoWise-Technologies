@@ -8,12 +8,12 @@ import {
   Menu, X, Sun, Moon, Search, Globe, ChevronDown, 
   Sparkles, Code, Cpu, Cloud, Database, Shield, Monitor, 
   Briefcase, MessageSquare, Landmark, Activity, ShoppingBag, 
-  Truck, Settings, BarChart2
+  Truck, Settings, ArrowRight, HeartPulse, HardHat, Radio, HelpCircle
 } from 'lucide-react';
 
 interface HeaderProps {
   currentTab: string;
-  setCurrentTab: (tab: string) => void;
+  setCurrentTab: (tab: string, subId?: string) => void;
   isDark: boolean;
   setIsDark: (dark: boolean) => void;
   onSearch: (query: string) => void;
@@ -23,20 +23,21 @@ export default function Header({ currentTab, setCurrentTab, isDark, setIsDark, o
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null);
+  const [activeHoverCategory, setActiveHoverCategory] = useState<string>('');
   const [searchOpen, setSearchOpen] = useState(false);
   const [localSearch, setLocalSearch] = useState('');
   const [language, setLanguage] = useState('EN');
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 15);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleNav = (tab: string) => {
-    setCurrentTab(tab);
+  const handleNav = (tab: string, subId?: string) => {
+    setCurrentTab(tab, subId);
     setIsMobileMenuOpen(false);
     setActiveMegaMenu(null);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -51,33 +52,209 @@ export default function Header({ currentTab, setCurrentTab, isDark, setIsDark, o
   };
 
   const menuItems = [
-    { label: 'Home', id: 'home' },
-    { label: 'About', id: 'about' },
     { label: 'Services', id: 'services', hasMega: true, type: 'services' },
     { label: 'Solutions', id: 'solutions', hasMega: true, type: 'solutions' },
-    { label: 'Products', id: 'products' },
-    { label: 'Case Studies', id: 'case-studies' },
-    { label: 'Insights', id: 'insights' },
-    { label: 'Careers', id: 'careers' },
-    { label: 'Contact', id: 'contact' },
+    { label: 'Industries', id: 'industries', hasMega: true, type: 'industries' },
+    { label: 'Insights', id: 'insights', hasMega: true, type: 'insights' },
+    { label: 'About Us', id: 'about', hasMega: true, type: 'about' },
   ];
 
-  const servicesMega = [
-    { title: 'Custom Software', desc: 'Enterprise application engineering', icon: Code, tab: 'services' },
-    { title: 'AI Solutions', desc: 'Generative AI & LLM development', icon: Sparkles, tab: 'services' },
-    { title: 'Cloud & DevOps', desc: 'Secure cloud migrations & K8s', icon: Cloud, tab: 'services' },
-    { title: 'ERPNext & Odoo', desc: 'Tailored open-core ERP systems', icon: Database, tab: 'services' },
-    { title: 'Cyber Security', desc: 'Pen-testing & zero-trust protection', icon: Shield, tab: 'services' },
-    { title: 'UI/UX Design', desc: 'Premium user-journey mapping', icon: Monitor, tab: 'services' },
-  ];
+  // SERVICES mega menu data
+  const servicesMega = {
+    title: 'All Services',
+    categories: [
+      {
+        id: 'digital-transformation',
+        name: 'Digital Transformation',
+        desc: 'Leverage AI & automation systems to reinvent outdated processes.',
+        tab: 'services',
+        subId: 'digital-transformation',
+        details: ['Generative AI & LLMs', 'AI-Powered Automation', 'Cognitive Agents']
+      },
+      {
+        id: 'solutions-engineering',
+        name: 'Solutions Engineering',
+        desc: 'Build scalable custom software and elastically engineered cloud environments.',
+        tab: 'services',
+        subId: 'solutions-engineering',
+        details: ['Custom Applications', 'DevOps & K8s Clusters', 'Istio Security Mesh']
+      },
+      {
+        id: 'system-integration',
+        name: 'System Integration',
+        desc: 'Connect modular systems with custom enterprise ERPNext and Odoo configurations.',
+        tab: 'services',
+        subId: 'system-integration',
+        details: ['ERPNext Architectures', 'Odoo Core Tailoring', 'API Integrations']
+      },
+      {
+        id: 'ux-design',
+        name: 'UX Design Systems',
+        desc: 'Map enterprise-grade layout tokens and friction-free employee screens.',
+        tab: 'services',
+        subId: 'ux-design',
+        details: ['Figma Design Tokens', 'User Journey Maps', 'Accessibility Compliance']
+      }
+    ]
+  };
 
-  const solutionsMega = [
-    { title: 'Healthcare', desc: 'FHIR EHR & records coordination', icon: Activity, tab: 'solutions' },
-    { title: 'Finance & Banking', desc: 'Transactional core cloud ledgers', icon: Landmark, tab: 'solutions' },
-    { title: 'Retail & E-comm', desc: 'POS sync & warehouse flows', icon: ShoppingBag, tab: 'solutions' },
-    { title: 'Smart Factories', desc: 'IoT PLC & predictive monitors', icon: Cpu, tab: 'solutions' },
-    { title: 'Logistics', desc: 'AI route planning & fleet dispatch', icon: Truck, tab: 'solutions' },
-  ];
+  // SOLUTIONS mega menu data
+  const solutionsMega = {
+    title: 'All Solutions',
+    categories: [
+      {
+        id: 'ai-ml',
+        name: 'AI & Machine Learning',
+        desc: 'Train, isolate, and serve advanced predictive and neural models.',
+        tab: 'solutions',
+        subId: 'ai-ml',
+        details: ['Private Vector Databases', 'Cognitive Decisions', 'Generative RAG']
+      },
+      {
+        id: 'call-intel',
+        name: 'Call Intelligence Suite',
+        desc: 'Supercharge customer engagement centers with automated voice loops.',
+        tab: 'solutions',
+        subId: 'call-intel',
+        details: ['Voice AI Agent', 'Real-time Suggestion Assist', 'Automatic Compliance Logs']
+      },
+      {
+        id: 'data-analytics',
+        name: 'Data & Analytics Services',
+        desc: 'Stream, map, and visualize dynamic metrics at massive scales.',
+        tab: 'solutions',
+        subId: 'data-analytics',
+        details: ['IoT Edge Processing', 'Advanced Classification', 'Interactive Dashboards']
+      },
+      {
+        id: 'cloud-infra',
+        name: 'Cloud & Infrastructure',
+        desc: 'Deploy resilient container pipelines with native IaC rules.',
+        tab: 'solutions',
+        subId: 'cloud-infra',
+        details: ['Kubernetes Clusters', 'Terraform Blueprints', 'Disaster Recovery']
+      }
+    ]
+  };
+
+  // INDUSTRIES mega menu data
+  const industriesMega = {
+    title: 'All Industries',
+    categories: [
+      {
+        id: 'healthcare',
+        name: 'Healthcare & Sciences',
+        desc: 'HL7 FHIR compliant patient charts and electronic clinical logs.',
+        tab: 'industries',
+        subId: 'healthcare',
+        details: ['Secure Patient Portals', 'Audited FHIR Proxies', 'Biometric Lockouts']
+      },
+      {
+        id: 'finance',
+        name: 'Financial Services',
+        desc: 'High-throughput transactional microservices with absolute audit consistency.',
+        tab: 'industries',
+        subId: 'finance',
+        details: ['Kubernetes Ledger Clusters', 'Real-time Fraud Alerts', 'Spanner Ledgers']
+      },
+      {
+        id: 'retail',
+        name: 'Retail & E-commerce',
+        desc: 'Synchronized store inventories and offline-first point-of-sale systems.',
+        tab: 'industries',
+        subId: 'retail',
+        details: ['Real-time Stock Counters', 'Integrated POS Cache', 'Automated Replenishment']
+      },
+      {
+        id: 'manufacturing',
+        name: 'Smart Manufacturing',
+        desc: 'Industrial IoT telemetries and preventative production schedule analyzers.',
+        tab: 'industries',
+        subId: 'manufacturing',
+        details: ['LoRaWAN Sensor Streams', 'Predictive Downtime models', 'MES Integrations']
+      },
+      {
+        id: 'logistics',
+        name: 'Logistics & Supply Chain',
+        desc: 'Dynamic vehicle routing and live GPS asset monitoring panels.',
+        tab: 'industries',
+        subId: 'logistics',
+        details: ['Predictive Routing Models', 'Live GPS Asset Feeds', 'Load Optimizations']
+      }
+    ]
+  };
+
+  // INSIGHTS mega menu data
+  const insightsMega = {
+    title: 'All Insights',
+    categories: [
+      {
+        id: 'case-studies',
+        name: 'Case Studies',
+        desc: 'Audited case validations showcasing tangible business impact.',
+        tab: 'case-studies',
+        subId: '',
+        details: ['Apex Health EHR System', 'Velvet Threads POS Cache', 'SwiftCargo Routing']
+      },
+      {
+        id: 'blogs',
+        name: 'Blogs & Articles',
+        desc: 'Analysis of cloud security, open-core ERP systems, and AI models.',
+        tab: 'insights',
+        subId: '',
+        details: ['GenAI Security Auditing', 'ERPNext Ledger Setup', 'K8s Cluster Guardrails']
+      },
+      {
+        id: 'podcasts',
+        name: 'Podcasts & Videos',
+        desc: 'Expert tech discussions covering real-world business transformations.',
+        tab: 'insights',
+        subId: '',
+        details: ['The Future of Enterprise AI', 'Optimizing Cloud Overheads', 'UX Design Systems']
+      }
+    ]
+  };
+
+  // ABOUT US mega menu data
+  const aboutMega = {
+    title: 'About Us',
+    categories: [
+      {
+        id: 'overview',
+        name: 'Company Overview',
+        desc: 'Learn about our engineering philosophy, corporate values, and global presence.',
+        tab: 'about',
+        subId: '',
+        details: ['Leadership Group', 'Global Lab Locations', 'Corporate Compliance']
+      },
+      {
+        id: 'careers',
+        name: 'Careers @ DEVCOWISE',
+        desc: 'Explore active engineering positions in our advanced technology group.',
+        tab: 'careers',
+        subId: '',
+        details: ['Senior Backend Engineer', 'Infrastructure Architect', 'UI/UX Architect']
+      },
+      {
+        id: 'contact',
+        name: 'Contact Corporate Labs',
+        desc: 'Get in touch with architects to schedule systems scoping.',
+        tab: 'contact',
+        subId: '',
+        details: ['Request SLA Pricing', 'Schedule Code Audit', 'Partner with Labs']
+      }
+    ]
+  };
+
+  const getMegaData = (type: string) => {
+    if (type === 'services') return servicesMega;
+    if (type === 'solutions') return solutionsMega;
+    if (type === 'industries') return industriesMega;
+    if (type === 'insights') return insightsMega;
+    return aboutMega;
+  };
+
+  const currentMega = activeMegaMenu ? getMegaData(activeMegaMenu) : null;
 
   return (
     <>
@@ -86,44 +263,51 @@ export default function Header({ currentTab, setCurrentTab, isDark, setIsDark, o
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled 
             ? isDark 
-              ? 'bg-[#0D1117]/90 backdrop-blur-md border-b border-gray-800 shadow-lg py-3' 
+              ? 'bg-[#0E0E11]/95 backdrop-blur-md border-b border-gray-800/80 shadow-lg py-3' 
               : 'bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-md py-3'
             : 'bg-transparent py-5'
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          {/* Logo */}
+          {/* Logo with stylized red DEVCOWISE loop */}
           <button 
             onClick={() => handleNav('home')}
-            className="flex items-center space-x-2 group focus:outline-none cursor-pointer"
+            className="flex items-center space-x-2.5 group focus:outline-none cursor-pointer"
           >
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-white font-bold text-lg tracking-wider shadow-md shadow-primary/20 group-hover:scale-105 transition-transform duration-300">
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#f42a41] to-[#e11d48] flex items-center justify-center text-white font-black text-xl shadow-md shadow-red-500/20 group-hover:scale-105 transition-all duration-300">
               D
             </div>
             <div className="flex flex-col items-start leading-none">
-              <span className={`text-xl font-extrabold tracking-tight ${isDark ? 'text-white' : 'text-gray-900'} font-display`}>
-                DEVCO<span className="text-primary">WISE</span>
+              <span className={`text-xl font-extrabold tracking-tight ${isDark ? 'text-white' : 'text-gray-950'} font-display`}>
+                DEVCO<span className="text-[#f42a41]">WISE</span>
               </span>
-              <span className={`text-[9px] tracking-widest font-mono uppercase mt-0.5 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
-                DIGITAL TRANSFORMATION
+              <span className={`text-[8px] tracking-widest font-mono uppercase mt-0.5 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
+                Digital Transformation
               </span>
             </div>
           </button>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-1">
+          {/* Desktop Navigation links */}
+          <nav className="hidden lg:flex items-center space-x-1.5">
             {menuItems.map((item) => (
               <div 
                 key={item.id}
                 className="relative"
-                onMouseEnter={() => item.hasMega ? setActiveMegaMenu(item.type || null) : setActiveMegaMenu(null)}
+                onMouseEnter={() => {
+                  setActiveMegaMenu(item.type || null);
+                  // Default active hover category to first category
+                  const mData = getMegaData(item.type);
+                  if (mData && mData.categories.length > 0) {
+                    setActiveHoverCategory(mData.categories[0].id);
+                  }
+                }}
               >
                 <button
                   onClick={() => handleNav(item.id)}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium flex items-center space-x-1 cursor-pointer transition-colors duration-200 ${
+                  className={`px-4 py-2 rounded-xl text-xs font-semibold flex items-center space-x-1 cursor-pointer transition-all duration-200 ${
                     currentTab === item.id 
-                      ? 'text-primary bg-primary/5' 
-                      : isDark ? 'text-gray-300 hover:text-white hover:bg-gray-800/40' : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100'
+                      ? 'text-[#f42a41] bg-red-500/5' 
+                      : isDark ? 'text-gray-300 hover:text-white hover:bg-gray-800/40' : 'text-gray-700 hover:text-gray-950 hover:bg-gray-100'
                   }`}
                 >
                   <span>{item.label}</span>
@@ -133,36 +317,36 @@ export default function Header({ currentTab, setCurrentTab, isDark, setIsDark, o
             ))}
           </nav>
 
-          {/* Action Buttons */}
+          {/* Right Action buttons */}
           <div className="flex items-center space-x-3">
             {/* Search */}
             <button
               onClick={() => setSearchOpen(true)}
-              className={`p-2 rounded-lg transition-colors cursor-pointer ${
-                isDark ? 'text-gray-300 hover:text-white hover:bg-gray-800' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+              className={`p-2 rounded-xl transition-colors cursor-pointer ${
+                isDark ? 'text-gray-300 hover:text-white hover:bg-gray-800' : 'text-gray-600 hover:text-gray-955 hover:bg-gray-100'
               }`}
-              title="Search"
+              title="Global Search"
             >
-              <Search className="w-5 h-5" />
+              <Search className="w-4 h-4" />
             </button>
 
-            {/* Language Selector */}
+            {/* Language Selection Group */}
             <div className="relative group">
-              <button className={`p-2 rounded-lg text-sm font-medium flex items-center space-x-1 cursor-pointer transition-colors ${
-                isDark ? 'text-gray-300 hover:text-white hover:bg-gray-800' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+              <button className={`p-2 rounded-xl text-xs font-bold flex items-center space-x-1 cursor-pointer transition-all ${
+                isDark ? 'text-gray-300 hover:text-white hover:bg-gray-800' : 'text-gray-600 hover:text-gray-955 hover:bg-gray-100'
               }`}>
-                <Globe className="w-4 h-4" />
-                <span className="hidden sm:inline">{language}</span>
+                <Globe className="w-3.5 h-3.5" />
+                <span>{language}</span>
               </button>
-              <div className={`absolute right-0 top-full mt-1 hidden group-hover:block w-24 rounded-lg border shadow-lg ${
+              <div className={`absolute right-0 top-full mt-1.5 hidden group-hover:block w-28 rounded-xl border shadow-xl ${
                 isDark ? 'bg-card-dark border-gray-800 text-gray-300' : 'bg-white border-gray-200 text-gray-700'
               }`}>
-                <div className="p-1 space-y-1">
+                <div className="p-1.5 space-y-1">
                   {['EN', 'DE', 'AR'].map((lang) => (
                     <button
                       key={lang}
                       onClick={() => setLanguage(lang)}
-                      className="w-full text-left px-3 py-1.5 rounded-md text-xs hover:bg-primary hover:text-white transition-colors cursor-pointer"
+                      className="w-full text-left px-2.5 py-1.5 rounded-lg text-xs hover:bg-[#f42a41] hover:text-white transition-colors cursor-pointer font-medium"
                     >
                       {lang === 'EN' ? 'English' : lang === 'DE' ? 'Deutsch' : 'العربية'}
                     </button>
@@ -171,178 +355,256 @@ export default function Header({ currentTab, setCurrentTab, isDark, setIsDark, o
               </div>
             </div>
 
-            {/* Dark Mode Toggle */}
+            {/* Theme Trigger toggle */}
             <button
               onClick={() => setIsDark(!isDark)}
-              className={`p-2 rounded-lg transition-colors cursor-pointer ${
+              className={`p-2 rounded-xl transition-colors cursor-pointer ${
                 isDark ? 'text-gray-300 hover:text-yellow-400 hover:bg-gray-800' : 'text-gray-600 hover:text-primary hover:bg-gray-100'
               }`}
               title={isDark ? 'Light Mode' : 'Dark Mode'}
             >
-              {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+              {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>
 
-            {/* Admin Dashboard shortcut */}
+            {/* Admin shortcut icon - hidden on mobile as per request */}
             <button
               onClick={() => handleNav('admin')}
-              className={`p-2 rounded-lg transition-colors cursor-pointer ${
+              className={`hidden md:inline-flex p-2 rounded-xl transition-colors cursor-pointer ${
                 currentTab === 'admin'
-                  ? 'text-primary bg-primary/5'
-                  : isDark ? 'text-gray-400 hover:text-white hover:bg-gray-800' : 'text-gray-500 hover:text-gray-900 hover:bg-gray-100'
+                  ? 'text-[#f42a41] bg-red-500/5'
+                  : isDark ? 'text-gray-400 hover:text-white hover:bg-gray-800' : 'text-gray-500 hover:text-gray-955 hover:bg-gray-100'
               }`}
               title="Admin Portal"
             >
-              <Settings className="w-5 h-5" />
+              <Settings className="w-4 h-4" />
             </button>
 
-            {/* Mobile Menu Trigger */}
+            {/* Bold RED Contact Button */}
+            <button
+              onClick={() => handleNav('contact')}
+              className="hidden sm:inline-flex px-4 py-2 rounded-xl bg-[#f42a41] hover:bg-red-600 text-white text-xs font-bold transition-all shadow-md shadow-red-500/20 hover:shadow-lg hover:shadow-red-500/30 cursor-pointer"
+            >
+              Contact Us
+            </button>
+
+            {/* Mobile Menu Open trigger */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className={`p-2 rounded-lg lg:hidden transition-colors cursor-pointer ${
-                isDark ? 'text-gray-300 hover:text-white hover:bg-gray-800' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+              className={`p-2 rounded-xl lg:hidden transition-colors cursor-pointer ${
+                isDark ? 'text-gray-300 hover:text-white hover:bg-gray-800' : 'text-gray-600 hover:text-gray-955 hover:bg-gray-100'
               }`}
             >
-              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
         </div>
 
-        {/* Mega Menu Overlay (Desktop) */}
-        {activeMegaMenu && (
+        {/* Dynamic Full-Width Hover Mega Menu (Desktop) */}
+        {activeMegaMenu && currentMega && (
           <div 
             className={`absolute left-0 right-0 top-full shadow-2xl transition-all duration-300 border-t ${
-              isDark ? 'bg-card-dark border-gray-800 text-white' : 'bg-white border-gray-200 text-gray-900'
+              isDark ? 'bg-[#0E0E11] border-gray-800/80 text-white' : 'bg-gray-50 border-gray-200 text-gray-900'
             }`}
-            onMouseLeave={() => setActiveMegaMenu(null)}
+            onMouseLeave={() => {
+              setActiveMegaMenu(null);
+              setActiveHoverCategory('');
+            }}
           >
-            <div className="max-w-7xl mx-auto px-10 py-8 grid grid-cols-12 gap-8">
-              <div className="col-span-4 border-r pr-8 border-gray-800/10 dark:border-gray-100/10">
-                <span className="text-xs font-bold font-mono tracking-widest text-primary uppercase block mb-3">
-                  {activeMegaMenu === 'services' ? 'SERVICES DIRECTORY' : 'SOLUTIONS PORTFOLIO'}
+            <div className="max-w-7xl mx-auto grid grid-cols-12 gap-0">
+              {/* Left Column: All [Category] Header List */}
+              <div className="col-span-3 border-r border-gray-800/10 dark:border-gray-800/60 p-6 space-y-4">
+                <span className="text-[10px] font-bold font-mono tracking-widest text-[#f42a41] uppercase block">
+                  {currentMega.title}
                 </span>
-                <h3 className="text-xl font-bold mb-3 font-display">
-                  {activeMegaMenu === 'services' 
-                    ? 'Engineering Next-Gen Digital Core Systems' 
-                    : 'Transforming Global Industrial Verticals'}
-                </h3>
-                <p className={`text-sm ${isDark ? 'text-gray-400' : 'text-gray-600'} mb-6`}>
-                  {activeMegaMenu === 'services' 
-                    ? 'Deploy enterprise-grade custom applications, AI pipelines, open-core ERP environments, and cybersecurity networks managed by specialized technical staff.'
-                    : 'Address sector challenges with modern records integration, transaction clearing ledgers, IoT smart-metering setups, and predictive fleet dispatch controllers.'}
-                </p>
-                <button 
-                  onClick={() => handleNav(activeMegaMenu)}
-                  className="px-5 py-2.5 rounded-lg bg-primary hover:bg-primary/90 text-white text-xs font-semibold tracking-wide transition-all cursor-pointer shadow-md shadow-primary/25"
-                >
-                  View Complete List
-                </button>
-              </div>
-
-              <div className="col-span-8 grid grid-cols-2 gap-4">
-                {(activeMegaMenu === 'services' ? servicesMega : solutionsMega).map((mega, index) => {
-                  const Icon = mega.icon;
-                  return (
+                
+                <div className="flex flex-col space-y-1">
+                  {currentMega.categories.map((cat) => (
                     <button
-                      key={index}
-                      onClick={() => handleNav(mega.tab)}
-                      className={`text-left p-4 rounded-xl flex items-start space-x-4 transition-all duration-200 cursor-pointer ${
-                        isDark 
-                          ? 'hover:bg-gray-800/40 border border-transparent hover:border-gray-800' 
-                          : 'hover:bg-gray-50 border border-transparent hover:border-gray-100 shadow-sm hover:shadow-md'
+                      key={cat.id}
+                      onMouseEnter={() => setActiveHoverCategory(cat.id)}
+                      onClick={() => handleNav(cat.tab, cat.subId)}
+                      className={`w-full text-left px-3 py-2 rounded-xl text-xs font-semibold flex items-center justify-between transition-all cursor-pointer ${
+                        activeHoverCategory === cat.id
+                          ? 'bg-[#f42a41] text-white'
+                          : isDark
+                            ? 'text-gray-300 hover:text-white hover:bg-gray-800/50'
+                            : 'text-gray-700 hover:text-gray-950 hover:bg-gray-200/50'
                       }`}
                     >
-                      <div className="p-2.5 rounded-lg bg-primary/10 text-primary mt-1">
-                        <Icon className="w-5 h-5" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-sm font-display">{mega.title}</h4>
-                        <p className={`text-xs ${isDark ? 'text-gray-400' : 'text-gray-500'} mt-1`}>{mega.desc}</p>
-                      </div>
+                      <span>{cat.name}</span>
+                      <ArrowRight className={`w-3.5 h-3.5 transition-transform ${activeHoverCategory === cat.id ? 'translate-x-1' : 'opacity-40'}`} />
                     </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Center Detail list column (Interactive detail panel on active hovered category) */}
+              <div className={`col-span-5 p-6 border-r border-gray-800/10 dark:border-gray-800/60 flex flex-col justify-between ${
+                isDark ? 'bg-black/20' : 'bg-white'
+              }`}>
+                {(() => {
+                  const hoveredCat = currentMega.categories.find(c => c.id === activeHoverCategory) || currentMega.categories[0];
+                  if (!hoveredCat) return null;
+                  return (
+                    <div className="space-y-4">
+                      <div className="space-y-1">
+                        <span className="text-[10px] font-bold font-mono text-[#f42a41] uppercase tracking-wider block">Overview Detail</span>
+                        <h4 className="text-base font-extrabold font-display leading-tight">{hoveredCat.name}</h4>
+                        <p className={`text-xs leading-relaxed mt-1 ${isDark ? 'text-gray-400' : 'text-gray-550'}`}>
+                          {hoveredCat.desc}
+                        </p>
+                      </div>
+
+                      <div className="pt-2 border-t border-gray-800/10 dark:border-gray-800/50">
+                        <span className="text-[9px] font-bold font-mono text-gray-400 uppercase tracking-widest block mb-2">Core Competencies</span>
+                        <div className="grid grid-cols-1 gap-2">
+                          {hoveredCat.details.map((det, idx) => (
+                            <div key={idx} className="flex items-center space-x-2 text-xs">
+                              <span className="w-1.5 h-1.5 rounded-full bg-[#f42a41] flex-shrink-0"></span>
+                              <span className={`${isDark ? 'text-gray-300' : 'text-gray-700'} font-medium`}>{det}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
                   );
-                })}
+                })()}
+
+                {/* Direct CTA button at bottom of details panel */}
+                <div className="pt-4 mt-4 border-t border-gray-800/10 dark:border-gray-800/50">
+                  <button
+                    onClick={() => {
+                      const hoveredCat = currentMega.categories.find(c => c.id === activeHoverCategory) || currentMega.categories[0];
+                      if (hoveredCat) {
+                        handleNav(hoveredCat.tab, hoveredCat.subId);
+                      }
+                    }}
+                    className="px-4 py-2 rounded-xl bg-gradient-to-tr from-[#f42a41] to-red-600 text-white text-[11px] font-bold tracking-wide flex items-center space-x-1.5 cursor-pointer shadow hover:shadow-md hover:scale-[1.01] transition-all"
+                  >
+                    <span>View Technical Specifications</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              </div>
+
+              {/* Right Showcase Column (Beautiful visual promo slot) */}
+              <div className="col-span-4 p-6 flex flex-col justify-between">
+                <div className="space-y-3">
+                  <span className="text-[9px] font-bold font-mono text-gray-400 uppercase tracking-widest block">Corporate Spotlight</span>
+                  <div className={`p-4 rounded-2xl border ${isDark ? 'bg-gray-900/60 border-gray-800' : 'bg-gray-100/50 border-gray-200'} space-y-2`}>
+                    <h5 className="font-bold text-xs tracking-wide text-primary">SLA Scoping Lab</h5>
+                    <p className={`text-[11px] leading-relaxed ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+                      Our engineering group offers complete custom system scans, source code reviews, and localized compliance charts.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <span className="text-[9px] font-bold font-mono text-gray-400 uppercase tracking-widest block">Ready to Connect?</span>
+                  <p className="text-[10px] text-gray-400 leading-normal">
+                    Transform your digital core infrastructure with certified technical experts.
+                  </p>
+                  <button
+                    onClick={() => handleNav('contact')}
+                    className="text-xs font-bold text-[#f42a41] flex items-center space-x-1 hover:underline cursor-pointer"
+                  >
+                    <span>Request Scoping Document</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         )}
       </header>
 
-      {/* Mobile Menu Drawer */}
+      {/* Mobile drawer layout */}
       {isMobileMenuOpen && (
-        <div className={`fixed inset-0 z-40 lg:hidden pt-20 flex flex-col ${isDark ? 'bg-dark-bg text-white' : 'bg-white text-gray-900'}`}>
+        <div className={`fixed inset-0 z-40 lg:hidden pt-20 flex flex-col transition-all duration-300 ${isDark ? 'bg-[#0E0E11] text-white' : 'bg-white text-gray-955'}`}>
           <div className="flex-1 overflow-y-auto px-6 py-6 space-y-4">
             {menuItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => handleNav(item.id)}
-                className={`w-full text-left py-3 border-b text-lg font-semibold flex justify-between items-center cursor-pointer ${
-                  currentTab === item.id 
-                    ? 'text-primary border-primary' 
-                    : isDark ? 'border-gray-800 text-gray-300' : 'border-gray-100 text-gray-700'
-                }`}
-              >
-                <span>{item.label}</span>
-                {item.hasMega && <ChevronDown className="w-4 h-4 opacity-50" />}
-              </button>
+              <div key={item.id} className="border-b border-gray-800/10 dark:border-gray-800/40 pb-3">
+                <div className="flex items-center justify-between py-2">
+                  <button
+                    onClick={() => handleNav(item.id)}
+                    className="text-base font-bold text-left hover:text-[#f42a41] cursor-pointer"
+                  >
+                    {item.label}
+                  </button>
+                </div>
+                {/* Expand internal items for clean mobile navigation */}
+                <div className="pl-3 mt-1 space-y-1.5">
+                  {getMegaData(item.type).categories.map((subCat) => (
+                    <button
+                      key={subCat.id}
+                      onClick={() => handleNav(subCat.tab, subCat.subId)}
+                      className="w-full text-left py-1 text-xs text-gray-400 hover:text-[#f42a41] flex items-center space-x-1.5 cursor-pointer"
+                    >
+                      <span className="w-1 h-1 rounded-full bg-red-500"></span>
+                      <span>{subCat.name}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
             ))}
-            <button
-              onClick={() => handleNav('admin')}
-              className={`w-full text-left py-3 border-b text-lg font-semibold flex justify-between items-center cursor-pointer ${
-                currentTab === 'admin'
-                  ? 'text-primary border-primary'
-                  : isDark ? 'border-gray-800 text-gray-300' : 'border-gray-100 text-gray-700'
-              }`}
-            >
-              <span>Admin Dashboard</span>
-              <Settings className="w-4 h-4 opacity-50" />
-            </button>
+            
+            {/* Admin Dashboard is hidden on mobile setting menu hide from this website */}
+
+            <div className="pt-6">
+              <button
+                onClick={() => handleNav('contact')}
+                className="w-full py-3 rounded-xl bg-[#f42a41] hover:bg-red-600 text-white text-center font-bold text-sm tracking-wide shadow-lg shadow-red-500/20 cursor-pointer"
+              >
+                Contact Us
+              </button>
+            </div>
           </div>
         </div>
       )}
 
-      {/* Global Search Modal */}
+      {/* Global Search Modal overlay */}
       {searchOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
           <div 
-            className={`w-full max-w-lg rounded-2xl p-6 shadow-2xl border transition-all ${
-              isDark ? 'bg-card-dark border-gray-800 text-white' : 'bg-white border-gray-100 text-gray-900'
+            className={`w-full max-w-lg rounded-3xl p-6 shadow-2xl border transition-all ${
+              isDark ? 'bg-card-dark border-gray-800 text-white' : 'bg-white border-gray-100 text-gray-955'
             }`}
           >
             <div className="flex items-center justify-between mb-4">
-              <h3 className="font-bold text-lg font-display">Global Vault Search</h3>
+              <h3 className="font-extrabold text-base font-display">DEVCOWISE Global Vault Search</h3>
               <button 
                 onClick={() => setSearchOpen(false)}
-                className={`p-1.5 rounded-lg transition-colors cursor-pointer ${
+                className={`p-1.5 rounded-xl transition-colors cursor-pointer ${
                   isDark ? 'hover:bg-gray-800 text-gray-400 hover:text-white' : 'hover:bg-gray-100 text-gray-500 hover:text-gray-900'
                 }`}
               >
-                <X className="w-5 h-5" />
+                <X className="w-4 h-4" />
               </button>
             </div>
             <form onSubmit={handleSearchSubmit} className="relative">
               <input
                 type="text"
-                placeholder="Search solutions, case studies, technologies..."
+                placeholder="Search solutions, services, technology stacks..."
                 value={localSearch}
                 onChange={(e) => setLocalSearch(e.target.value)}
                 autoFocus
-                className={`w-full pl-11 pr-4 py-3 rounded-xl outline-none border transition-all ${
+                className={`w-full pl-11 pr-4 py-3 rounded-xl outline-none border transition-all text-xs ${
                   isDark 
-                    ? 'bg-gray-800/50 border-gray-700 text-white focus:border-primary focus:bg-gray-800' 
-                    : 'bg-gray-50 border-gray-200 text-gray-900 focus:border-primary focus:bg-white'
+                    ? 'bg-gray-800/50 border-gray-700 text-white focus:border-[#f42a41] focus:bg-gray-800' 
+                    : 'bg-gray-50 border-gray-200 text-gray-900 focus:border-[#f42a41] focus:bg-white'
                 }`}
               />
-              <Search className="w-5 h-5 absolute left-4 top-3.5 text-gray-400" />
+              <Search className="w-4 h-4 absolute left-4 top-3.5 text-gray-400" />
               <button 
                 type="submit"
-                className="absolute right-3 top-2 px-3 py-1.5 rounded-lg bg-primary text-white text-xs font-semibold cursor-pointer"
+                className="absolute right-3 top-2 px-3 py-1.5 rounded-lg bg-[#f42a41] text-white text-[10px] font-bold cursor-pointer"
               >
                 Search
               </button>
             </form>
             <div className="mt-4">
-              <span className="text-xs font-mono text-gray-400 block mb-2 uppercase">Suggested terms:</span>
-              <div className="flex flex-wrap gap-2">
+              <span className="text-[10px] font-bold font-mono text-gray-400 block mb-2 uppercase">Suggested tags:</span>
+              <div className="flex flex-wrap gap-1.5">
                 {['EHR', 'Ledger', 'Odoo', 'ERPNext', 'Kubernetes', 'Cybersecurity', 'Logistics'].map((term) => (
                   <button
                     key={term}
@@ -351,8 +613,8 @@ export default function Header({ currentTab, setCurrentTab, isDark, setIsDark, o
                       onSearch(term);
                       setSearchOpen(false);
                     }}
-                    className={`px-3 py-1 rounded-lg text-xs font-medium cursor-pointer transition-colors ${
-                      isDark ? 'bg-gray-800 text-gray-300 hover:bg-gray-700' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                    className={`px-3 py-1.5 rounded-lg text-[10px] font-semibold cursor-pointer transition-colors ${
+                      isDark ? 'bg-gray-800 text-gray-300 hover:bg-gray-750' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                     }`}
                   >
                     {term}

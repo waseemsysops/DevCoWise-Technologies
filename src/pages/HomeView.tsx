@@ -79,7 +79,7 @@ export default function HomeView({ setCurrentTab, isDark }: HomeViewProps) {
               Enterprise Consulting Built For <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-accent">Next-Generation</span> Scaling.
             </h1>
             
-            <p className={`text-base sm:text-lg max-w-xl leading-relaxed ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
+            <p className={`text-base sm:text-lg max-w-xl leading-relaxed ${isDark ? 'text-gray-350' : 'text-gray-650'}`}>
               DEVCOWISE orchestrates robust custom software engineering, zero-trust cloud migrations, generative AI models, and tailored ERPNext implementations that drive global enterprise modernization.
             </p>
 
@@ -147,7 +147,7 @@ export default function HomeView({ setCurrentTab, isDark }: HomeViewProps) {
               <div 
                 key={idx} 
                 className={`p-6 rounded-2xl border ${
-                  isDark ? 'bg-card-dark border-gray-800' : 'bg-white border-gray-150 shadow-sm'
+                  isDark ? 'bg-card-dark border-gray-800' : 'bg-white border-gray-200 shadow-sm'
                 } space-y-3`}
               >
                 <div className="p-2.5 rounded-xl bg-primary/10 text-primary w-fit">
@@ -179,7 +179,7 @@ export default function HomeView({ setCurrentTab, isDark }: HomeViewProps) {
               <div 
                 key={idx} 
                 className={`p-8 rounded-2xl border transition-all duration-300 hover:-translate-y-1 ${
-                  isDark ? 'bg-card-dark border-gray-800 hover:border-gray-700' : 'bg-white border-gray-150 shadow-sm hover:shadow-lg'
+                  isDark ? 'bg-card-dark border-gray-800 hover:border-gray-700' : 'bg-white border-gray-200 shadow-sm hover:shadow-lg'
                 } space-y-4`}
               >
                 <div className="p-3 rounded-xl bg-primary/10 text-primary w-fit">
@@ -250,7 +250,7 @@ export default function HomeView({ setCurrentTab, isDark }: HomeViewProps) {
         {/* Clean SVG Global Network Geometry */}
         <div className="lg:col-span-7">
           <div className={`p-6 rounded-3xl border flex items-center justify-center relative ${
-            isDark ? 'bg-card-dark border-gray-800' : 'bg-white border-gray-150 shadow-lg'
+            isDark ? 'bg-card-dark border-gray-800' : 'bg-white border-gray-200 shadow-lg'
           }`}>
             <svg viewBox="0 0 400 200" className="w-full h-auto text-primary" fill="currentColor">
               {/* Simplified stylized outline maps */}
@@ -271,8 +271,8 @@ export default function HomeView({ setCurrentTab, isDark }: HomeViewProps) {
                 { x: 330, y: 110, name: 'Sydney, AU' }
               ].map((pin, index) => (
                 <g key={index}>
-                  <circle cx={pin.x} cy={pin.y} r="5" fill="#0057FF" className="animate-pulse" />
-                  <circle cx={pin.x} cy={pin.y} r="2" fill="#00D084" />
+                  <circle cx={pin.x} cy={pin.y} r="5" fill="var(--color-primary)" className="animate-pulse" />
+                  <circle cx={pin.x} cy={pin.y} r="2" fill="var(--color-accent)" />
                   <text x={pin.x - 20} y={pin.y - 10} fontSize="8" fontFamily="monospace" fill={isDark ? '#9CA3AF' : '#4B5563'}>
                     {pin.name}
                   </text>

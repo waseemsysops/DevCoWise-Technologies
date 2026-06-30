@@ -80,7 +80,7 @@ export default function CareersView({ jobs, isDark }: CareersViewProps) {
             <div 
               key={idx} 
               className={`p-6 rounded-2xl border relative ${
-                isDark ? 'bg-card-dark border-gray-800' : 'bg-white border-gray-150 shadow-sm'
+                isDark ? 'bg-card-dark border-gray-800' : 'bg-white border-gray-200 shadow-sm'
               } space-y-4`}
             >
               <span className="text-3xl font-extrabold font-mono text-primary/15 absolute top-4 right-4">{flow.step}</span>
@@ -132,7 +132,7 @@ export default function CareersView({ jobs, isDark }: CareersViewProps) {
                 <div 
                   key={job.id} 
                   className={`p-6 rounded-2xl border flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-all duration-300 hover:shadow-md ${
-                    isDark ? 'bg-card-dark border-gray-800 hover:border-gray-700' : 'bg-white border-gray-150 shadow-sm hover:shadow-md'
+                    isDark ? 'bg-card-dark border-gray-800 hover:border-gray-700' : 'bg-white border-gray-200 shadow-sm hover:shadow-md'
                   }`}
                 >
                   <div className="space-y-2">
@@ -168,7 +168,7 @@ export default function CareersView({ jobs, isDark }: CareersViewProps) {
         <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
           <div 
             className={`w-full max-w-xl rounded-3xl p-6 md:p-8 border shadow-2xl relative my-8 max-h-[90vh] overflow-y-auto ${
-              isDark ? 'bg-card-dark border-gray-800 text-white' : 'bg-white border-gray-150 text-gray-900'
+              isDark ? 'bg-card-dark border-gray-800 text-white' : 'bg-white border-gray-200 text-gray-900'
             }`}
           >
             <button

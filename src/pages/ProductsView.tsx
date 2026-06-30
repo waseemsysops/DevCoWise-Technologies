@@ -37,7 +37,7 @@ export default function ProductsView({ isDark }: { isDark: boolean }) {
             <div 
               key={prod.id} 
               className={`p-8 rounded-3xl border flex flex-col justify-between space-y-6 ${
-                isDark ? 'bg-card-dark border-gray-800 text-white' : 'bg-white border-gray-150 shadow-lg text-gray-900'
+                isDark ? 'bg-card-dark border-gray-800 text-white' : 'bg-white border-gray-200 shadow-lg text-gray-900'
               }`}
             >
               <div className="space-y-4">

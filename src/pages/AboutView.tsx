@@ -38,7 +38,7 @@ export default function AboutView({ isDark }: { isDark: boolean }) {
             <span>Corporate Identity</span>
           </div>
           <h1 className="text-4xl font-extrabold tracking-tight font-display">Engineering Digital Sovereignty</h1>
-          <p className={`text-sm leading-relaxed ${isDark ? 'text-gray-300' : 'text-gray-650'}`}>
+          <p className={`text-sm leading-relaxed ${isDark ? 'text-gray-350' : 'text-gray-650'}`}>
             DEVCOWISE is a global enterprise technology consulting firm. We replace expensive, black-box legacy systems with optimized, highly resilient, open-core cloud architectures, customized ERP tools, and secure generative AI models.
           </p>
           <p className="text-xs text-gray-400 leading-relaxed">
@@ -47,7 +47,7 @@ export default function AboutView({ isDark }: { isDark: boolean }) {
         </div>
         {/* Decorative Grid */}
         <div className={`p-8 rounded-3xl border flex items-center justify-center relative min-h-[250px] ${
-          isDark ? 'bg-card-dark border-gray-800' : 'bg-white border-gray-150 shadow-lg'
+          isDark ? 'bg-card-dark border-gray-800' : 'bg-white border-gray-200 shadow-lg'
         }`}>
           <div className="text-center space-y-4">
             <Award className="w-12 h-12 text-primary mx-auto animate-bounce" />
@@ -91,7 +91,7 @@ export default function AboutView({ isDark }: { isDark: boolean }) {
             const Icon = val.icon;
             return (
               <div key={idx} className={`p-6 rounded-2xl border ${
-                isDark ? 'bg-card-dark border-gray-800' : 'bg-white border-gray-150 shadow-sm'
+                isDark ? 'bg-card-dark border-gray-800' : 'bg-white border-gray-200 shadow-sm'
               } space-y-3`}>
                 <div className="p-2.5 rounded-xl bg-primary/10 text-primary w-fit">
                   <Icon className="w-5 h-5" />
@@ -114,7 +114,7 @@ export default function AboutView({ isDark }: { isDark: boolean }) {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {leadership.map((lead, idx) => (
             <div key={idx} className={`p-6 rounded-2xl border flex flex-col justify-between ${
-              isDark ? 'bg-card-dark border-gray-800' : 'bg-white border-gray-150 shadow-sm'
+              isDark ? 'bg-card-dark border-gray-800' : 'bg-white border-gray-200 shadow-sm'
             } h-72`}>
               <div className="space-y-4">
                 <div className="flex items-center space-x-3">

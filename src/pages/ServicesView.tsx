@@ -3,15 +3,16 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Code, Sparkles, Cloud, Database, Shield, Monitor, CheckCircle, ArrowRight } from 'lucide-react';
 
-export default function ServicesView({ isDark }: { isDark: boolean }) {
+export default function ServicesView({ isDark, initialSelected }: { isDark: boolean; initialSelected?: string }) {
   const [selectedService, setSelectedService] = useState<number>(0);
 
   const services = [
     {
-      title: 'Generative AI & LLM Solutions',
+      id: 'digital-transformation',
+      title: 'Digital Transformation & AI',
       icon: Sparkles,
       tagline: 'Orchestrating server-side models for cognitive workflows',
       description: 'We deploy secure, background-executing AI agent pipelines using models like Gemini and Claude. Our solutions enforce strict privacy parameters, protecting sensitive corporate databases.',
@@ -23,7 +24,8 @@ export default function ServicesView({ isDark }: { isDark: boolean }) {
       ]
     },
     {
-      title: 'Open-Core ERPNext & Odoo Development',
+      id: 'system-integration',
+      title: 'System Integration (ERPNext & Odoo)',
       icon: Database,
       tagline: 'Tailored resource planning with zero license overheads',
       description: 'We customize, migrate, and maintain multi-tenant ERPNext and Odoo ecosystems. We replace expensive legacy licenses with fully integrated, compliant ledgers.',
@@ -35,7 +37,8 @@ export default function ServicesView({ isDark }: { isDark: boolean }) {
       ]
     },
     {
-      title: 'Cloud Migrations & DevOps',
+      id: 'solutions-engineering',
+      title: 'Solutions Engineering (DevOps & Cloud)',
       icon: Cloud,
       tagline: 'Zero-trust global container orchestration',
       description: 'Transition legacy server monoliths into highly available, elastically auto-scaled multi-cloud environments on AWS, Azure, and Google Cloud.',
@@ -47,6 +50,7 @@ export default function ServicesView({ isDark }: { isDark: boolean }) {
       ]
     },
     {
+      id: 'custom-software',
       title: 'Custom Software Development',
       icon: Code,
       tagline: 'High-concurrency full-stack system architecture',
@@ -59,6 +63,7 @@ export default function ServicesView({ isDark }: { isDark: boolean }) {
       ]
     },
     {
+      id: 'cyber-security',
       title: 'Enterprise Cyber Security',
       icon: Shield,
       tagline: 'Defending core infrastructure against ransomware',
@@ -71,6 +76,7 @@ export default function ServicesView({ isDark }: { isDark: boolean }) {
       ]
     },
     {
+      id: 'ux-design',
       title: 'UI/UX Design Systems',
       icon: Monitor,
       tagline: 'Transforming complex data structures into elegant interfaces',
@@ -87,6 +93,21 @@ export default function ServicesView({ isDark }: { isDark: boolean }) {
   const current = services[selectedService];
   const CurrentIcon = current.icon;
 
+  React.useEffect(() => {
+    if (initialSelected) {
+      const foundIdx = services.findIndex(s => s.id === initialSelected);
+      if (foundIdx !== -1) {
+        setSelectedService(foundIdx);
+      } else {
+        // Fallbacks
+        if (initialSelected === 'digital-transformation') setSelectedService(0);
+        else if (initialSelected === 'system-integration') setSelectedService(1);
+        else if (initialSelected === 'solutions-engineering') setSelectedService(2);
+        else if (initialSelected === 'ux-design') setSelectedService(5);
+      }
+    }
+  }, [initialSelected]);
+
   return (
     <div className="space-y-24 pb-20 pt-10">
       {/* 1. HERO */}
@@ -95,7 +116,7 @@ export default function ServicesView({ isDark }: { isDark: boolean }) {
           Capabilities Catalog
         </span>
         <h1 className="text-4xl font-extrabold tracking-tight font-display">Services Directory</h1>
-        <p className={`text-sm leading-relaxed ${isDark ? 'text-gray-350' : 'text-gray-600'}`}>
+        <p className={`text-sm leading-relaxed ${isDark ? 'text-gray-350' : 'text-gray-650'}`}>
           DEVCOWISE provides deep, specialized technical expertise to engineer resilient infrastructures, customized open-source workflows, and secure AI nodes.
         </p>
       </section>
@@ -103,7 +124,7 @@ export default function ServicesView({ isDark }: { isDark: boolean }) {
       {/* 2. INTERACTIVE EXPLORER */}
       <section className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12">
         {/* Left selector menu */}
-        <div className="lg:col-span-4 space-y-2">
+        <div className="lg:col-span-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2 lg:space-y-2 lg:gap-0 h-fit">
           {services.map((srv, idx) => {
             const Icon = srv.icon;
             return (
@@ -115,7 +136,7 @@ export default function ServicesView({ isDark }: { isDark: boolean }) {
                     ? 'bg-primary border-primary text-white shadow-lg shadow-primary/20'
                     : isDark 
                       ? 'bg-card-dark border-gray-800 text-gray-300 hover:bg-gray-850 hover:text-white' 
-                      : 'bg-white border-gray-150 text-gray-700 hover:bg-gray-50 hover:text-gray-950 hover:shadow-sm'
+                      : 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50 hover:text-gray-950 hover:shadow-sm'
                 }`}
               >
                 <div className={`p-2 rounded-lg ${selectedService === idx ? 'bg-white/10 text-white' : 'bg-primary/10 text-primary'}`}>
@@ -132,7 +153,7 @@ export default function ServicesView({ isDark }: { isDark: boolean }) {
         {/* Right deep analysis panel */}
         <div className="lg:col-span-8">
           <div className={`p-8 rounded-3xl border space-y-6 ${
-            isDark ? 'bg-card-dark border-gray-800 text-white' : 'bg-white border-gray-150 shadow-lg text-gray-900'
+            isDark ? 'bg-card-dark border-gray-800 text-white' : 'bg-white border-gray-200 shadow-lg text-gray-900'
           }`} id="service-deep-pane">
             <div className="flex items-center space-x-3 text-primary border-b border-gray-800/10 dark:border-gray-100/10 pb-4">
               <CurrentIcon className="w-8 h-8" />
