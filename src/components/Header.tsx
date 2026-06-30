@@ -263,23 +263,23 @@ export default function Header({ currentTab, setCurrentTab, isDark, setIsDark, o
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled 
             ? isDark 
-              ? 'bg-[#0E0E11]/95 backdrop-blur-md border-b border-gray-800/80 shadow-lg py-3' 
+              ? 'bg-dark-bg/95 backdrop-blur-md border-b border-gray-800/80 shadow-lg py-3' 
               : 'bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-md py-3'
             : 'bg-transparent py-5'
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          {/* Logo with stylized red DEVCOWISE loop */}
+          {/* Logo with stylized DEVCOWISE loop */}
           <button 
             onClick={() => handleNav('home')}
             className="flex items-center space-x-2.5 group focus:outline-none cursor-pointer"
           >
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#f42a41] to-[#e11d48] flex items-center justify-center text-white font-black text-xl shadow-md shadow-red-500/20 group-hover:scale-105 transition-all duration-300">
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-white font-black text-xl shadow-md shadow-primary/20 group-hover:scale-105 transition-all duration-300">
               D
             </div>
             <div className="flex flex-col items-start leading-none">
-              <span className={`text-xl font-extrabold tracking-tight ${isDark ? 'text-white' : 'text-gray-950'} font-display`}>
-                DEVCO<span className="text-[#f42a41]">WISE</span>
+              <span className={`text-xl font-extrabold tracking-tight ${isDark ? 'text-white' : 'text-gray-955'} font-display`}>
+                DEVCO<span className="text-primary">WISE</span>
               </span>
               <span className={`text-[8px] tracking-widest font-mono uppercase mt-0.5 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
                 Digital Transformation
@@ -306,7 +306,7 @@ export default function Header({ currentTab, setCurrentTab, isDark, setIsDark, o
                   onClick={() => handleNav(item.id)}
                   className={`px-4 py-2 rounded-xl text-xs font-semibold flex items-center space-x-1 cursor-pointer transition-all duration-200 ${
                     currentTab === item.id 
-                      ? 'text-[#f42a41] bg-red-500/5' 
+                      ? 'text-primary bg-primary/10' 
                       : isDark ? 'text-gray-300 hover:text-white hover:bg-gray-800/40' : 'text-gray-700 hover:text-gray-950 hover:bg-gray-100'
                   }`}
                 >
@@ -346,7 +346,7 @@ export default function Header({ currentTab, setCurrentTab, isDark, setIsDark, o
                     <button
                       key={lang}
                       onClick={() => setLanguage(lang)}
-                      className="w-full text-left px-2.5 py-1.5 rounded-lg text-xs hover:bg-[#f42a41] hover:text-white transition-colors cursor-pointer font-medium"
+                      className="w-full text-left px-2.5 py-1.5 rounded-lg text-xs hover:bg-primary hover:text-white transition-colors cursor-pointer font-medium"
                     >
                       {lang === 'EN' ? 'English' : lang === 'DE' ? 'Deutsch' : 'العربية'}
                     </button>
@@ -371,7 +371,7 @@ export default function Header({ currentTab, setCurrentTab, isDark, setIsDark, o
               onClick={() => handleNav('admin')}
               className={`hidden md:inline-flex p-2 rounded-xl transition-colors cursor-pointer ${
                 currentTab === 'admin'
-                  ? 'text-[#f42a41] bg-red-500/5'
+                  ? 'text-primary bg-primary/10'
                   : isDark ? 'text-gray-400 hover:text-white hover:bg-gray-800' : 'text-gray-500 hover:text-gray-955 hover:bg-gray-100'
               }`}
               title="Admin Portal"
@@ -379,10 +379,10 @@ export default function Header({ currentTab, setCurrentTab, isDark, setIsDark, o
               <Settings className="w-4 h-4" />
             </button>
 
-            {/* Bold RED Contact Button */}
+            {/* Bold Theme Contact Button */}
             <button
               onClick={() => handleNav('contact')}
-              className="hidden sm:inline-flex px-4 py-2 rounded-xl bg-[#f42a41] hover:bg-red-600 text-white text-xs font-bold transition-all shadow-md shadow-red-500/20 hover:shadow-lg hover:shadow-red-500/30 cursor-pointer"
+              className="hidden sm:inline-flex px-4 py-2 rounded-xl bg-primary hover:bg-secondary text-white text-xs font-bold transition-all shadow-md shadow-primary/20 hover:shadow-lg hover:shadow-secondary/35 cursor-pointer"
             >
               Contact Us
             </button>
@@ -403,7 +403,7 @@ export default function Header({ currentTab, setCurrentTab, isDark, setIsDark, o
         {activeMegaMenu && currentMega && (
           <div 
             className={`absolute left-0 right-0 top-full shadow-2xl transition-all duration-300 border-t ${
-              isDark ? 'bg-[#0E0E11] border-gray-800/80 text-white' : 'bg-gray-50 border-gray-200 text-gray-900'
+              isDark ? 'bg-[#040815] border-gray-800/80 text-white' : 'bg-gray-50 border-gray-200 text-gray-900'
             }`}
             onMouseLeave={() => {
               setActiveMegaMenu(null);
@@ -413,7 +413,7 @@ export default function Header({ currentTab, setCurrentTab, isDark, setIsDark, o
             <div className="max-w-7xl mx-auto grid grid-cols-12 gap-0">
               {/* Left Column: All [Category] Header List */}
               <div className="col-span-3 border-r border-gray-800/10 dark:border-gray-800/60 p-6 space-y-4">
-                <span className="text-[10px] font-bold font-mono tracking-widest text-[#f42a41] uppercase block">
+                <span className="text-[10px] font-bold font-mono tracking-widest text-primary uppercase block">
                   {currentMega.title}
                 </span>
                 
@@ -425,10 +425,10 @@ export default function Header({ currentTab, setCurrentTab, isDark, setIsDark, o
                       onClick={() => handleNav(cat.tab, cat.subId)}
                       className={`w-full text-left px-3 py-2 rounded-xl text-xs font-semibold flex items-center justify-between transition-all cursor-pointer ${
                         activeHoverCategory === cat.id
-                          ? 'bg-[#f42a41] text-white'
+                          ? 'bg-primary text-white'
                           : isDark
                             ? 'text-gray-300 hover:text-white hover:bg-gray-800/50'
-                            : 'text-gray-700 hover:text-gray-950 hover:bg-gray-200/50'
+                            : 'text-gray-700 hover:text-gray-955 hover:bg-gray-200/50'
                       }`}
                     >
                       <span>{cat.name}</span>
@@ -448,7 +448,7 @@ export default function Header({ currentTab, setCurrentTab, isDark, setIsDark, o
                   return (
                     <div className="space-y-4">
                       <div className="space-y-1">
-                        <span className="text-[10px] font-bold font-mono text-[#f42a41] uppercase tracking-wider block">Overview Detail</span>
+                        <span className="text-[10px] font-bold font-mono text-primary uppercase tracking-wider block">Overview Detail</span>
                         <h4 className="text-base font-extrabold font-display leading-tight">{hoveredCat.name}</h4>
                         <p className={`text-xs leading-relaxed mt-1 ${isDark ? 'text-gray-400' : 'text-gray-550'}`}>
                           {hoveredCat.desc}
@@ -460,7 +460,7 @@ export default function Header({ currentTab, setCurrentTab, isDark, setIsDark, o
                         <div className="grid grid-cols-1 gap-2">
                           {hoveredCat.details.map((det, idx) => (
                             <div key={idx} className="flex items-center space-x-2 text-xs">
-                              <span className="w-1.5 h-1.5 rounded-full bg-[#f42a41] flex-shrink-0"></span>
+                              <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0"></span>
                               <span className={`${isDark ? 'text-gray-300' : 'text-gray-700'} font-medium`}>{det}</span>
                             </div>
                           ))}
@@ -479,7 +479,7 @@ export default function Header({ currentTab, setCurrentTab, isDark, setIsDark, o
                         handleNav(hoveredCat.tab, hoveredCat.subId);
                       }
                     }}
-                    className="px-4 py-2 rounded-xl bg-gradient-to-tr from-[#f42a41] to-red-600 text-white text-[11px] font-bold tracking-wide flex items-center space-x-1.5 cursor-pointer shadow hover:shadow-md hover:scale-[1.01] transition-all"
+                    className="px-4 py-2 rounded-xl bg-gradient-to-tr from-primary to-secondary text-white text-[11px] font-bold tracking-wide flex items-center space-x-1.5 cursor-pointer shadow hover:shadow-md hover:scale-[1.01] transition-all"
                   >
                     <span>View Technical Specifications</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -506,7 +506,7 @@ export default function Header({ currentTab, setCurrentTab, isDark, setIsDark, o
                   </p>
                   <button
                     onClick={() => handleNav('contact')}
-                    className="text-xs font-bold text-[#f42a41] flex items-center space-x-1 hover:underline cursor-pointer"
+                    className="text-xs font-bold text-primary flex items-center space-x-1 hover:underline cursor-pointer"
                   >
                     <span>Request Scoping Document</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -520,14 +520,14 @@ export default function Header({ currentTab, setCurrentTab, isDark, setIsDark, o
 
       {/* Mobile drawer layout */}
       {isMobileMenuOpen && (
-        <div className={`fixed inset-0 z-40 lg:hidden pt-20 flex flex-col transition-all duration-300 ${isDark ? 'bg-[#0E0E11] text-white' : 'bg-white text-gray-955'}`}>
+        <div className={`fixed inset-0 z-40 lg:hidden pt-20 flex flex-col transition-all duration-300 ${isDark ? 'bg-dark-bg text-white' : 'bg-white text-gray-955'}`}>
           <div className="flex-1 overflow-y-auto px-6 py-6 space-y-4">
             {menuItems.map((item) => (
               <div key={item.id} className="border-b border-gray-800/10 dark:border-gray-800/40 pb-3">
                 <div className="flex items-center justify-between py-2">
                   <button
                     onClick={() => handleNav(item.id)}
-                    className="text-base font-bold text-left hover:text-[#f42a41] cursor-pointer"
+                    className="text-base font-bold text-left hover:text-primary cursor-pointer"
                   >
                     {item.label}
                   </button>
@@ -538,9 +538,9 @@ export default function Header({ currentTab, setCurrentTab, isDark, setIsDark, o
                     <button
                       key={subCat.id}
                       onClick={() => handleNav(subCat.tab, subCat.subId)}
-                      className="w-full text-left py-1 text-xs text-gray-400 hover:text-[#f42a41] flex items-center space-x-1.5 cursor-pointer"
+                      className="w-full text-left py-1 text-xs text-gray-400 hover:text-primary flex items-center space-x-1.5 cursor-pointer"
                     >
-                      <span className="w-1 h-1 rounded-full bg-red-500"></span>
+                      <span className="w-1 h-1 rounded-full bg-primary"></span>
                       <span>{subCat.name}</span>
                     </button>
                   ))}
@@ -553,7 +553,7 @@ export default function Header({ currentTab, setCurrentTab, isDark, setIsDark, o
             <div className="pt-6">
               <button
                 onClick={() => handleNav('contact')}
-                className="w-full py-3 rounded-xl bg-[#f42a41] hover:bg-red-600 text-white text-center font-bold text-sm tracking-wide shadow-lg shadow-red-500/20 cursor-pointer"
+                className="w-full py-3 rounded-xl bg-primary hover:bg-secondary text-white text-center font-bold text-sm tracking-wide shadow-lg shadow-primary/25 cursor-pointer"
               >
                 Contact Us
               </button>
@@ -590,14 +590,14 @@ export default function Header({ currentTab, setCurrentTab, isDark, setIsDark, o
                 autoFocus
                 className={`w-full pl-11 pr-4 py-3 rounded-xl outline-none border transition-all text-xs ${
                   isDark 
-                    ? 'bg-gray-800/50 border-gray-700 text-white focus:border-[#f42a41] focus:bg-gray-800' 
-                    : 'bg-gray-50 border-gray-200 text-gray-900 focus:border-[#f42a41] focus:bg-white'
+                    ? 'bg-gray-800/50 border-gray-700 text-white focus:border-primary focus:bg-gray-800' 
+                    : 'bg-gray-50 border-gray-200 text-gray-900 focus:border-primary focus:bg-white'
                 }`}
               />
               <Search className="w-4 h-4 absolute left-4 top-3.5 text-gray-400" />
               <button 
                 type="submit"
-                className="absolute right-3 top-2 px-3 py-1.5 rounded-lg bg-[#f42a41] text-white text-[10px] font-bold cursor-pointer"
+                className="absolute right-3 top-2 px-3 py-1.5 rounded-lg bg-primary text-white text-[10px] font-bold cursor-pointer"
               >
                 Search
               </button>

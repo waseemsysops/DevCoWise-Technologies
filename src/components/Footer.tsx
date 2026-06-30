@@ -58,7 +58,7 @@ export default function Footer({ currentTab, setCurrentTab, isDark, onSubscribe 
     <footer 
       id="app-footer"
       className={`border-t transition-colors duration-300 pt-16 pb-8 ${
-        isDark ? 'bg-[#0E0E11] border-gray-800/80 text-gray-400' : 'bg-gray-50 border-gray-200 text-gray-600'
+        isDark ? 'bg-[#030612] border-gray-800/80 text-gray-400' : 'bg-gray-50 border-gray-200 text-gray-600'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 mb-12">
@@ -68,11 +68,11 @@ export default function Footer({ currentTab, setCurrentTab, isDark, onSubscribe 
             onClick={() => handleNav('home')}
             className="flex items-center space-x-2 text-left cursor-pointer focus:outline-none"
           >
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#f42a41] to-[#e11d48] flex items-center justify-center text-white font-bold text-base shadow-md">
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#0ea5e9] to-[#1e40af] flex items-center justify-center text-white font-bold text-base shadow-md">
               D
             </div>
             <span className={`text-lg font-bold tracking-tight font-display ${isDark ? 'text-white' : 'text-gray-900'}`}>
-              DEVCO<span className="text-[#f42a41]">WISE</span>
+              DEVCO<span className="text-primary">WISE</span>
             </span>
           </button>
           <p className="text-xs leading-relaxed max-w-sm">
@@ -112,7 +112,7 @@ export default function Footer({ currentTab, setCurrentTab, isDark, onSubscribe 
               <li key={idx}>
                 <button 
                   onClick={() => handleNav(link.id)}
-                  className="hover:text-[#f42a41] cursor-pointer transition-colors"
+                  className="hover:text-primary cursor-pointer transition-colors"
                 >
                   {link.label}
                 </button>
@@ -122,13 +122,13 @@ export default function Footer({ currentTab, setCurrentTab, isDark, onSubscribe 
         </div>
 
         <div className="lg:col-span-2 space-y-4">
-          <h4 className={`text-xs font-bold tracking-widest uppercase font-mono ${isDark ? 'text-white' : 'text-gray-950'}`}>Our Services</h4>
+          <h4 className={`text-xs font-bold tracking-widest uppercase font-mono ${isDark ? 'text-white' : 'text-gray-955'}`}>Our Services</h4>
           <ul className="space-y-2.5 text-xs">
             {serviceLinks.map((link, idx) => (
               <li key={idx}>
                 <button 
                   onClick={() => handleNav(link.id, link.subId)}
-                  className="hover:text-[#f42a41] cursor-pointer transition-colors text-left"
+                  className="hover:text-primary cursor-pointer transition-colors text-left"
                 >
                   {link.label}
                 </button>
@@ -144,7 +144,7 @@ export default function Footer({ currentTab, setCurrentTab, isDark, onSubscribe 
               <li key={idx}>
                 <button 
                   onClick={() => handleNav(link.id, link.subId)}
-                  className="hover:text-[#f42a41] cursor-pointer transition-colors text-left"
+                  className="hover:text-primary cursor-pointer transition-colors text-left"
                 >
                   {link.label}
                 </button>
@@ -175,8 +175,8 @@ export default function Footer({ currentTab, setCurrentTab, isDark, onSubscribe 
                   required
                   className={`w-full pl-3 pr-10 py-2.5 rounded-xl text-xs outline-none border transition-all ${
                     isDark 
-                      ? 'bg-gray-800/50 border-gray-800 focus:border-[#f42a41] text-white' 
-                      : 'bg-white border-gray-200 focus:border-[#f42a41] text-gray-950'
+                      ? 'bg-gray-800/50 border-gray-800 focus:border-primary text-white' 
+                      : 'bg-white border-gray-200 focus:border-primary text-gray-950'
                   }`}
                 />
                 <button
@@ -196,10 +196,10 @@ export default function Footer({ currentTab, setCurrentTab, isDark, onSubscribe 
       }`}>
         <span>&copy; {new Date().getFullYear()} DEVCOWISE Consulting. All rights reserved.</span>
         <div className="flex flex-wrap items-center gap-4 sm:gap-6">
-          <button onClick={() => handleNav('home')} className="hover:text-[#f42a41] cursor-pointer transition-colors">Sitemap</button>
-          <button onClick={() => handleNav('home')} className="hover:text-[#f42a41] cursor-pointer transition-colors">Privacy Policy</button>
-          <button onClick={() => handleNav('home')} className="hover:text-[#f42a41] cursor-pointer transition-colors">Terms of Service</button>
-          <button onClick={() => handleNav('home')} className="hover:text-[#f42a41] cursor-pointer transition-colors">Cookies Policies</button>
+          <button onClick={() => handleNav('home')} className="hover:text-primary cursor-pointer transition-colors">Sitemap</button>
+          <button onClick={() => handleNav('home')} className="hover:text-primary cursor-pointer transition-colors">Privacy Policy</button>
+          <button onClick={() => handleNav('home')} className="hover:text-primary cursor-pointer transition-colors">Terms of Service</button>
+          <button onClick={() => handleNav('home')} className="hover:text-primary cursor-pointer transition-colors">Cookies Policies</button>
         </div>
       </div>
     </footer>

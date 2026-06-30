@@ -6,12 +6,12 @@
   --font-display: "Space Grotesk", "Outfit", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
-  --color-primary: #f42a41;
-  --color-secondary: #e11d48;
-  --color-accent: #10b981;
-  --color-dark-bg: #06070a;
-  --color-light-bg: #fafbfc;
-  --color-card-dark: #0d0f14;
+  --color-primary: #0ea5e9;
+  --color-secondary: #1e40af;
+  --color-accent: #38bdf8;
+  --color-dark-bg: #040815;
+  --color-light-bg: #f1f5f9;
+  --color-card-dark: #0b1120;
   --color-card-light: #ffffff;
 }
 
@@ -58,10 +58,10 @@
 
 /* Glassmorphism Classes */
 .glass-panel-dark {
-  background: rgba(13, 15, 20, 0.7);
+  background: rgba(11, 17, 32, 0.7);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(244, 42, 65, 0.1);
+  border: 1px solid rgba(14, 165, 233, 0.1);
 }
 
 .glass-panel-light {
@@ -80,7 +80,7 @@
   content: '';
   position: absolute;
   inset: -1px;
-  background: linear-gradient(90deg, #f42a41, #e11d48, #ff6b8b);
+  background: linear-gradient(90deg, #38bdf8, #0ea5e9, #1e40af);
   z-index: -1;
   border-radius: inherit;
   opacity: 0;
@@ -94,19 +94,19 @@
 /* Premium Web Tech Grid Overlay */
 .tech-grid-dark {
   background-size: 40px 40px;
-  background-image: linear-gradient(to right, rgba(244, 42, 65, 0.03) 1px, transparent 1px),
-                    linear-gradient(to bottom, rgba(244, 42, 65, 0.03) 1px, transparent 1px);
+  background-image: linear-gradient(to right, rgba(14, 165, 233, 0.03) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(14, 165, 233, 0.03) 1px, transparent 1px);
 }
 
 .tech-grid-light {
   background-size: 40px 40px;
-  background-image: linear-gradient(to right, rgba(244, 42, 65, 0.02) 1px, transparent 1px),
-                    linear-gradient(to bottom, rgba(244, 42, 65, 0.02) 1px, transparent 1px);
+  background-image: linear-gradient(to right, rgba(14, 165, 233, 0.015) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(14, 165, 233, 0.015) 1px, transparent 1px);
 }
 
 .glow-spot {
   filter: blur(120px);
-  background: radial-gradient(circle, rgba(244, 42, 65, 0.12) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(14, 165, 233, 0.15) 0%, transparent 70%);
 }
 
 /* Markdown styling overrides */
