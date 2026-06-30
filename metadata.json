@@ -1,0 +1,6 @@
+{
+  "name": "DEVCOWISE",
+  "description": "Engineering Digital Transformation - Enterprise Technology Consulting, Cloud Solutions, AI, and ERP Systems",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
