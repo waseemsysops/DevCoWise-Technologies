@@ -4,8 +4,9 @@
  */
 
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, CheckCircle, HelpCircle, MessageSquare } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, CheckCircle, HelpCircle, MessageSquare, Loader2 } from 'lucide-react';
 import { ContactInquiry } from '../types';
+import { useLanguage } from '../context/LanguageContext';
 
 interface ContactViewProps {
   onSubmitInquiry: (inq: Omit<ContactInquiry, 'id' | 'date' | 'status'>) => void;
@@ -13,6 +14,7 @@ interface ContactViewProps {
 }
 
 export default function ContactView({ onSubmitInquiry, isDark }: ContactViewProps) {
+  const { t } = useLanguage();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -21,6 +23,8 @@ export default function ContactView({ onSubmitInquiry, isDark }: ContactViewProp
   const [message, setMessage] = useState('');
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   // Active Office Tab
   const [activeOffice, setActiveOffice] = useState<string>('KSA');
@@ -46,9 +50,36 @@ export default function ContactView({ onSubmitInquiry, isDark }: ContactViewProp
     );
   };
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (name.trim() && email.trim() && message.trim()) {
+    if (!name.trim() || !email.trim() || !message.trim()) return;
+
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    const payload = {
+      name: name.trim(),
+      email: email.trim(),
+      phone: phone.trim(),
+      company: company.trim(),
+      subject,
+      message: message.trim(),
+      services: selectedServices.length > 0 ? selectedServices.join(', ') : 'General Scoping',
+      _subject: `New DEVCOWISE Inquiry from ${name.trim()} (${company.trim()})`,
+    };
+
+    try {
+      // Direct integration to FormSubmit proxying emails securely to devcowisetech@gmail.com
+      const response = await fetch('https://formsubmit.co/ajax/devcowisetech@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      // Submit locally anyway to keep the interactive admin dashboard updated
       onSubmitInquiry({
         name,
         email,
@@ -60,16 +91,31 @@ export default function ContactView({ onSubmitInquiry, isDark }: ContactViewProp
       });
 
       setSubmitted(true);
-      setTimeout(() => {
-        setSubmitted(false);
-        setName('');
-        setEmail('');
-        setPhone('');
-        setCompany('');
-        setSubject('General Systems Audit');
-        setMessage('');
-        setSelectedServices([]);
-      }, 5000);
+      setName('');
+      setEmail('');
+      setPhone('');
+      setCompany('');
+      setSubject('General Systems Audit');
+      setMessage('');
+      setSelectedServices([]);
+      
+    } catch (err: any) {
+      console.error('Email dispatch error:', err);
+      // Fallback: system is offline/cors block, but we still log locally in state so user doesn't lose progress
+      onSubmitInquiry({
+        name,
+        email,
+        phone,
+        company,
+        subject,
+        message,
+        services: selectedServices.length > 0 ? selectedServices : ['General Scoping']
+      });
+
+      setSubmitError(t('contact.error_notice', 'Inquiry logged in client database, but could not dispatch directly via server. We will contact you shortly!'));
+      setSubmitted(true);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -78,11 +124,13 @@ export default function ContactView({ onSubmitInquiry, isDark }: ContactViewProp
       {/* 1. HERO */}
       <section className="text-center max-w-3xl mx-auto space-y-4 px-6">
         <span className="text-xs font-bold font-mono tracking-widest text-primary uppercase bg-primary/10 px-3.5 py-1.5 rounded-full">
-          Systems Audit Scoping
+          {t('contact.badge', 'Systems Audit Scoping')}
         </span>
-        <h1 className="text-4xl font-extrabold tracking-tight font-display">Initiate System Proposals</h1>
+        <h1 className="text-4xl font-extrabold tracking-tight font-display">
+          {t('contact.title', 'Initiate System Proposals')}
+        </h1>
         <p className={`text-sm leading-relaxed ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
-          Secure our consulting architects. Fill out our systems requirements form or connect with our international offices below.
+          {t('contact.subtitle', 'Secure our consulting architects. Fill out our systems requirements form or connect with our international offices below.')}
         </p>
       </section>
 
@@ -90,7 +138,9 @@ export default function ContactView({ onSubmitInquiry, isDark }: ContactViewProp
       <section className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         {/* Tab Buttons & Coordinates */}
         <div className="lg:col-span-5 space-y-6">
-          <span className="text-xs font-bold font-mono text-primary uppercase tracking-widest block">Office Directories</span>
+          <span className="text-xs font-bold font-mono text-primary uppercase tracking-widest block">
+            {t('contact.office_directories', 'Office Directories')}
+          </span>
           <div className="flex flex-wrap gap-2">
             {offices.map((off) => (
               <button
@@ -138,22 +188,37 @@ export default function ContactView({ onSubmitInquiry, isDark }: ContactViewProp
           }`} id="contact-form-pane">
             <div className="flex items-center space-x-2.5 border-b border-gray-800/10 dark:border-gray-100/10 pb-4">
               <MessageSquare className="w-5 h-5 text-primary" />
-              <h3 className="font-bold text-sm tracking-wide font-mono uppercase">Requirements Scoping Blueprint</h3>
+              <h3 className="font-bold text-sm tracking-wide font-mono uppercase">
+                {t('contact.blueprint_header', 'Requirements Scoping Blueprint')}
+              </h3>
             </div>
 
             {submitted ? (
               <div className="text-center py-12 space-y-4 text-xs">
                 <CheckCircle className="w-12 h-12 text-accent mx-auto animate-pulse" />
-                <h3 className="text-xl font-bold font-display text-accent">Proposal Request Logged!</h3>
+                <h3 className="text-xl font-bold font-display text-accent">
+                  {t('contact.submitted_title', 'Proposal Request Logged!')}
+                </h3>
                 <p className="text-gray-400 max-w-sm mx-auto leading-relaxed">
-                  Thank you, {name}. Your systems blueprint has been securely logged. It has been registered in our admin database, and our senior systems architect will draft a scoping report within 24 hours.
+                  {submitError ? submitError : t('contact.submitted_desc', 'Thank you! Your systems blueprint has been securely dispatched to our system. A senior systems architect will draft a scoping report and contact you at the provided address within 24 hours.')}
                 </p>
+                <button
+                  onClick={() => {
+                    setSubmitted(false);
+                    setSubmitError(null);
+                  }}
+                  className="px-6 py-2 rounded-xl bg-primary hover:bg-primary/90 text-white font-medium text-xs mt-2 transition-all cursor-pointer"
+                >
+                  {t('contact.send_another', 'Send Another Message')}
+                </button>
               </div>
             ) : (
               <form onSubmit={handleFormSubmit} className="space-y-4 text-xs">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1">
-                    <label className="font-mono text-[10px] uppercase tracking-wider text-gray-400 block">Full Name</label>
+                    <label className="font-mono text-[10px] uppercase tracking-wider text-gray-400 block">
+                      {t('contact.label_name', 'Full Name')}
+                    </label>
                     <input
                       type="text"
                       placeholder="e.g. Harris Khan"
@@ -166,7 +231,9 @@ export default function ContactView({ onSubmitInquiry, isDark }: ContactViewProp
                     />
                   </div>
                   <div className="space-y-1">
-                    <label className="font-mono text-[10px] uppercase tracking-wider text-gray-400 block">Corporate Email</label>
+                    <label className="font-mono text-[10px] uppercase tracking-wider text-gray-400 block">
+                      {t('contact.label_email', 'Corporate Email')}
+                    </label>
                     <input
                       type="email"
                       placeholder="e.g. harris@atlas.com"
@@ -182,7 +249,9 @@ export default function ContactView({ onSubmitInquiry, isDark }: ContactViewProp
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1">
-                    <label className="font-mono text-[10px] uppercase tracking-wider text-gray-400 block">Corporate Group / Company</label>
+                    <label className="font-mono text-[10px] uppercase tracking-wider text-gray-400 block">
+                      {t('contact.label_company', 'Corporate Group / Company')}
+                    </label>
                     <input
                       type="text"
                       placeholder="e.g. Atlas Heavy Industries"
@@ -195,12 +264,14 @@ export default function ContactView({ onSubmitInquiry, isDark }: ContactViewProp
                     />
                   </div>
                   <div className="space-y-1">
-                    <label className="font-mono text-[10px] uppercase tracking-wider text-gray-400 block">Consulting Subject</label>
+                    <label className="font-mono text-[10px] uppercase tracking-wider text-gray-400 block">
+                      {t('contact.label_subject', 'Consulting Subject')}
+                    </label>
                     <select
                       value={subject}
                       onChange={(e) => setSubject(e.target.value)}
                       className={`w-full px-3.5 py-2.5 rounded-xl outline-none border ${
-                        isDark ? 'bg-gray-800 border-gray-700 text-white' : 'bg-white border-gray-200 text-gray-700'
+                        isDark ? 'bg-gray-800 border-gray-700 text-white' : 'bg-white border-gray-200 text-gray-750'
                       }`}
                     >
                       <option value="General Systems Audit">General Systems Audit</option>
@@ -214,7 +285,9 @@ export default function ContactView({ onSubmitInquiry, isDark }: ContactViewProp
 
                 {/* Multiple select services */}
                 <div className="space-y-2">
-                  <label className="font-mono text-[10px] uppercase tracking-wider text-gray-400 block">Select Target Services Requirements</label>
+                  <label className="font-mono text-[10px] uppercase tracking-wider text-gray-400 block">
+                    {t('contact.label_services', 'Select Target Services Requirements')}
+                  </label>
                   <div className="flex flex-wrap gap-2">
                     {servicesList.map((srv) => {
                       const selected = selectedServices.includes(srv);
@@ -239,7 +312,9 @@ export default function ContactView({ onSubmitInquiry, isDark }: ContactViewProp
                 </div>
 
                 <div className="space-y-1">
-                  <label className="font-mono text-[10px] uppercase tracking-wider text-gray-400 block">Infrastructure Parameters / Message</label>
+                  <label className="font-mono text-[10px] uppercase tracking-wider text-gray-400 block">
+                    {t('contact.label_message', 'Infrastructure Parameters / Message')}
+                  </label>
                   <textarea
                     rows={4}
                     placeholder="Describe legacy system databases, active user volumes, compliance rules..."
@@ -254,10 +329,20 @@ export default function ContactView({ onSubmitInquiry, isDark }: ContactViewProp
 
                 <button
                   type="submit"
-                  className="w-full py-3.5 rounded-xl bg-primary hover:bg-primary/95 text-white font-semibold text-xs shadow-lg shadow-primary/20 transition-all cursor-pointer flex items-center justify-center space-x-1"
+                  disabled={isSubmitting}
+                  className="w-full py-3.5 rounded-xl bg-primary hover:bg-primary/95 text-white font-semibold text-xs shadow-lg shadow-primary/20 transition-all cursor-pointer flex items-center justify-center space-x-2 disabled:opacity-60"
                 >
-                  <Send className="w-4 h-4" />
-                  <span>Submit Corporate Proposal</span>
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      <span>{t('contact.submitting', 'Sending Security Scoping Proposal...')}</span>
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-4 h-4" />
+                      <span>{t('contact.btn_submit', 'Submit Corporate Proposal')}</span>
+                    </>
+                  )}
                 </button>
               </form>
             )}

@@ -69,10 +69,19 @@ export default function App() {
 
   // Sync tab changes with hash anchor tags if applicable
   useEffect(() => {
-    const hash = window.location.hash.replace('#', '');
-    if (hash && ['home', 'about', 'services', 'solutions', 'industries', 'products', 'case-studies', 'insights', 'careers', 'contact', 'admin'].includes(hash)) {
-      setCurrentTab(hash);
-    }
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace('#', '');
+      if (hash && ['home', 'about', 'services', 'solutions', 'industries', 'products', 'case-studies', 'insights', 'careers', 'contact', 'admin'].includes(hash)) {
+        setCurrentTab(hash);
+      }
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    handleHashChange(); // Run once initially to handle initial load hash
+
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+    };
   }, []);
 
   const handleTabChange = (tab: string, subId?: string) => {
