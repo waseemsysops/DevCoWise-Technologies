@@ -10,6 +10,7 @@ import {
   Briefcase, MessageSquare, Landmark, Activity, ShoppingBag, 
   Truck, Settings, ArrowRight, HeartPulse, HardHat, Radio, HelpCircle
 } from 'lucide-react';
+import { useLanguage, LanguageType } from '../context/LanguageContext';
 
 interface HeaderProps {
   currentTab: string;
@@ -26,7 +27,7 @@ export default function Header({ currentTab, setCurrentTab, isDark, setIsDark, o
   const [activeHoverCategory, setActiveHoverCategory] = useState<string>('');
   const [searchOpen, setSearchOpen] = useState(false);
   const [localSearch, setLocalSearch] = useState('');
-  const [language, setLanguage] = useState('EN');
+  const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -52,11 +53,11 @@ export default function Header({ currentTab, setCurrentTab, isDark, setIsDark, o
   };
 
   const menuItems = [
-    { label: 'Services', id: 'services', hasMega: true, type: 'services' },
-    { label: 'Solutions', id: 'solutions', hasMega: true, type: 'solutions' },
-    { label: 'Industries', id: 'industries', hasMega: true, type: 'industries' },
-    { label: 'Insights', id: 'insights', hasMega: true, type: 'insights' },
-    { label: 'About Us', id: 'about', hasMega: true, type: 'about' },
+    { label: t('nav.services'), id: 'services', hasMega: true, type: 'services' },
+    { label: t('nav.solutions'), id: 'solutions', hasMega: true, type: 'solutions' },
+    { label: t('nav.industries'), id: 'industries', hasMega: true, type: 'industries' },
+    { label: t('nav.insights'), id: 'insights', hasMega: true, type: 'insights' },
+    { label: t('nav.about'), id: 'about', hasMega: true, type: 'about' },
   ];
 
   // SERVICES mega menu data
@@ -338,17 +339,28 @@ export default function Header({ currentTab, setCurrentTab, isDark, setIsDark, o
                 <Globe className="w-3.5 h-3.5" />
                 <span>{language}</span>
               </button>
-              <div className={`absolute right-0 top-full mt-1.5 hidden group-hover:block w-28 rounded-xl border shadow-xl ${
-                isDark ? 'bg-card-dark border-gray-800 text-gray-300' : 'bg-white border-gray-200 text-gray-700'
+              <div className={`absolute right-0 top-full mt-1.5 hidden group-hover:block w-32 rounded-xl border shadow-xl ${
+                isDark ? 'bg-[#0E0E11] border-gray-800 text-gray-300' : 'bg-white border-gray-200 text-gray-700'
               }`}>
                 <div className="p-1.5 space-y-1">
-                  {['EN', 'DE', 'AR'].map((lang) => (
+                  {[
+                    { code: 'EN', name: 'English' },
+                    { code: 'DE', name: 'Deutsch' },
+                    { code: 'ES', name: 'Español' },
+                    { code: 'FR', name: 'Français' },
+                    { code: 'AR', name: 'العربية' }
+                  ].map((lang) => (
                     <button
-                      key={lang}
-                      onClick={() => setLanguage(lang)}
-                      className="w-full text-left px-2.5 py-1.5 rounded-lg text-xs hover:bg-primary hover:text-white transition-colors cursor-pointer font-medium"
+                      key={lang.code}
+                      onClick={() => setLanguage(lang.code as LanguageType)}
+                      className={`w-full text-left px-2.5 py-1.5 rounded-lg text-xs transition-colors cursor-pointer font-medium flex items-center justify-between ${
+                        language === lang.code 
+                          ? 'bg-primary/20 text-primary font-bold' 
+                          : 'hover:bg-primary hover:text-white'
+                      }`}
                     >
-                      {lang === 'EN' ? 'English' : lang === 'DE' ? 'Deutsch' : 'العربية'}
+                      <span>{lang.name}</span>
+                      <span className="text-[9px] opacity-60 uppercase font-mono">{lang.code}</span>
                     </button>
                   ))}
                 </div>

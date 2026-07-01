@@ -29,6 +29,8 @@ import InsightsView from './pages/InsightsView';
 import CareersView from './pages/CareersView';
 import ContactView from './pages/ContactView';
 
+import { LanguageProvider } from './context/LanguageContext';
+
 export default function App() {
   // Global States
   const [currentTab, setCurrentTab] = useState<string>('home');
@@ -112,70 +114,72 @@ export default function App() {
   };
 
   return (
-    <div className={`min-h-screen transition-colors duration-300 relative overflow-hidden ${
-      isDark ? 'bg-dark-bg text-white tech-grid-dark' : 'bg-light-bg text-gray-900 tech-grid-light'
-    } flex flex-col justify-between`}>
-      
-      {/* Decorative Premium Glow Spots */}
-      <div className="absolute top-[-10%] left-[-10%] w-[45vw] h-[45vw] rounded-full glow-spot pointer-events-none opacity-30"></div>
-      <div className="absolute bottom-[-15%] right-[-10%] w-[50vw] h-[50vw] rounded-full glow-spot pointer-events-none opacity-30"></div>
-      
-      {/* Premium Sticky Header */}
-      <Header 
-        currentTab={currentTab} 
-        setCurrentTab={handleTabChange} 
-        isDark={isDark} 
-        setIsDark={setIsDark}
-        onSearch={handleGlobalSearch}
-      />
+    <LanguageProvider>
+      <div className={`min-h-screen transition-colors duration-300 relative overflow-hidden ${
+        isDark ? 'bg-dark-bg text-white tech-grid-dark' : 'bg-light-bg text-gray-900 tech-grid-light'
+      } flex flex-col justify-between`}>
+        
+        {/* Decorative Premium Glow Spots */}
+        <div className="absolute top-[-10%] left-[-10%] w-[45vw] h-[45vw] rounded-full glow-spot pointer-events-none opacity-30"></div>
+        <div className="absolute bottom-[-15%] right-[-10%] w-[50vw] h-[50vw] rounded-full glow-spot pointer-events-none opacity-30"></div>
+        
+        {/* Premium Sticky Header */}
+        <Header 
+          currentTab={currentTab} 
+          setCurrentTab={handleTabChange} 
+          isDark={isDark} 
+          setIsDark={setIsDark}
+          onSearch={handleGlobalSearch}
+        />
 
-      {/* Main Container Core Viewport */}
-      <main className="flex-grow pt-28 max-w-7xl mx-auto w-full px-6 min-h-[70vh]">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentTab}
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.25, ease: "easeInOut" }}
-            className="w-full h-full"
-          >
-            {currentTab === 'home' && <HomeView setCurrentTab={handleTabChange} isDark={isDark} />}
-            {currentTab === 'about' && <AboutView isDark={isDark} />}
-            {currentTab === 'services' && <ServicesView isDark={isDark} initialSelected={selectedSubId} />}
-            {currentTab === 'solutions' && <SolutionsView isDark={isDark} setCurrentTab={handleTabChange} initialSelected={selectedSubId} />}
-            {currentTab === 'industries' && <IndustriesView isDark={isDark} setCurrentTab={handleTabChange} initialSelected={selectedSubId} />}
-            {currentTab === 'products' && <ProductsView isDark={isDark} />}
-            {currentTab === 'case-studies' && <CaseStudiesView isDark={isDark} />}
-            {currentTab === 'insights' && <InsightsView blogPosts={blogPosts} isDark={isDark} />}
-            {currentTab === 'careers' && <CareersView jobs={jobs} isDark={isDark} />}
-            {currentTab === 'contact' && <ContactView onSubmitInquiry={handleAddInquiry} isDark={isDark} />}
-            {currentTab === 'admin' && (
-              <AdminDashboard 
-                jobs={jobs} 
-                setJobs={setJobs} 
-                blogPosts={blogPosts} 
-                setBlogPosts={setBlogPosts} 
-                inquiries={inquiries}
-                setInquiries={setInquiries}
-                newsletters={newsletters}
-                isDark={isDark}
-              />
-            )}
-          </motion.div>
-        </AnimatePresence>
-      </main>
+        {/* Main Container Core Viewport */}
+        <main className="flex-grow pt-28 max-w-7xl mx-auto w-full px-6 min-h-[70vh]">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentTab}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.25, ease: "easeInOut" }}
+              className="w-full h-full"
+            >
+              {currentTab === 'home' && <HomeView setCurrentTab={handleTabChange} isDark={isDark} />}
+              {currentTab === 'about' && <AboutView isDark={isDark} />}
+              {currentTab === 'services' && <ServicesView isDark={isDark} initialSelected={selectedSubId} />}
+              {currentTab === 'solutions' && <SolutionsView isDark={isDark} setCurrentTab={handleTabChange} initialSelected={selectedSubId} />}
+              {currentTab === 'industries' && <IndustriesView isDark={isDark} setCurrentTab={handleTabChange} initialSelected={selectedSubId} />}
+              {currentTab === 'products' && <ProductsView isDark={isDark} />}
+              {currentTab === 'case-studies' && <CaseStudiesView isDark={isDark} />}
+              {currentTab === 'insights' && <InsightsView blogPosts={blogPosts} isDark={isDark} />}
+              {currentTab === 'careers' && <CareersView jobs={jobs} isDark={isDark} />}
+              {currentTab === 'contact' && <ContactView onSubmitInquiry={handleAddInquiry} isDark={isDark} />}
+              {currentTab === 'admin' && (
+                <AdminDashboard 
+                  jobs={jobs} 
+                  setJobs={setJobs} 
+                  blogPosts={blogPosts} 
+                  setBlogPosts={setBlogPosts} 
+                  inquiries={inquiries}
+                  setInquiries={setInquiries}
+                  newsletters={newsletters}
+                  isDark={isDark}
+                />
+              )}
+            </motion.div>
+          </AnimatePresence>
+        </main>
 
-      {/* Interactive AI consulting assistant floating bot */}
-      <LiveChatWidget isDark={isDark} />
+        {/* Interactive AI consulting assistant floating bot */}
+        <LiveChatWidget isDark={isDark} />
 
-      {/* Footer Mega Menu */}
-      <Footer 
-        currentTab={currentTab} 
-        setCurrentTab={handleTabChange} 
-        isDark={isDark}
-        onSubscribe={handleAddNewsletter}
-      />
-    </div>
+        {/* Footer Mega Menu */}
+        <Footer 
+          currentTab={currentTab} 
+          setCurrentTab={handleTabChange} 
+          isDark={isDark}
+          onSubscribe={handleAddNewsletter}
+        />
+      </div>
+    </LanguageProvider>
   );
 }

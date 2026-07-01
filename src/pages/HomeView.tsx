@@ -5,6 +5,7 @@
 
 import { ArrowUpRight, CheckCircle, Cpu, ShieldAlert, Sparkles, BarChart2, Globe, Users, Trophy } from 'lucide-react';
 import { caseStudies } from '../data/caseStudies';
+import { useLanguage } from '../context/LanguageContext';
 
 interface HomeViewProps {
   setCurrentTab: (tab: string) => void;
@@ -12,36 +13,38 @@ interface HomeViewProps {
 }
 
 export default function HomeView({ setCurrentTab, isDark }: HomeViewProps) {
+  const { t } = useLanguage();
+
   const stats = [
-    { label: 'Successful Deployments', val: '450+', desc: 'Across 18 industries', icon: CheckCircle },
-    { label: 'Core Technical Staff', val: '180+', desc: 'Specialized engineers', icon: Users },
-    { label: 'Client Retention Index', val: '98.6%', desc: 'Long-term corporate partnerships', icon: Trophy },
-    { label: 'Global Offices', val: '8 Countries', desc: 'EMEA & APAC coverage', icon: Globe }
+    { label: t('stats.deployments', 'Successful Deployments'), val: '450+', desc: t('stats.deployments_desc', 'Across 18 industries'), icon: CheckCircle },
+    { label: t('stats.staff', 'Core Technical Staff'), val: '180+', desc: t('stats.staff_desc', 'Specialized engineers'), icon: Users },
+    { label: t('stats.retention', 'Client Retention Index'), val: '98.6%', desc: t('stats.retention_desc', 'Long-term corporate partnerships'), icon: Trophy },
+    { label: t('stats.offices', 'Global Offices'), val: '8 Countries', desc: t('stats.offices_desc', 'EMEA & APAC coverage'), icon: Globe }
   ];
 
   const valueProps = [
     {
-      title: 'Architectural Sovereignty',
-      desc: 'We engineer zero-trust, server-authoritative models that protect operational integrity and insulate client datasets.',
+      title: t('val.prop1_title', 'Architectural Sovereignty'),
+      desc: t('val.prop1_desc', 'We engineer zero-trust, server-authoritative models that protect operational integrity and insulate client datasets.'),
       icon: ShieldAlert
     },
     {
-      title: 'Open-Core ERP Pioneers',
-      desc: 'Specialized deployments of ERPNext, Odoo, and S/4HANA that eliminate excessive recurring license liabilities.',
+      title: t('val.prop2_title', 'Open-Core ERP Pioneers'),
+      desc: t('val.prop2_desc', 'Specialized deployments of ERPNext, Odoo, and S/4HANA that eliminate excessive recurring license liabilities.'),
       icon: Cpu
     },
     {
-      title: 'Agentic AI Workflows',
-      desc: 'Constructing robust background pipelines utilizing secure, server-side APIs to drive industrial productivity.',
+      title: t('val.prop3_title', 'Agentic AI Workflows'),
+      desc: t('val.prop3_desc', 'Constructing robust background pipelines utilizing secure, server-side APIs to drive industrial productivity.'),
       icon: Sparkles
     }
   ];
 
   const processes = [
-    { step: '01', title: 'Consulting & Scoping', desc: 'We conduct strict system audits to analyze data schemas and identify operational bottlenecks.' },
-    { step: '02', title: 'Security Safeguards', desc: 'Formulate zero-trust blueprints and access matrices prior to writing code lines.' },
-    { step: '03', title: 'Agile Engineering Sprints', desc: 'Our specialized development teams build scalable codebases inside containerized clusters.' },
-    { step: '04', title: 'Zero-Downtime Migration', desc: 'Secure data synchronization pipelines replace legacy backends without workflow interruption.' }
+    { step: '01', title: t('proc.step1_title', 'Consulting & Scoping'), desc: t('proc.step1_desc', 'We conduct strict system audits to analyze data schemas and identify operational bottlenecks.') },
+    { step: '02', title: t('proc.step2_title', 'Security Safeguards'), desc: t('proc.step2_desc', 'Formulate zero-trust blueprints and access matrices prior to writing code lines.') },
+    { step: '03', title: t('proc.step3_title', 'Agile Engineering Sprints'), desc: t('proc.step3_desc', 'Our specialized development teams build scalable codebases inside containerized clusters.') },
+    { step: '04', title: t('proc.step4_title', 'Zero-Downtime Migration'), desc: t('proc.step4_desc', 'Secure data synchronization pipelines replace legacy backends without workflow interruption.') }
   ];
 
   const featuredStudies = caseStudies.slice(0, 3);
@@ -70,17 +73,21 @@ export default function HomeView({ setCurrentTab, isDark }: HomeViewProps) {
           <div className="lg:col-span-7 space-y-6">
             <div className="inline-flex items-center space-x-2 bg-primary/10 text-primary text-xs font-semibold px-3.5 py-1.5 rounded-full font-mono uppercase tracking-widest">
               <Sparkles className="w-4 h-4 text-accent" />
-              <span>Engineering Digital Transformation</span>
+              <span>{t('hero.badge', 'Engineering Digital Transformation')}</span>
             </div>
             
             <h1 className={`text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] font-display ${
               isDark ? 'text-white' : 'text-gray-950'
             }`}>
-              Enterprise Consulting Built For <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-accent">Next-Generation</span> Scaling.
+              {t('hero.title_part1', 'Enterprise Consulting Built For ')}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-accent">
+                {t('hero.title_highlight', 'Next-Generation')}
+              </span>
+              {t('hero.title_part2', ' Scaling.')}
             </h1>
             
             <p className={`text-base sm:text-lg max-w-xl leading-relaxed ${isDark ? 'text-gray-350' : 'text-gray-650'}`}>
-              DEVCOWISE orchestrates robust custom software engineering, zero-trust cloud migrations, generative AI models, and tailored ERPNext implementations that drive global enterprise modernization.
+              {t('hero.subtitle', 'DEVCOWISE orchestrates robust custom software engineering, zero-trust cloud migrations, generative AI models, and tailored ERPNext implementations that drive global enterprise modernization.')}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
@@ -88,7 +95,7 @@ export default function HomeView({ setCurrentTab, isDark }: HomeViewProps) {
                 onClick={() => setCurrentTab('contact')}
                 className="px-8 py-3.5 rounded-xl bg-primary hover:bg-primary/95 text-white font-semibold text-sm shadow-lg shadow-primary/20 transition-all cursor-pointer flex items-center justify-center space-x-2"
               >
-                <span>Request Core Systems Audit</span>
+                <span>{t('hero.systemsAudit', 'Request Core Systems Audit')}</span>
                 <ArrowUpRight className="w-4 h-4" />
               </button>
               <button
@@ -99,7 +106,7 @@ export default function HomeView({ setCurrentTab, isDark }: HomeViewProps) {
                     : 'border-gray-200 text-gray-700 bg-white hover:text-gray-900 hover:shadow-md'
                 }`}
               >
-                Explore Services Directory
+                {t('cta.learnMore', 'Explore Services Directory')}
               </button>
             </div>
           </div>
@@ -167,9 +174,15 @@ export default function HomeView({ setCurrentTab, isDark }: HomeViewProps) {
       {/* 3. WHY CHOOSE DEVCOWISE */}
       <section className="max-w-7xl mx-auto px-6 space-y-12">
         <div className="text-center max-w-2xl mx-auto space-y-3">
-          <span className="text-xs font-bold font-mono tracking-widest text-primary uppercase block">Architectural Excellence</span>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight font-display">Engineering High-Impact Sovereignty</h2>
-          <p className="text-xs text-gray-400">We construct standard-setting solutions designed for corporate growth.</p>
+          <span className="text-xs font-bold font-mono tracking-widest text-primary uppercase block">
+            {t('val.title', 'Architectural Excellence')}
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight font-display">
+            {t('val.subtitle', 'Engineering High-Impact Sovereignty')}
+          </h2>
+          <p className="text-xs text-gray-400">
+            {t('val.subtitle_desc', 'We construct standard-setting solutions designed for corporate growth.')}
+          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -198,11 +211,15 @@ export default function HomeView({ setCurrentTab, isDark }: HomeViewProps) {
         <div className="max-w-7xl mx-auto px-6 space-y-12">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
-              <span className="text-xs font-bold font-mono tracking-widest text-primary uppercase block">Systems Implementation Map</span>
-              <h2 className="text-3xl font-bold tracking-tight mt-1 font-display">How We Deploy Enterprise Core</h2>
+              <span className="text-xs font-bold font-mono tracking-widest text-primary uppercase block">
+                {t('proc.title_badge', 'Systems Implementation Map')}
+              </span>
+              <h2 className="text-3xl font-bold tracking-tight mt-1 font-display">
+                {t('proc.title', 'How We Deploy Enterprise Core')}
+              </h2>
             </div>
             <p className="text-xs text-gray-400 max-w-sm leading-relaxed">
-              We leverage clean workflows to optimize architectures and assure high performance with zero system disruption.
+              {t('proc.subtitle', 'We leverage clean workflows to optimize architectures and assure high performance with zero system disruption.')}
             </p>
           </div>
 
