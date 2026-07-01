@@ -30,12 +30,24 @@ import CareersView from './pages/CareersView';
 import ContactView from './pages/ContactView';
 
 import { LanguageProvider } from './context/LanguageContext';
+import { useTheme } from './context/ThemeContext';
+import ThemeSelector from './components/ThemeSelector';
+import TechBackground from './components/TechBackground';
 
 export default function App() {
   // Global States
   const [currentTab, setCurrentTab] = useState<string>('home');
   const [selectedSubId, setSelectedSubId] = useState<string | undefined>(undefined);
-  const [isDark, setIsDark] = useState<boolean>(true);
+  
+  const { resolvedMode, setMode } = useTheme();
+  const isDark = resolvedMode === 'dark';
+  const setIsDark = (val: boolean | ((prev: boolean) => boolean)) => {
+    if (typeof val === 'function') {
+      setMode(val(isDark) ? 'dark' : 'light');
+    } else {
+      setMode(val ? 'dark' : 'light');
+    }
+  };
 
   // Mutable CMS & CRM data layers
   const [jobs, setJobs] = useState<Job[]>(seedJobs);
@@ -54,18 +66,6 @@ export default function App() {
     }
   ]);
   const [newsletters, setNewsletters] = useState<string[]>([]);
-
-  // Theme effect toggles
-  useEffect(() => {
-    const root = window.document.documentElement;
-    if (isDark) {
-      root.classList.add('dark');
-      root.style.backgroundColor = '#08090c';
-    } else {
-      root.classList.remove('dark');
-      root.style.backgroundColor = '#f8fafc';
-    }
-  }, [isDark]);
 
   // Sync tab changes with hash anchor tags if applicable
   useEffect(() => {
@@ -125,12 +125,11 @@ export default function App() {
   return (
     <LanguageProvider>
       <div className={`min-h-screen transition-colors duration-300 relative overflow-hidden ${
-        isDark ? 'bg-dark-bg text-white tech-grid-dark' : 'bg-light-bg text-gray-900 tech-grid-light'
+        isDark ? 'bg-dark-bg text-white' : 'bg-light-bg text-gray-900'
       } flex flex-col justify-between`}>
         
-        {/* Decorative Premium Glow Spots */}
-        <div className="absolute top-[-10%] left-[-10%] w-[45vw] h-[45vw] rounded-full glow-spot pointer-events-none opacity-30"></div>
-        <div className="absolute bottom-[-15%] right-[-10%] w-[50vw] h-[50vw] rounded-full glow-spot pointer-events-none opacity-30"></div>
+        {/* Premium Tech Background with SVG Circuits, Matrix streams and Aura clouds */}
+        <TechBackground />
         
         {/* Premium Sticky Header */}
         <Header 
@@ -180,6 +179,9 @@ export default function App() {
 
         {/* Interactive AI consulting assistant floating bot */}
         <LiveChatWidget isDark={isDark} />
+
+        {/* Premium Floating Theme Customizer System */}
+        <ThemeSelector />
 
         {/* Footer Mega Menu */}
         <Footer 

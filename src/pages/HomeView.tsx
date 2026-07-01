@@ -113,8 +113,8 @@ export default function HomeView({ setCurrentTab, isDark }: HomeViewProps) {
 
           {/* Interactive Hero Graphical Asset */}
           <div className="lg:col-span-5 hidden lg:block">
-            <div className={`p-8 rounded-3xl border relative overflow-hidden ${
-              isDark ? 'bg-card-dark border-gray-800' : 'bg-white border-gray-100 shadow-xl'
+            <div className={`p-8 rounded-3xl border relative overflow-hidden theme-card ${
+              isDark ? 'bg-card-dark border-white/10' : 'bg-card-light border-gray-200/80 shadow-xl'
             }`}>
               {/* Graphic container */}
               <div className="h-64 flex items-center justify-center relative">
@@ -122,7 +122,7 @@ export default function HomeView({ setCurrentTab, isDark }: HomeViewProps) {
                 <div className="w-40 h-40 rounded-full border border-dashed border-primary/40 flex items-center justify-center animate-spin [animation-duration:30s]">
                   <div className="w-28 h-28 rounded-full border border-dotted border-secondary/40 flex items-center justify-center animate-spin [animation-duration:15s] reverse">
                     <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-primary to-secondary flex items-center justify-center shadow-lg shadow-primary/25">
-                      <Cpu className="w-6 h-6 text-white" />
+                      <Cpu className="w-6 h-6 text-white animate-pulse" />
                     </div>
                   </div>
                 </div>
@@ -153,8 +153,8 @@ export default function HomeView({ setCurrentTab, isDark }: HomeViewProps) {
             return (
               <div 
                 key={idx} 
-                className={`p-6 rounded-2xl border ${
-                  isDark ? 'bg-card-dark border-gray-800' : 'bg-white border-gray-200 shadow-sm'
+                className={`p-6 rounded-2xl border theme-card ${
+                  isDark ? 'bg-card-dark border-white/10' : 'bg-card-light border-gray-200 shadow-sm'
                 } space-y-3`}
               >
                 <div className="p-2.5 rounded-xl bg-primary/10 text-primary w-fit">
@@ -191,8 +191,8 @@ export default function HomeView({ setCurrentTab, isDark }: HomeViewProps) {
             return (
               <div 
                 key={idx} 
-                className={`p-8 rounded-2xl border transition-all duration-300 hover:-translate-y-1 ${
-                  isDark ? 'bg-card-dark border-gray-800 hover:border-gray-700' : 'bg-white border-gray-200 shadow-sm hover:shadow-lg'
+                className={`p-8 rounded-2xl border theme-card ${
+                  isDark ? 'bg-card-dark border-white/10' : 'bg-card-light border-gray-200 shadow-sm'
                 } space-y-4`}
               >
                 <div className="p-3 rounded-xl bg-primary/10 text-primary w-fit">
@@ -207,7 +207,7 @@ export default function HomeView({ setCurrentTab, isDark }: HomeViewProps) {
       </section>
 
       {/* 4. DIGITAL TRANSFORMATION DEVELOPMENT PROCESS */}
-      <section className={`py-16 border-y ${isDark ? 'bg-gray-900/40 border-gray-800' : 'bg-gray-50 border-gray-200'}`}>
+      <section className={`py-16 border-y ${isDark ? 'bg-gray-900/10 border-white/10' : 'bg-gray-500/5 border-gray-200/60'}`}>
         <div className="max-w-7xl mx-auto px-6 space-y-12">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
@@ -227,8 +227,8 @@ export default function HomeView({ setCurrentTab, isDark }: HomeViewProps) {
             {processes.map((pr, idx) => (
               <div 
                 key={idx} 
-                className={`p-6 rounded-2xl border relative ${
-                  isDark ? 'bg-card-dark border-gray-800' : 'bg-white border-gray-100 shadow-sm'
+                className={`p-6 rounded-2xl border relative theme-card ${
+                  isDark ? 'bg-card-dark border-white/10' : 'bg-card-light border-gray-100 shadow-sm'
                 } space-y-4`}
               >
                 <span className="text-3xl font-extrabold font-mono text-primary/15 absolute top-4 right-4">{pr.step}</span>
@@ -266,8 +266,8 @@ export default function HomeView({ setCurrentTab, isDark }: HomeViewProps) {
 
         {/* Clean SVG Global Network Geometry */}
         <div className="lg:col-span-7">
-          <div className={`p-6 rounded-3xl border flex items-center justify-center relative ${
-            isDark ? 'bg-card-dark border-gray-800' : 'bg-white border-gray-200 shadow-lg'
+          <div className={`p-6 rounded-3xl border flex items-center justify-center relative theme-card ${
+            isDark ? 'bg-card-dark border-white/10' : 'bg-card-light border-gray-200 shadow-lg'
           }`}>
             <svg viewBox="0 0 400 200" className="w-full h-auto text-primary" fill="currentColor">
               {/* Simplified stylized outline maps */}

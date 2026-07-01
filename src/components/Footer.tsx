@@ -68,7 +68,7 @@ export default function Footer({ currentTab, setCurrentTab, isDark, onSubscribe 
             onClick={() => handleNav('home')}
             className="flex items-center space-x-2 text-left cursor-pointer focus:outline-none"
           >
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#0ea5e9] to-[#1e40af] flex items-center justify-center text-white font-bold text-base shadow-md">
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-white font-bold text-base shadow-md">
               D
             </div>
             <span className={`text-lg font-bold tracking-tight font-display ${isDark ? 'text-white' : 'text-gray-900'}`}>
