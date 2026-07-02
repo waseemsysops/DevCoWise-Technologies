@@ -31,7 +31,6 @@ import ContactView from './pages/ContactView';
 
 import { LanguageProvider } from './context/LanguageContext';
 import { useTheme } from './context/ThemeContext';
-import ThemeSelector from './components/ThemeSelector';
 import TechBackground from './components/TechBackground';
 
 export default function App() {
@@ -179,9 +178,6 @@ export default function App() {
 
         {/* Interactive AI consulting assistant floating bot */}
         <LiveChatWidget isDark={isDark} />
-
-        {/* Premium Floating Theme Customizer System */}
-        <ThemeSelector />
 
         {/* Footer Mega Menu */}
         <Footer 

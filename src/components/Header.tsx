@@ -359,17 +359,6 @@ export default function Header({ currentTab, setCurrentTab, isDark, setIsDark, o
               </div>
             </div>
 
-            {/* Theme Trigger toggle */}
-            <button
-              onClick={() => setIsDark(!isDark)}
-              className={`p-2 rounded-xl transition-colors cursor-pointer ${
-                isDark ? 'text-gray-300 hover:text-yellow-400 hover:bg-gray-800' : 'text-gray-600 hover:text-primary hover:bg-gray-100'
-              }`}
-              title={isDark ? 'Light Mode' : 'Dark Mode'}
-            >
-              {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-            </button>
-
             {/* Admin shortcut icon - hidden on mobile as per request */}
             <button
               onClick={() => handleNav('admin')}
