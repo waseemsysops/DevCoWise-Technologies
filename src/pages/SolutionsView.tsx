@@ -4,7 +4,7 @@
  */
 
 import React, { useState } from 'react';
-import { Sparkles, Brain, Bot, Headphones, PhoneCall, ShieldCheck, Cpu, Database, BarChart3, Cloud, Layout, CheckCircle, ArrowRight, Play, RefreshCw } from 'lucide-react';
+import { Sparkles, Brain, Bot, ShieldCheck, Cpu, Database, BarChart3, Cloud, Layout, CheckCircle, ArrowRight, Play, RefreshCw } from 'lucide-react';
 
 interface SolutionsViewProps {
   isDark: boolean;
@@ -44,23 +44,6 @@ export default function SolutionsView({ isDark, setCurrentTab, initialSelected }
       metrics: { label: 'Inference Speedup', val: '4.8x faster', desc: 'Sub-second model responses' }
     },
     {
-      id: 'call-intel',
-      title: 'AI-Powered Call Intelligence',
-      tagline: 'Transforming contact centers into high-efficiency intelligence engines',
-      icon: Headphones,
-      subcategories: [
-        { name: 'Voice AI Agent', desc: 'High-fidelity conversational voice bots with continuous speech-to-text and low-latency response cycles.' },
-        { name: 'AI Agent Assist', desc: 'Real-time on-screen suggestions, database record retrieval, and script guidance for support staff.' },
-        { name: 'Compliance & Insights Engine', desc: 'Automatic recording transcription, sentiment trend mapping, and regional compliance audits.' }
-      ],
-      features: [
-        'Zero-trust data security removing HIPAA and PCI sensitive data from raw call transcripts automatically.',
-        '98.4% speech-to-text accuracy supporting multi-regional dialects and specialized technical glossaries.',
-        'Seamless integration with Twilio, Cisco, Avaya, and existing CRM ticketing backends.'
-      ],
-      metrics: { label: 'AHT Reduction', val: '32% decrease', desc: 'Average Handle Time trimmed' }
-    },
-    {
       id: 'data-analytics',
       title: 'Data & Analytics',
       tagline: 'Unlocking raw data streams into live operational capacity',
@@ -79,20 +62,20 @@ export default function SolutionsView({ isDark, setCurrentTab, initialSelected }
     },
     {
       id: 'cloud-infra',
-      title: 'Cloud & Infrastructure',
-      tagline: 'Transitioning legacy monoliths into highly elastically autoscaled clusters',
+      title: 'Digital Infrastructure Services',
+      tagline: 'Scale securely with our Cloud Migration Factory, Cloud-Native Engineering, and 24/7 Managed Operations',
       icon: Cloud,
       subcategories: [
-        { name: 'Container Orchestration', desc: 'Rigorous Kubernetes clusters with custom autoscaling schedules and private registry setups.' },
-        { name: 'Infrastructure as Code', desc: 'Repeatable, version-controlled cloud templates written in Terraform and AWS CloudFormation.' },
-        { name: 'Istio Service Mesh', desc: 'Robust mutual TLS encryption, secure microservice isolation boundaries, and granular rate limits.' }
+        { name: 'Cloud Operations & Migration', desc: 'Accelerate workloads with our zero-downtime Cloud Migration Factory, continuous legacy modernization, and secure hybrid-cloud environments.' },
+        { name: 'Cloud Application Dev & Integration', desc: 'Design next-gen systems using serverless backends, containerized microservice architectures, API orchestration, and DevSecOps.' },
+        { name: 'Cloud Managed Services', desc: 'Proactive 24/7 operations, SLA-backed performance optimization, and FinOps audits to identify resource waste and slash expenditure.' }
       ],
       features: [
-        '99.99% operational uptime guaranteed via multi-region hot-standby failover databases.',
-        'Automated code-scanning security gates inside secure CI/CD build pipelines.',
-        'Significant operational overhead reduction by purging unused cloud computation cycles.'
+        'Proprietary Cloud Migration Factory frameworks ensuring low-risk, rapid transition of legacy infrastructure.',
+        'Modern microservice architecture integrations leveraging automated CI/CD and secure orchestration.',
+        'Continuous FinOps auditing to identify waste, delivering an average of 35% reduction in cloud compute costs.'
       ],
-      metrics: { label: 'Uptime Standard', val: '99.99% active', desc: 'Backed by strict enterprise SLA guarantees' }
+      metrics: { label: 'Cloud Optimization', val: '35% cost trim', desc: 'Average waste reduction achieved via FinOps audits' }
     },
     {
       id: 'azure',
@@ -127,22 +110,26 @@ export default function SolutionsView({ isDark, setCurrentTab, initialSelected }
 - Initialized local sentiment assessment using isolated LLM model.
 - Results generated: 82% Positive, 11% Neutral, 7% Urgent Support Required.
 - Automated pipeline triggered: 994 follow-up support ticket drafts created in CRM queue.`);
-      } else if (activeSolution === 'call-intel') {
+      } else if (activeSolution === 'cloud-infra') {
         if (callScenario === 'support') {
-          setSandboxResponse(`[SPEECH-TO-TEXT DIALOG CAPTURED]
-Customer: "Hi, I have a problem with my supply invoice order #49283."
-Agent Assist Suggestion: "Retrieve invoice #49283 from main ERP database..."
-Compliance Checklist Status:
-  ✓ Customer verified identity
-  ✓ Zero-trust mask applied (Credit Card digits masked automatically)
-  ✓ Sentiment Score: Neutral (Transitioned to Positive)`);
+          setSandboxResponse(`[CLOUD OPERATIONS & MIGRATION SIMULATION ACTIVE]
+- Initiated Migration Factory workload assessment for 142 legacy VMs.
+- Source database discovered: Oracle Exadata 19c. Target: Azure Managed PostgreSQL.
+- Modernization strategy: Refactor to containerized microservices.
+- Verification checks:
+  ✓ Schema conversion completed via automated tools
+  ✓ 100% telemetry validation across network subnets
+  ✓ Multi-region hot-standby replication established
+- Status: Migration complete. 0 packet data loss detected.`);
         } else {
-          setSandboxResponse(`[SPEECH-TO-TEXT DIALOG CAPTURED]
-Customer: "I want to upgrade my subscription package to enterprise gold core."
-Agent Assist Suggestion: "Display upgrade package details and pricing tier SLA sheet..."
-Compliance Checklist Status:
-  ✓ Identity verified
-  ✓ Sentiment Score: Enthusiastic (Upgrade validated)`);
+          setSandboxResponse(`[CLOUD MANAGED SERVICES & FINOPS MONITORING]
+- 24/7 proactive health nodes connected: 84 instances online.
+- Analyzing real-time cloud resource telemetry...
+- System tuning recommendations:
+  ✓ Scale down idle staging node clusters (-$14,200/month projected)
+  ✓ Purchase 3-year Reserved Instances for stable worker pools (-28% base compute cost)
+  ✓ Automated patch script: Applied critical security vulnerability CVE-2026-9430
+- Operational compliance score: 99.99% active SLA maintained.`);
         }
       } else if (activeSolution === 'data-analytics') {
         setSandboxResponse(`[IoT DATA STREAM ACTIVE]
@@ -150,12 +137,6 @@ Compliance Checklist Status:
 - Incoming telemetry rate: 12,400 logs/sec.
 - Machine predictive model status: Normal bounds.
 - System optimization recommendation: Adjust local conveyor valve #3 by +2.5% to stabilize temperature.`);
-      } else if (activeSolution === 'cloud-infra') {
-        setSandboxResponse(`[TERRAFORM CLUSTER SIMULATION]
-- Initiated plan for AWS EKS Kubernetes Cluster.
-- Creating 12 secure microservice container segments.
-- Enforcing mutual TLS encryption via service mesh.
-- Status: Secure architecture compiled with 0 security exceptions.`);
       } else {
         setSandboxResponse(`[AZURE DIRECTORY AUDIT RESULTS]
 - Inspected active directory credentials for 1,420 staff.
@@ -274,40 +255,40 @@ Compliance Checklist Status:
           <div className={`p-6 rounded-3xl border space-y-4 ${
             isDark ? 'bg-card-dark border-gray-800' : 'bg-white border-gray-200 shadow-lg'
           }`}>
-            <div className="flex items-center justify-between">
-              <span className="text-[10px] font-bold font-mono text-primary uppercase tracking-widest block">Systems Sandbox Simulator</span>
-              <span className="text-[9px] font-mono text-accent uppercase font-bold bg-accent/10 px-2 py-0.5 rounded">Active Node</span>
-            </div>
-            <p className="text-[11px] text-gray-400 leading-normal">
-              Simulate this solution pipeline running live on our server mesh network. Select settings and hit run.
-            </p>
-
-            {/* Selector parameters based on solution */}
-            {activeSolution === 'call-intel' && (
-              <div className="space-y-1">
-                <label className="text-[9px] font-mono uppercase tracking-widest text-gray-400 block">Voice Scenario</label>
-                <div className="grid grid-cols-2 gap-2">
-                  <button
-                    onClick={() => setCallScenario('support')}
-                    className={`px-3 py-1.5 rounded-lg border text-[10px] font-semibold cursor-pointer ${
-                      callScenario === 'support' ? 'bg-primary/10 border-primary text-primary' : 'border-gray-700 text-gray-400'
-                    }`}
-                  >
-                    Billing Support Call
-                  </button>
-                  <button
-                    onClick={() => setCallScenario('upgrade')}
-                    className={`px-3 py-1.5 rounded-lg border text-[10px] font-semibold cursor-pointer ${
-                      callScenario === 'upgrade' ? 'bg-primary/10 border-primary text-primary' : 'border-gray-700 text-gray-400'
-                    }`}
-                  >
-                    Enterprise Upgrade Call
-                  </button>
-                </div>
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] font-bold font-mono text-primary uppercase tracking-widest block">Systems Sandbox Simulator</span>
+                <span className="text-[9px] font-mono text-accent uppercase font-bold bg-accent/10 px-2 py-0.5 rounded">Active Node</span>
               </div>
-            )}
+              <p className="text-[11px] text-gray-400 leading-normal">
+                Simulate this solution pipeline running live on our server mesh network. Select settings and hit run.
+              </p>
 
-            {activeSolution === 'ai-ml' && (
+              {/* Selector parameters based on solution */}
+              {activeSolution === 'cloud-infra' && (
+                <div className="space-y-1">
+                  <label className="text-[9px] font-mono uppercase tracking-widest text-gray-400 block">Cloud Playbook Scenario</label>
+                  <div className="grid grid-cols-2 gap-2">
+                    <button
+                      onClick={() => setCallScenario('support')}
+                      className={`px-3 py-1.5 rounded-lg border text-[10px] font-semibold cursor-pointer ${
+                        callScenario === 'support' ? 'bg-primary/10 border-primary text-primary' : 'border-gray-700 text-gray-400'
+                      }`}
+                    >
+                      Cloud Migration Factory
+                    </button>
+                    <button
+                      onClick={() => setCallScenario('upgrade')}
+                      className={`px-3 py-1.5 rounded-lg border text-[10px] font-semibold cursor-pointer ${
+                        callScenario === 'upgrade' ? 'bg-primary/10 border-primary text-primary' : 'border-gray-700 text-gray-400'
+                      }`}
+                    >
+                      Managed FinOps Operations
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {activeSolution === 'ai-ml' && (
               <div className="space-y-1">
                 <label className="text-[9px] font-mono uppercase tracking-widest text-gray-400 block">Mock Agent Prompt</label>
                 <input

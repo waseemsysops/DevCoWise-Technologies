@@ -33,7 +33,7 @@ export default function LiveChatWidget({ isDark }: { isDark: boolean }) {
     }
   }, [messages, isTyping]);
 
-  const handleSendMessage = (textToSend: string) => {
+  const handleSendMessage = async (textToSend: string) => {
     if (!textToSend.trim()) return;
 
     const userMessage: Message = {
@@ -43,39 +43,74 @@ export default function LiveChatWidget({ isDark }: { isDark: boolean }) {
       timestamp: new Date()
     };
 
-    setMessages(prev => [...prev, userMessage]);
+    // Update messages to show user's input immediately
+    const updatedMessages = [...messages, userMessage];
+    setMessages(updatedMessages);
     setInputText('');
     setIsTyping(true);
 
-    // Simulate smart backend response
-    setTimeout(() => {
-      let aiResponseText = "Thank you for sharing. A senior technical consultant from our regional office will review your inquiry. Feel free to use our Contact Page for formal project estimation requests.";
-      const query = textToSend.toLowerCase();
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          message: textToSend,
+          history: messages
+        })
+      });
 
-      if (query.includes('erp') || query.includes('erpnext') || query.includes('odoo') || query.includes('sap')) {
-        aiResponseText = "DEVCOWISE specializes in enterprise-level ERP deployments. We support custom SAP S/4HANA migrations, Frappe/ERPNext customizations, and Odoo multi-tenant setups. Would you like us to schedule a systems audit?";
-      } else if (query.includes('ai') || query.includes('generative') || query.includes('llm') || query.includes('gemini') || query.includes('agent')) {
-        aiResponseText = "Our AI & Analytics division builds secure, server-authoritative RAG applications, custom agentic workflows using models like Gemini, and predictive machine learning diagnostics. We guarantee full data governance and private model isolation.";
-      } else if (query.includes('cloud') || query.includes('devops') || query.includes('kubernetes') || query.includes('aws') || query.includes('azure')) {
-        aiResponseText = "We orchestrate multi-region, zero-trust cloud migrations on AWS, Azure, and Google Cloud, utilizing Kubernetes containers, Terraform IaC, and Istio service meshes to guarantee 99.999% uptime.";
-      } else if (query.includes('security') || query.includes('cyber') || query.includes('penetration') || query.includes('hack')) {
-        aiResponseText = "DEVCOWISE offers comprehensive penetration testing, vulnerability audits, and Zero-Trust architecture alignments. We secure core networks, ERP databases, and client gateways against modern ransomware threats.";
-      } else if (query.includes('price') || query.includes('cost') || query.includes('estimate') || query.includes('budget')) {
-        aiResponseText = "Enterprise consulting estimates are calculated based on resource allocation matrices. General advisory starts with a scoping phase. You can submit details directly via our Contact Form to receive a custom proposal within 24 hours.";
-      } else if (query.includes('career') || query.includes('job') || query.includes('hiring') || query.includes('work')) {
-        aiResponseText = "We are active hiring globally! We have openings in AI Engineering, ERP Consulting, Cloud Engineering, and UX Design. You can explore openings and submit applications directly on our Careers tab.";
+      if (!response.ok) {
+        throw new Error('API response error');
       }
 
-      const aiMessage: Message = {
-        id: Math.random().toString(),
-        sender: 'ai',
-        text: aiResponseText,
-        timestamp: new Date()
-      };
+      const data = await response.json();
+      if (data.success && data.text) {
+        const aiMessage: Message = {
+          id: Math.random().toString(),
+          sender: 'ai',
+          text: data.text,
+          timestamp: new Date()
+        };
+        setMessages(prev => [...prev, aiMessage]);
+        setIsTyping(false);
+        return;
+      }
+      throw new Error(data.error || 'Unexpected format from chat API');
+    } catch (err) {
+      console.warn("Gemini Live Chat API failed, using standard consulting assistant rules:", err);
+      
+      // Fallback rule-based system
+      setTimeout(() => {
+        let aiResponseText = "Thank you for sharing. A senior technical consultant from our regional office will review your inquiry. Feel free to use our Contact Page for formal project estimation requests.";
+        const query = textToSend.toLowerCase();
 
-      setMessages(prev => [...prev, aiMessage]);
-      setIsTyping(false);
-    }, 1500);
+        if (query.includes('erp') || query.includes('erpnext') || query.includes('odoo') || query.includes('sap')) {
+          aiResponseText = "DEVCOWISE specializes in enterprise-level ERP deployments. We support custom SAP S/4HANA migrations, Frappe/ERPNext customizations, and Odoo multi-tenant setups. Would you like us to schedule a systems audit?";
+        } else if (query.includes('ai') || query.includes('generative') || query.includes('llm') || query.includes('gemini') || query.includes('agent')) {
+          aiResponseText = "Our AI & Analytics division builds secure, server-authoritative RAG applications, custom agentic workflows using models like Gemini, and predictive machine learning diagnostics. We guarantee full data governance and private model isolation.";
+        } else if (query.includes('cloud') || query.includes('devops') || query.includes('kubernetes') || query.includes('aws') || query.includes('azure')) {
+          aiResponseText = "We orchestrate multi-region, zero-trust cloud migrations on AWS, Azure, and Google Cloud, utilizing Kubernetes containers, Terraform IaC, and Istio service meshes to guarantee 99.999% uptime.";
+        } else if (query.includes('security') || query.includes('cyber') || query.includes('penetration') || query.includes('hack')) {
+          aiResponseText = "DEVCOWISE offers comprehensive penetration testing, vulnerability audits, and Zero-Trust architecture alignments. We secure core networks, ERP databases, and client gateways against modern ransomware threats.";
+        } else if (query.includes('price') || query.includes('cost') || query.includes('estimate') || query.includes('budget')) {
+          aiResponseText = "Enterprise consulting estimates are calculated based on resource allocation matrices. General advisory starts with a scoping phase. You can submit details directly via our Contact Form to receive a custom proposal within 24 hours.";
+        } else if (query.includes('career') || query.includes('job') || query.includes('hiring') || query.includes('work')) {
+          aiResponseText = "We are active hiring globally! We have openings in AI Engineering, ERP Consulting, Cloud Engineering, and UX Design. You can explore openings and submit applications directly on our Careers tab.";
+        }
+
+        const aiMessage: Message = {
+          id: Math.random().toString(),
+          sender: 'ai',
+          text: aiResponseText,
+          timestamp: new Date()
+        };
+
+        setMessages(prev => [...prev, aiMessage]);
+        setIsTyping(false);
+      }, 1200);
+    }
   };
 
   const handleOptionClick = (option: string) => {

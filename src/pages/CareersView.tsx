@@ -91,77 +91,7 @@ export default function CareersView({ jobs, isDark }: CareersViewProps) {
         </div>
       </section>
 
-      {/* 3. CURRENT OPENINGS */}
-      <section className="max-w-7xl mx-auto px-6 space-y-8" id="openings-section">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
-          <div>
-            <span className="text-xs font-bold font-mono text-primary uppercase tracking-widest block">Active Vacancies</span>
-            <h2 className="text-3xl font-bold tracking-tight mt-1 font-display">Explore Current Positions</h2>
-          </div>
 
-          {/* Department Selection Pills */}
-          <div className="flex flex-wrap gap-2.5">
-            {departments.map((dept) => (
-              <button
-                key={dept}
-                onClick={() => setSelectedDept(dept)}
-                className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold cursor-pointer transition-all ${
-                  selectedDept === dept
-                    ? 'bg-primary text-white shadow-md'
-                    : isDark 
-                      ? 'bg-gray-800 text-gray-300 hover:bg-gray-700' 
-                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                }`}
-              >
-                {dept}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Listings container */}
-        <div className="space-y-4">
-          {filteredJobs.length === 0 ? (
-            <div className="text-center py-12 border border-dashed border-gray-800/25 dark:border-gray-100/25 rounded-2xl">
-              <Briefcase className="w-10 h-10 text-gray-400 mx-auto mb-3" />
-              <p className="text-xs text-gray-400">No active postings match your selected parameters.</p>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 gap-4">
-              {filteredJobs.map((job) => (
-                <div 
-                  key={job.id} 
-                  className={`p-6 rounded-2xl border flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-all duration-300 hover:shadow-md ${
-                    isDark ? 'bg-card-dark border-gray-800 hover:border-gray-700' : 'bg-white border-gray-200 shadow-sm hover:shadow-md'
-                  }`}
-                >
-                  <div className="space-y-2">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <span className="text-[9px] font-mono bg-primary/10 text-primary font-bold px-2 py-0.5 rounded-md uppercase">
-                        {job.department}
-                      </span>
-                      <span className="text-[10px] font-mono text-gray-400 flex items-center space-x-1">
-                        <MapPin className="w-3.5 h-3.5 text-primary" />
-                        <span>{job.location}</span>
-                      </span>
-                    </div>
-                    <h3 className="font-bold text-sm tracking-tight font-display">{job.title}</h3>
-                    <p className="text-xs text-gray-400 max-w-xl leading-relaxed">{job.description}</p>
-                  </div>
-
-                  <button
-                    onClick={() => setApplyingJob(job)}
-                    className="px-5 py-2.5 rounded-xl bg-primary hover:bg-primary/95 text-white text-xs font-semibold cursor-pointer flex items-center justify-center space-x-1 self-start sm:self-auto shadow-md shadow-primary/20"
-                  >
-                    <span>Apply Now</span>
-                    <ArrowUpRight className="w-4 h-4" />
-                  </button>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      </section>
 
       {/* 4. APPLICATION FORM MODAL */}
       {applyingJob && (

@@ -4,7 +4,7 @@
  */
 
 import React, { useState } from 'react';
-import { Mail, ArrowRight, Github, Linkedin, Twitter, CheckCircle } from 'lucide-react';
+import { Mail, ArrowRight, Linkedin, X, Instagram, Facebook, Youtube, CheckCircle } from 'lucide-react';
 
 interface FooterProps {
   currentTab: string;
@@ -80,9 +80,11 @@ export default function Footer({ currentTab, setCurrentTab, isDark, onSubscribe 
           </p>
           <div className="flex items-center space-x-3 pt-2">
             {[
-              { icon: Linkedin, url: 'https://linkedin.com/company/devcowise' },
-              { icon: Twitter, url: 'https://twitter.com/devcowise' },
-              { icon: Github, url: 'https://github.com/devcowise' }
+              { icon: Linkedin, url: 'https://pk.linkedin.com/company/devcowisetech' },
+              { icon: Instagram, url: 'https://www.instagram.com/devcowisetech/' },
+              { icon: Facebook, url: 'https://www.facebook.com/devcowisetech/' },
+              { icon: Youtube, url: 'https://www.youtube.com/@DevCoWise' },
+              { icon: X, url: 'https://x.com/devcowisetech' }
             ].map((social, idx) => {
               const Icon = social.icon;
               return (

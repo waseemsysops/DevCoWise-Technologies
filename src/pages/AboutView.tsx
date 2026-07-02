@@ -21,11 +21,31 @@ export default function AboutView({ isDark }: { isDark: boolean }) {
   ];
 
   const milestones = [
-    { year: '2018', title: 'System Founding', desc: 'DEVCOWISE established with a core lab in Islamabad focusing on custom PostgreSQL backend systems.' },
-    { year: '2020', title: 'ERPNext partnership', desc: 'Certified as global open-core ERP integration partners; launched multi-tenant solutions across MENA.' },
-    { year: '2022', title: 'Cloud Native Pivot', desc: 'Migrated over 40 core banking and medical monolith databases to Kubernetes-orchestrated cloud layers.' },
-    { year: '2024', title: 'AI Orchestration Lab', desc: 'Inaugurated a dedicated Generative AI lab delivering secure, private server-side agent workflows.' },
-    { year: '2026', title: 'Enterprise Standard', desc: 'Providing active engineering services across 8 countries for global leaders in supply chain and healthcare.' }
+    { 
+      year: '2018', 
+      title: 'Enterprise System Founding', 
+      desc: 'DEVCOWISE established a specialized engineering base in Islamabad, spearheading high-performance, transaction-resilient PostgreSQL backend systems and custom enterprise databases.' 
+    },
+    { 
+      year: '2020', 
+      title: 'Global ERPNext & Open-Core Partnership', 
+      desc: 'Achieved certified status as a global ERP integration partner; designed and deployed secure, high-scalability multi-tenant ERP ecosystems for leading enterprises across the MENA region.' 
+    },
+    { 
+      year: '2022', 
+      title: 'Cloud-Native & Kubernetes Pivot', 
+      desc: 'Refactored and migrated over 40 legacy monolith core banking and medical database clusters into highly available, elastically auto-scaled, Kubernetes-orchestrated cloud environments.' 
+    },
+    { 
+      year: '2024', 
+      title: 'Cognitive Engineering & AI Lab', 
+      desc: 'Inaugurated a state-of-the-art Generative AI center, delivering secure, highly compliant, server-side agent workflows and private retrieval-augmented generation (RAG) pipelines.' 
+    },
+    { 
+      year: '2026', 
+      title: 'Global IT Enterprise Standard', 
+      desc: 'Cemented our status as an elite technology consulting partner, providing active 24/7 engineering operations across 8 countries for multinational healthcare and supply chain leaders.' 
+    }
   ];
 
   return (

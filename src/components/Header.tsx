@@ -112,14 +112,6 @@ export default function Header({ currentTab, setCurrentTab, isDark, setIsDark, o
         details: ['Private Vector Databases', 'Cognitive Decisions', 'Generative RAG']
       },
       {
-        id: 'call-intel',
-        name: 'Call Intelligence Suite',
-        desc: 'Supercharge customer engagement centers with automated voice loops.',
-        tab: 'solutions',
-        subId: 'call-intel',
-        details: ['Voice AI Agent', 'Real-time Suggestion Assist', 'Automatic Compliance Logs']
-      },
-      {
         id: 'data-analytics',
         name: 'Data & Analytics Services',
         desc: 'Stream, map, and visualize dynamic metrics at massive scales.',
@@ -129,11 +121,11 @@ export default function Header({ currentTab, setCurrentTab, isDark, setIsDark, o
       },
       {
         id: 'cloud-infra',
-        name: 'Cloud & Infrastructure',
-        desc: 'Deploy resilient container pipelines with native IaC rules.',
+        name: 'Digital Infrastructure Services',
+        desc: 'Deploy migration factories, secure microservice architectures, and proactive FinOps.',
         tab: 'solutions',
         subId: 'cloud-infra',
-        details: ['Kubernetes Clusters', 'Terraform Blueprints', 'Disaster Recovery']
+        details: ['Cloud Migration', 'Cloud Application Dev', 'Managed Operations']
       }
     ]
   };
