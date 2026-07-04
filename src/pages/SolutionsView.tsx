@@ -44,6 +44,23 @@ export default function SolutionsView({ isDark, setCurrentTab, initialSelected }
       metrics: { label: 'Inference Speedup', val: '4.8x faster', desc: 'Sub-second model responses' }
     },
     {
+      id: 'cloud-infra',
+      title: 'Cloud & Infrastructure',
+      tagline: 'Zero-trust multi-cloud engineering and elastically scaled migrations',
+      icon: Cloud,
+      subcategories: [
+        { name: 'Cloud Operations & Migration', desc: 'Accelerate workloads with our zero-downtime Cloud Migration Factory, continuous legacy modernization, and secure hybrid-cloud environments.' },
+        { name: 'Cloud Application Dev & Integration', desc: 'Design next-gen systems using serverless backends, containerized microservice architectures, API orchestration, and DevSecOps.' },
+        { name: 'Cloud Managed Services', desc: 'Proactive 24/7 operations, SLA-backed performance optimization, and FinOps audits to identify resource waste and slash expenditure.' }
+      ],
+      features: [
+        'Proprietary Cloud Migration Factory frameworks ensuring low-risk, rapid transition of legacy infrastructure.',
+        'Modern microservice architecture integrations leveraging automated CI/CD and secure orchestration.',
+        'Continuous FinOps auditing to identify waste, delivering an average of 35% reduction in cloud compute costs.'
+      ],
+      metrics: { label: 'Cloud Optimization', val: '35% cost trim', desc: 'Average waste reduction achieved via FinOps audits' }
+    },
+    {
       id: 'data-analytics',
       title: 'Data & Analytics',
       tagline: 'Unlocking raw data streams into live operational capacity',
@@ -61,25 +78,8 @@ export default function SolutionsView({ isDark, setCurrentTab, initialSelected }
       metrics: { label: 'Query Performance', val: '12x throughput', desc: 'Optimized PostgreSQL and Redis index grids' }
     },
     {
-      id: 'cloud-infra',
-      title: 'Digital Infrastructure Services',
-      tagline: 'Scale securely with our Cloud Migration Factory, Cloud-Native Engineering, and 24/7 Managed Operations',
-      icon: Cloud,
-      subcategories: [
-        { name: 'Cloud Operations & Migration', desc: 'Accelerate workloads with our zero-downtime Cloud Migration Factory, continuous legacy modernization, and secure hybrid-cloud environments.' },
-        { name: 'Cloud Application Dev & Integration', desc: 'Design next-gen systems using serverless backends, containerized microservice architectures, API orchestration, and DevSecOps.' },
-        { name: 'Cloud Managed Services', desc: 'Proactive 24/7 operations, SLA-backed performance optimization, and FinOps audits to identify resource waste and slash expenditure.' }
-      ],
-      features: [
-        'Proprietary Cloud Migration Factory frameworks ensuring low-risk, rapid transition of legacy infrastructure.',
-        'Modern microservice architecture integrations leveraging automated CI/CD and secure orchestration.',
-        'Continuous FinOps auditing to identify waste, delivering an average of 35% reduction in cloud compute costs.'
-      ],
-      metrics: { label: 'Cloud Optimization', val: '35% cost trim', desc: 'Average waste reduction achieved via FinOps audits' }
-    },
-    {
       id: 'azure',
-      title: 'Microsoft Azure Services',
+      title: 'Microsoft Azure',
       tagline: 'Certified end-to-end cloud scaling and active database integrations',
       icon: ShieldCheck,
       subcategories: [
@@ -93,6 +93,23 @@ export default function SolutionsView({ isDark, setCurrentTab, initialSelected }
         'Compliance-validated configurations meeting rigorous regional HIPAA, SOC 2, and ISO guidelines.'
       ],
       metrics: { label: 'Licensing Savings', val: '45% reduction', desc: 'Consolidated server licensing agreements' }
+    },
+    {
+      id: 'call-intelligence',
+      title: 'AI-Powered Call Intelligence Suite',
+      tagline: 'Cognitive voice agents and compliance insights engines for contact centers',
+      icon: Bot,
+      subcategories: [
+        { name: 'Voice AI Agent', desc: 'Human-like interactive speech engines resolving customer queries natively with zero wait times.' },
+        { name: 'AI Agent Assist', desc: 'Real-time agent suggestions, automatic live transcription, and prompt checklist enforcement.' },
+        { name: 'Compliance & Insights Engine', desc: 'Automatic scoring, semantic risk monitoring, and direct integration with customer CRM systems.' }
+      ],
+      features: [
+        'Proprietary voice agent optimization with ultra-low response latency of less than 400ms.',
+        'Fully audited compliance checklists verifying proper disclosure scripts during customer calls.',
+        'Advanced sentiment trends mapping with unified reporting dashboard integration.'
+      ],
+      metrics: { label: 'SLA Capacity', val: '99.9% resolution', desc: 'Zero queue overflow' }
     }
   ];
 
@@ -137,12 +154,20 @@ export default function SolutionsView({ isDark, setCurrentTab, initialSelected }
 - Incoming telemetry rate: 12,400 logs/sec.
 - Machine predictive model status: Normal bounds.
 - System optimization recommendation: Adjust local conveyor valve #3 by +2.5% to stabilize temperature.`);
-      } else {
+      } else if (activeSolution === 'azure') {
         setSandboxResponse(`[AZURE DIRECTORY AUDIT RESULTS]
 - Inspected active directory credentials for 1,420 staff.
 - Found 4 accounts with legacy, non-MFA login vectors.
 - Automated fix: Flagged accounts for multi-factor enrollment, locked remote SSH ports.
 - Enterprise directory policy score: 100% Compliant.`);
+      } else if (activeSolution === 'call-intelligence') {
+        setSandboxResponse(`[AI CALL INTELLIGENCE PIPELINE ENGAGED]
+- Voice AI Agent connected to active SIP trunk queue.
+- Real-time sentiment & compliance tracking online.
+- Simulation output:
+  ✓ 400ms response latency achieved via Edge speech synthesis
+  ✓ Automatic script adherence scoring: 100% compliant
+  ✓ Customer CRM records synchronized dynamically.`);
       }
     }, 1500);
   };

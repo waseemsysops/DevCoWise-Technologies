@@ -12,10 +12,10 @@ export default function ServicesView({ isDark, initialSelected }: { isDark: bool
   const services = [
     {
       id: 'digital-transformation',
-      title: 'Digital Transformation & AI',
+      title: 'Digital Transformation',
       icon: Sparkles,
-      tagline: 'Orchestrating server-side models for cognitive workflows',
-      description: 'We deploy secure, background-executing AI agent pipelines using models like Gemini and Claude. Our solutions enforce strict privacy parameters, protecting sensitive corporate databases.',
+      tagline: 'Leverage AI & automation systems to reinvent outdated processes',
+      description: 'We deploy secure, background-executing AI agent pipelines using enterprise models. Our solutions enforce strict privacy parameters, protecting sensitive corporate databases and streamlining legacy tasks.',
       specs: [
         'Secure Retrieval-Augmented Generation (RAG) pipelines',
         'Private LLM server setups and model isolation boundaries',
@@ -25,10 +25,10 @@ export default function ServicesView({ isDark, initialSelected }: { isDark: bool
     },
     {
       id: 'system-integration',
-      title: 'System Integration (ERPNext & Odoo)',
+      title: 'System Integration',
       icon: Database,
-      tagline: 'Tailored resource planning with zero license overheads',
-      description: 'We customize, migrate, and maintain multi-tenant ERPNext and Odoo ecosystems. We replace expensive legacy licenses with fully integrated, compliant ledgers.',
+      tagline: 'Connect modular systems with custom enterprise ERPNext and Odoo configurations',
+      description: 'We customize, migrate, and maintain multi-tenant ERPNext and Odoo ecosystems. We replace expensive legacy licenses with fully integrated, compliant ledgers and seamless API syncing layers.',
       specs: [
         'Frappe Framework & Python backend optimizations',
         'Custom modular applications for multi-tenant franchising',
@@ -38,10 +38,10 @@ export default function ServicesView({ isDark, initialSelected }: { isDark: bool
     },
     {
       id: 'solutions-engineering',
-      title: 'Solutions Engineering (DevOps & Cloud)',
+      title: 'Solutions Engineering',
       icon: Cloud,
-      tagline: 'Zero-trust global container orchestration',
-      description: 'Transition legacy server monoliths into highly available, elastically auto-scaled multi-cloud environments on AWS, Azure, and Google Cloud.',
+      tagline: 'Zero-trust global container orchestration and cloud engineering',
+      description: 'Transition legacy server monoliths into highly available, elastically auto-scaled multi-cloud environments on AWS, Azure, and Google Cloud with strict DevSecOps patterns.',
       specs: [
         'Kubernetes cluster configurations and containerization',
         'Infrastructure as Code (IaC) via Terraform templates',
@@ -50,42 +50,42 @@ export default function ServicesView({ isDark, initialSelected }: { isDark: bool
       ]
     },
     {
-      id: 'custom-software',
-      title: 'Custom Software Development',
-      icon: Code,
-      tagline: 'High-concurrency full-stack system architecture',
-      description: 'Engineering resilient, scalable custom web and mobile applications using modern frameworks that integrate seamlessly with current legacy interfaces.',
-      specs: [
-        'React and Next.js high-performance web applications',
-        'High-throughput Go & Node.js API routers',
-        'Scalable relational and NoSQL database structures',
-        'Offline-first mobile applications with local sqlite caching'
-      ]
-    },
-    {
-      id: 'cyber-security',
-      title: 'Enterprise Cyber Security',
-      icon: Shield,
-      tagline: 'Defending core infrastructure against ransomware',
-      description: 'Implementing absolute Zero-Trust Network Access (ZTNA) frameworks and conducting continuous vulnerability penetration tests to safeguard corporate networks.',
-      specs: [
-        'Micro-segmentation of central ERP database networks',
-        'Real-time threat detection logging and anomaly isolation',
-        'Immutable cloud backup pipeline systems',
-        'PCI-DSS and regional HIPAA regulatory compliance audits'
-      ]
-    },
-    {
       id: 'ux-design',
-      title: 'UI/UX Design Systems',
+      title: 'UX Design',
       icon: Monitor,
-      tagline: 'Transforming complex data structures into elegant interfaces',
-      description: 'Creating comprehensive corporate design tokens, typographic scales, and highly responsive user journeys that maximize employee and client efficiency.',
+      tagline: 'Map enterprise-grade layout tokens and friction-free employee screens',
+      description: 'Creating comprehensive corporate design tokens, typographic scales, and highly responsive user journeys that maximize employee and client efficiency across all devices.',
       specs: [
         'Comprehensive multi-theme corporate design systems',
         'User-journey charting and low-fidelity interactive wires',
         'Rigorous Web Content Accessibility Guidelines (WCAG) compliance',
         'Stutter-free micro-interactions and layout transitions'
+      ]
+    },
+    {
+      id: 'data-services',
+      title: 'Data Services',
+      icon: Code,
+      tagline: 'Unlock your data with enterprise-grade pipeline design and storage strategy',
+      description: 'We engineer resilient, high-throughput data streams, optimized relational indexing grids, and secure, partition-designed database systems that keep your insights moving.',
+      specs: [
+        'Data Engineering & ETL Pipelines',
+        'Cloud, Data & AI Integrations',
+        'Data Strategy & Scalability Roadmaps',
+        'Data Privacy & Security Services'
+      ]
+    },
+    {
+      id: 'discovery-workshop',
+      title: 'Discovery Workshop',
+      icon: Shield,
+      tagline: 'Deep architectural discovery sessions to scope, plan, and validate systems',
+      description: 'Our senior systems architects conduct complete custom scans, source code reviews, technical feasibility checks, and SLA compliance mapping to ensure successful delivery.',
+      specs: [
+        'SLA Planning & Scoping',
+        'Legacy Tech Feasibility Study',
+        'Cloud Migration Assessment & Audits',
+        'Security & Architecture Mapping'
       ]
     }
   ];
@@ -180,7 +180,7 @@ export default function ServicesView({ isDark, initialSelected }: { isDark: bool
             </div>
 
             {/* Dynamic GEO Compliance Segment (Deliverable 1) */}
-            {current.id === 'cyber-security' && (
+            {current.id === 'data-services' && (
               <div className="mt-6 pt-6 border-t border-gray-800/20 dark:border-gray-100/10 space-y-6">
                 <div>
                   <h4 className="text-[10px] font-bold font-mono tracking-widest text-primary uppercase mb-2">

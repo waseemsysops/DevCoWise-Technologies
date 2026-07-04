@@ -47,11 +47,12 @@ export default function Footer({ currentTab, setCurrentTab, isDark, onSubscribe 
   ];
 
   const industryLinks = [
-    { label: 'Healthcare & Life Sciences', id: 'industries', subId: 'healthcare' },
     { label: 'Financial Services', id: 'industries', subId: 'finance' },
+    { label: 'Government & Public Sector', id: 'industries', subId: 'government' },
+    { label: 'Healthcare', id: 'industries', subId: 'healthcare' },
+    { label: 'Mobility & Logistics', id: 'industries', subId: 'logistics' },
     { label: 'Retail & E-commerce', id: 'industries', subId: 'retail' },
-    { label: 'Smart Manufacturing', id: 'industries', subId: 'manufacturing' },
-    { label: 'Logistics & Supply Chain', id: 'industries', subId: 'logistics' }
+    { label: 'On-demand Services', id: 'industries', subId: 'on-demand' }
   ];
 
   return (

@@ -7,9 +7,61 @@ import { IndustryDetails } from '../types';
 
 export const industriesData: IndustryDetails[] = [
   {
+    id: 'finance',
+    name: 'Financial Services',
+    overview: 'Powering high-throughput transactional ledger infrastructures, fraud detection telemetry pipelines, and secure cloud-native bank-grade vaults.',
+    challenges: [
+      'Legacy transaction systems buckling during demand spikes',
+      'Sophisticated real-time account breach threats',
+      'Complex audit-trail logging requirements'
+    ],
+    solutions: [
+      'High-performance microservices orchestrated via Kubernetes',
+      'Real-time AI-powered transactional fraud detectors',
+      'Globally consistent transactional ledger grids'
+    ],
+    benefits: [
+      'Sub-millisecond ledger latencies over 35,000 requests/sec',
+      'Zero-downtime ledger migration routines',
+      '34% infrastructure maintenance cost reduction'
+    ],
+    techStack: ['Java', 'Spring Boot', 'Kubernetes', 'GCP Spanner', 'Kafka', 'Docker'],
+    successStory: {
+      client: 'Vanguard Capital Union',
+      description: 'Migrated and modernized a core banking mainframe to a containerized, zero-trust cloud model.',
+      impact: 'Accommodated a 3.5x customer transaction volume increase with zero downtime.'
+    }
+  },
+  {
+    id: 'government',
+    name: 'Government & Public Sector',
+    overview: 'Engineering accessible, high-security state portal hubs, digital ID lockers, and public ledger auditing platforms that operate at absolute scale.',
+    challenges: [
+      'Strict accessibility guidelines (WCAG) across public interfaces',
+      'Vulnerabilities in sovereign state identity data storage',
+      'Outdated legacy back-offices creating process queues'
+    ],
+    solutions: [
+      'Fully compliant accessible portal designs styled with Tailwind CSS',
+      'Secure self-sovereign digital locker services using private HSM keys',
+      'Automated business registry licensing pipelines'
+    ],
+    benefits: [
+      '100% WCAG accessibility compliance across all digital portals',
+      'Instantaneous processing of corporate and business registry license claims',
+      'Zero sovereign ledger data-leak incidents recorded'
+    ],
+    techStack: ['TypeScript', 'Node.js', 'PostgreSQL', 'Docker', 'Odoo Core', 'Redis'],
+    successStory: {
+      client: 'Austin Public Enterprise Agency',
+      description: 'Rebuilt the local business registration, licensing, and public reporting registry onto a modernized public cloud ledger framework.',
+      impact: 'Trimmed registration backlogs by 88% and ensured complete multi-regional disaster recovery.'
+    }
+  },
+  {
     id: 'healthcare',
-    name: 'Healthcare & Life Sciences',
-    overview: 'Engineering resilient, highly compliant digital healthcare architectures that protect patient data while streamlining clinical collaboration.',
+    name: 'Healthcare',
+    overview: 'Deploying compliant clinical data integrations, secure patient routing systems, and automated triage assistants that respect international privacy frameworks.',
     challenges: [
       'Inoperability between legacy EHR databases causing clinical record latency',
       'High incidence of clerical errors during chart transfers',
@@ -21,8 +73,8 @@ export const industriesData: IndustryDetails[] = [
       'AI-driven triage routing systems and predictive diagnostic assistants'
     ],
     benefits: [
-      '94% reduction in manual record transcription and sharing errors',
-      '72% improvement in system response times for emergency room lookups',
+      '72% reduction in emergency care record-retrieval latency',
+      '94% decrease in administrative transcription bottlenecks',
       'Fully audited workflows that guarantee medical standards compliance'
     ],
     techStack: ['React', 'Next.js', 'PostgreSQL', 'AWS', 'HL7 FHIR API', 'GraphQL'],
@@ -33,55 +85,29 @@ export const industriesData: IndustryDetails[] = [
     }
   },
   {
-    id: 'finance',
-    name: 'Finance & Banking',
-    overview: 'Accelerating transactional capabilities and security for global banking institutions through scalable cloud ledgers.',
+    id: 'logistics',
+    name: 'Mobility & Logistics',
+    overview: 'Optimizing supply lines, delivery corridors, and asset utilization using advanced route planning and tracking tools.',
     challenges: [
-      'Legacy mainframes buckling under peak mobile transaction requests',
-      'High threat vectors for transaction-related security breaches',
-      'Strict regulatory requirements for financial data privacy'
+      'Inefficient route scheduling leading to excessive fuel consumption',
+      'Stale asset tracking data causing delays in global deliveries',
+      'Low fleet utilization due to manual dispatch planning'
     ],
     solutions: [
-      'High-throughput microservices orchestrated by Kubernetes',
-      'Globally consistent cloud database architectures (GCP Spanner)',
-      'Real-time fraud detection pipelines running machine learning models'
+      'Predictive vehicle routing engines using dynamic traffic models',
+      'Real-time GPS tracking and transit status alert notifications',
+      'Automated load allocation and container space optimizations'
     ],
     benefits: [
-      '35k+ transactions per second handled with sub-millisecond lag',
-      '34% reduction in cloud infrastructure maintenance costs',
-      'Zero downtime during real-time ledger migrations'
+      'Over 2 million gallons of fuel saved via optimized delivery routing',
+      'On-time delivery performance metrics boosted to 98.4%',
+      '28% increase in overall fleet asset utilization margins'
     ],
-    techStack: ['Java', 'Spring Boot', 'Kubernetes', 'GCP Spanner', 'Kafka', 'Docker'],
+    techStack: ['Python', 'PyTorch', 'Kafka', 'Redis', 'Node.js', 'React'],
     successStory: {
-      client: 'Vanguard Capital Union',
-      description: 'Migrated and modernized a core banking mainframe to a containerized, zero-trust cloud model.',
-      impact: 'Accommodated a 3.5x customer transaction volume increase with zero downtime.'
-    }
-  },
-  {
-    id: 'manufacturing',
-    name: 'Smart Manufacturing',
-    overview: 'Bridging the gap between factory floor machinery and business operations through Industrial IoT and automated intelligence.',
-    challenges: [
-      'Disconnected machine logs preventing real-time production visibility',
-      'High financial costs due to unexpected assembly-line breakdowns',
-      'Inefficient supply chain scheduling causing raw material stockouts'
-    ],
-    solutions: [
-      'Industrial IoT gateways streaming machine telemetry over secure LoRaWAN networks',
-      'Predictive maintenance dashboards powered by PyTorch models',
-      'Automated ERP material replenishment integrations'
-    ],
-    benefits: [
-      '22% reduction in unplanned assembly line downtime schedules',
-      '15% increase in total manufacturing floor productivity metrics',
-      'Dynamic automated material reordering loops that prevent bottlenecks'
-    ],
-    techStack: ['React', 'Node.js', 'Kafka', 'InfluxDB', 'OPC UA', 'Python'],
-    successStory: {
-      client: 'Dynasty Motor Corporation',
-      description: 'Engineered a highly precise Manufacturing Execution System (MES) integrating robotic assembly nodes with inventory databases.',
-      impact: 'Decreased factory floor downtime by 22% and boosted overall productivity index by 15%.'
+      client: 'SwiftCargo International',
+      description: 'Engineered a real-time machine-learning-powered vehicle routing platform.',
+      impact: 'Saved $4.8M annually on fleet operations with a direct payback period of only 4 months.'
     }
   },
   {
@@ -111,29 +137,29 @@ export const industriesData: IndustryDetails[] = [
     }
   },
   {
-    id: 'logistics',
-    name: 'Logistics & Supply Chain',
-    overview: 'Optimizing supply lines, delivery corridors, and asset utilization using advanced route planning and tracking tools.',
+    id: 'on-demand',
+    name: 'On-demand Services',
+    overview: 'Powering high-concurrency dispatch systems, real-time geolocation matching, and micro-payment disbursement rails for modern peer-to-peer applications.',
     challenges: [
-      'Inefficient route scheduling leading to excessive fuel consumption',
-      'Stale asset tracking data causing delays in global deliveries',
-      'Low fleet utilization due to manual dispatch planning'
+      'Matching latency causing high user drop-offs during peak surge periods',
+      'Flaky real-time coordinate syncing under poor network conditions',
+      'Delayed payout disbursements causing partner churn'
     ],
     solutions: [
-      'Predictive vehicle routing engines using dynamic traffic models',
-      'Real-time GPS tracking and transit status alert notifications',
-      'Automated load allocation and container space optimizations'
+      'Low-latency geolocation indexing using geospatial database queries (Redis/PostGIS)',
+      'Robust socket-reconnection protocols with optimistic client updates',
+      'Automated transaction processing and instant payment payouts'
     ],
     benefits: [
-      'Over 2 million gallons of fuel saved via optimized delivery routing',
-      'On-time delivery performance metrics boosted to 98.4%',
-      '28% increase in overall fleet asset utilization margins'
+      'Sub-200ms user-to-provider matching speedups',
+      '100% coordinate sync precision over low-bandwidth mobile networks',
+      '48% reduction in provider partner churn due to instant payout processing'
     ],
-    techStack: ['Python', 'PyTorch', 'Kafka', 'Redis', 'Node.js', 'React'],
+    techStack: ['Node.js', 'Redis Geospatial', 'WebSockets', 'Go API Router', 'PostgreSQL', 'Stripe API'],
     successStory: {
-      client: 'SwiftCargo International',
-      description: 'Engineered a real-time machine-learning-powered vehicle routing platform.',
-      impact: 'Saved $4.8M annually on fleet operations with a direct payback period of only 4 months.'
+      client: 'QuickRun Deliveries',
+      description: 'Designed and deployed a highly concurrent on-demand delivery dispatch broker serving 250,000 monthly active drivers.',
+      impact: 'Reduced matching queues to under 300 milliseconds and completely eliminated partner payment delays.'
     }
   }
 ];

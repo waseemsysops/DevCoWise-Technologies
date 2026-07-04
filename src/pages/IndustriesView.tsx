@@ -5,7 +5,7 @@
 
 import React, { useState } from 'react';
 import { industriesData } from '../data/industries';
-import { Activity, Landmark, ShoppingBag, Cpu, Truck, Check, HelpCircle, ChevronDown, MessageSquare } from 'lucide-react';
+import { Activity, Landmark, ShoppingBag, Cpu, Truck, Check, HelpCircle, ChevronDown, MessageSquare, Building2, Zap } from 'lucide-react';
 
 interface IndustriesViewProps {
   isDark: boolean;
@@ -14,7 +14,7 @@ interface IndustriesViewProps {
 }
 
 export default function IndustriesView({ isDark, setCurrentTab, initialSelected }: IndustriesViewProps) {
-  const [selectedInd, setSelectedInd] = useState<string>(initialSelected || 'healthcare');
+  const [selectedInd, setSelectedInd] = useState<string>(initialSelected || 'finance');
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
 
   React.useEffect(() => {
@@ -27,8 +27,9 @@ export default function IndustriesView({ isDark, setCurrentTab, initialSelected 
     healthcare: Activity,
     finance: Landmark,
     retail: ShoppingBag,
-    manufacturing: Cpu,
-    logistics: Truck
+    logistics: Truck,
+    government: Building2,
+    'on-demand': Zap
   };
 
   const current = industriesData.find(ind => ind.id === selectedInd) || industriesData[0];

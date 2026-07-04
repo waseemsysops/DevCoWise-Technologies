@@ -70,15 +70,7 @@ export default function Header({ currentTab, setCurrentTab, isDark, setIsDark, o
         desc: 'Leverage AI & automation systems to reinvent outdated processes.',
         tab: 'services',
         subId: 'digital-transformation',
-        details: ['Generative AI & LLMs', 'AI-Powered Automation', 'Cognitive Agents']
-      },
-      {
-        id: 'solutions-engineering',
-        name: 'Solutions Engineering',
-        desc: 'Build scalable custom software and elastically engineered cloud environments.',
-        tab: 'services',
-        subId: 'solutions-engineering',
-        details: ['Custom Applications', 'DevOps & K8s Clusters', 'Istio Security Mesh']
+        details: ['Discovery Workshop', 'Custom Application Development', 'System Integration']
       },
       {
         id: 'system-integration',
@@ -86,15 +78,39 @@ export default function Header({ currentTab, setCurrentTab, isDark, setIsDark, o
         desc: 'Connect modular systems with custom enterprise ERPNext and Odoo configurations.',
         tab: 'services',
         subId: 'system-integration',
-        details: ['ERPNext Architectures', 'Odoo Core Tailoring', 'API Integrations']
+        details: ['ERPNext Configurations', 'Odoo Core Integrations', 'Bespoke Sync APIs']
+      },
+      {
+        id: 'solutions-engineering',
+        name: 'Solutions Engineering',
+        desc: 'Build scalable custom software and elastically engineered cloud environments.',
+        tab: 'services',
+        subId: 'solutions-engineering',
+        details: ['DevOps Services', 'Cloud-native Development', 'Custom Application Development', 'QA Automation & Testing']
       },
       {
         id: 'ux-design',
-        name: 'UX Design Systems',
+        name: 'UX Design',
         desc: 'Map enterprise-grade layout tokens and friction-free employee screens.',
         tab: 'services',
         subId: 'ux-design',
-        details: ['Figma Design Tokens', 'User Journey Maps', 'Accessibility Compliance']
+        details: ['Figma Design Systems', 'User Journey Mapping', 'Accessibility Verification']
+      },
+      {
+        id: 'data-services',
+        name: 'Data Services',
+        desc: 'Unlock your data with enterprise-grade pipeline design and storage strategy.',
+        tab: 'services',
+        subId: 'data-services',
+        details: ['Data Engineering', 'Cloud, Data & AI', 'Data Strategy', 'Data Privacy & Security Services']
+      },
+      {
+        id: 'discovery-workshop',
+        name: 'Discovery Workshop',
+        desc: 'Scoping, roadmap planning, and technology feasibility checks.',
+        tab: 'services',
+        subId: 'discovery-workshop',
+        details: ['SLA Planning & Scoping', 'Legacy Tech Feasibility', 'Cloud Migration Assessment']
       }
     ]
   };
@@ -109,23 +125,39 @@ export default function Header({ currentTab, setCurrentTab, isDark, setIsDark, o
         desc: 'Train, isolate, and serve advanced predictive and neural models.',
         tab: 'solutions',
         subId: 'ai-ml',
-        details: ['Private Vector Databases', 'Cognitive Decisions', 'Generative RAG']
-      },
-      {
-        id: 'data-analytics',
-        name: 'Data & Analytics Services',
-        desc: 'Stream, map, and visualize dynamic metrics at massive scales.',
-        tab: 'solutions',
-        subId: 'data-analytics',
-        details: ['IoT Edge Processing', 'Advanced Classification', 'Interactive Dashboards']
+        details: ['Generative AI & LLMs', 'AI-Powered Automation', 'Artificial Intelligence']
       },
       {
         id: 'cloud-infra',
-        name: 'Digital Infrastructure Services',
+        name: 'Cloud & Infrastructure',
         desc: 'Deploy migration factories, secure microservice architectures, and proactive FinOps.',
         tab: 'solutions',
         subId: 'cloud-infra',
-        details: ['Cloud Migration', 'Cloud Application Dev', 'Managed Operations']
+        details: ['Cloud Operations & Migration', 'Cloud Application Dev & Integration', 'Cloud Managed Services']
+      },
+      {
+        id: 'data-analytics',
+        name: 'Data & Analytics',
+        desc: 'Stream, map, and visualize dynamic metrics at massive scales.',
+        tab: 'solutions',
+        subId: 'data-analytics',
+        details: ['IoT & Edge Analytics', 'Advanced Analytics', 'Business Intelligence']
+      },
+      {
+        id: 'azure',
+        name: 'Microsoft Azure',
+        desc: 'Certified enterprise cloud migrations, active directory SSO, and OpenAI isolated nodes.',
+        tab: 'solutions',
+        subId: 'azure',
+        details: ['Azure Migration Cores', 'Enterprise Active Directory', 'Azure OpenAI Nodes']
+      },
+      {
+        id: 'call-intelligence',
+        name: 'AI-Powered Call Intelligence Suite',
+        desc: 'Cognitive voice agents and compliance insights engines for contact centers.',
+        tab: 'solutions',
+        subId: 'call-intelligence',
+        details: ['Voice AI Agent', 'AI Agent Assist', 'Compliance & Insights Engine']
       }
     ]
   };
@@ -135,20 +167,36 @@ export default function Header({ currentTab, setCurrentTab, isDark, setIsDark, o
     title: 'All Industries',
     categories: [
       {
-        id: 'healthcare',
-        name: 'Healthcare & Sciences',
-        desc: 'HL7 FHIR compliant patient charts and electronic clinical logs.',
-        tab: 'industries',
-        subId: 'healthcare',
-        details: ['Secure Patient Portals', 'Audited FHIR Proxies', 'Biometric Lockouts']
-      },
-      {
         id: 'finance',
         name: 'Financial Services',
         desc: 'High-throughput transactional microservices with absolute audit consistency.',
         tab: 'industries',
         subId: 'finance',
         details: ['Kubernetes Ledger Clusters', 'Real-time Fraud Alerts', 'Spanner Ledgers']
+      },
+      {
+        id: 'government',
+        name: 'Government & Public Sector',
+        desc: 'Accessible digital ID lockers, state portal hubs, and public auditing systems.',
+        tab: 'industries',
+        subId: 'government',
+        details: ['WCAG Compliant Portals', 'Sovereign ID Lockers', 'Automated Licensings']
+      },
+      {
+        id: 'healthcare',
+        name: 'Healthcare',
+        desc: 'HL7 FHIR compliant patient charts and electronic clinical logs.',
+        tab: 'industries',
+        subId: 'healthcare',
+        details: ['Secure Patient Portals', 'Audited FHIR Proxies', 'Biometric Lockouts']
+      },
+      {
+        id: 'logistics',
+        name: 'Mobility & Logistics',
+        desc: 'Dynamic vehicle routing and live GPS asset monitoring panels.',
+        tab: 'industries',
+        subId: 'logistics',
+        details: ['Predictive Routing Models', 'Live GPS Asset Feeds', 'Load Optimizations']
       },
       {
         id: 'retail',
@@ -159,20 +207,12 @@ export default function Header({ currentTab, setCurrentTab, isDark, setIsDark, o
         details: ['Real-time Stock Counters', 'Integrated POS Cache', 'Automated Replenishment']
       },
       {
-        id: 'manufacturing',
-        name: 'Smart Manufacturing',
-        desc: 'Industrial IoT telemetries and preventative production schedule analyzers.',
+        id: 'on-demand',
+        name: 'On-demand Services',
+        desc: 'Low-latency user matching, dynamic pricing, and real-time transit tracking.',
         tab: 'industries',
-        subId: 'manufacturing',
-        details: ['LoRaWAN Sensor Streams', 'Predictive Downtime models', 'MES Integrations']
-      },
-      {
-        id: 'logistics',
-        name: 'Logistics & Supply Chain',
-        desc: 'Dynamic vehicle routing and live GPS asset monitoring panels.',
-        tab: 'industries',
-        subId: 'logistics',
-        details: ['Predictive Routing Models', 'Live GPS Asset Feeds', 'Load Optimizations']
+        subId: 'on-demand',
+        details: ['Geospatial Redis Indexes', 'Optimistic State Sync', 'Instant Stripe Payouts']
       }
     ]
   };
@@ -488,19 +528,57 @@ export default function Header({ currentTab, setCurrentTab, isDark, setIsDark, o
                 </div>
               </div>
 
-              {/* Right Showcase Column (Beautiful visual promo slot) */}
+              {/* Right Showcase Column (Dynamic context based on selected mega menu) */}
               <div className="col-span-4 p-6 flex flex-col justify-between">
-                <div className="space-y-3">
-                  <span className="text-[9px] font-bold font-mono text-gray-400 uppercase tracking-widest block">Corporate Spotlight</span>
-                  <div className={`p-4 rounded-2xl border ${isDark ? 'bg-gray-900/60 border-gray-800' : 'bg-gray-100/50 border-gray-200'} space-y-2`}>
-                    <h5 className="font-bold text-xs tracking-wide text-primary">SLA Scoping Lab</h5>
-                    <p className={`text-[11px] leading-relaxed ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-                      Our engineering group offers complete custom system scans, source code reviews, and localized compliance charts.
-                    </p>
+                {activeMegaMenu === 'services' ? (
+                  <div className="space-y-4">
+                    <span className="text-[10px] font-bold font-mono text-gray-400 uppercase tracking-widest block">Engagement Models</span>
+                    <div className="space-y-3">
+                      <div className={`p-4 rounded-xl border ${isDark ? 'bg-gray-900/40 border-gray-800' : 'bg-gray-100/30 border-gray-200'} space-y-1`}>
+                        <h5 className="font-bold text-xs text-primary font-display">Fixed Cost Project</h5>
+                        <p className={`text-[10px] leading-relaxed ${isDark ? 'text-gray-400' : 'text-gray-650'}`}>
+                          Perfect for defined scopes. Guaranteed delivery timelines and fixed pricing brackets.
+                        </p>
+                      </div>
+                      <div className={`p-4 rounded-xl border ${isDark ? 'bg-gray-900/40 border-gray-800' : 'bg-gray-100/30 border-gray-200'} space-y-1`}>
+                        <h5 className="font-bold text-xs text-secondary font-display">Teams as a Service</h5>
+                        <p className={`text-[10px] leading-relaxed ${isDark ? 'text-gray-400' : 'text-gray-650'}`}>
+                          Elastically scale your development capabilities with certified, dedicated technical teams.
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                </div>
+                ) : activeMegaMenu === 'solutions' ? (
+                  <div className="space-y-4">
+                    <span className="text-[10px] font-bold font-mono text-gray-400 uppercase tracking-widest block">Featured Architecture</span>
+                    <div className="space-y-3">
+                      <div className={`p-4 rounded-xl border ${isDark ? 'bg-gray-900/40 border-gray-800' : 'bg-gray-100/30 border-gray-200'} space-y-1`}>
+                        <h5 className="font-bold text-xs text-primary font-display">Call Intelligence Suite</h5>
+                        <p className={`text-[10px] leading-relaxed ${isDark ? 'text-gray-400' : 'text-gray-650'}`}>
+                          Deploy Voice AI Agents, active Agent Assist nodes, and secure automated compliance engines.
+                        </p>
+                      </div>
+                      <div className={`p-4 rounded-xl border ${isDark ? 'bg-gray-900/40 border-gray-800' : 'bg-gray-100/30 border-gray-200'} space-y-1`}>
+                        <h5 className="font-bold text-xs text-secondary font-display">Microsoft Azure Services</h5>
+                        <p className={`text-[10px] leading-relaxed ${isDark ? 'text-gray-400' : 'text-gray-650'}`}>
+                          Seamless enterprise cloud migrations, active directory SSO, and secure Azure OpenAI node clusters.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="space-y-3">
+                    <span className="text-[9px] font-bold font-mono text-gray-400 uppercase tracking-widest block">Corporate Spotlight</span>
+                    <div className={`p-4 rounded-2xl border ${isDark ? 'bg-gray-900/60 border-gray-800' : 'bg-gray-100/50 border-gray-200'} space-y-2`}>
+                      <h5 className="font-bold text-xs tracking-wide text-primary">SLA Scoping Lab</h5>
+                      <p className={`text-[11px] leading-relaxed ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+                        Our engineering group offers complete custom system scans, source code reviews, and localized compliance charts.
+                      </p>
+                    </div>
+                  </div>
+                )}
 
-                <div className="space-y-2">
+                <div className="space-y-2 pt-4 border-t border-gray-800/10 dark:border-gray-800/40">
                   <span className="text-[9px] font-bold font-mono text-gray-400 uppercase tracking-widest block">Ready to Connect?</span>
                   <p className="text-[10px] text-gray-400 leading-normal">
                     Transform your digital core infrastructure with certified technical experts.
