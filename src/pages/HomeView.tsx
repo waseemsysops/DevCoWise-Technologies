@@ -161,7 +161,7 @@ export default function HomeView({ setCurrentTab, isDark }: HomeViewProps) {
                   <Icon className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-3xl font-bold tracking-tight font-display">{st.val}</h3>
+                  <div className="text-3xl font-bold tracking-tight font-display">{st.val}</div>
                   <p className={`text-xs font-bold mt-1 ${isDark ? 'text-gray-300' : 'text-gray-950'}`}>{st.label}</p>
                   <p className="text-[10px] text-gray-400 mt-0.5">{st.desc}</p>
                 </div>

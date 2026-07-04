@@ -85,21 +85,21 @@ export default function AustinLanderView({ isDark, onSubmitInquiry }: AustinLand
               <div className="flex items-start space-x-3">
                 <ShieldCheck className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="font-bold text-xs font-display">SOC2 &amp; HIPAA Gated</h4>
+                  <h3 className="font-bold text-xs font-display">SOC2 &amp; HIPAA Gated</h3>
                   <p className="text-[11px] text-gray-400 mt-1">Full regulatory compliance mapping and secure audits for Texas health &amp; fintech systems.</p>
                 </div>
               </div>
               <div className="flex items-start space-x-3">
                 <Database className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="font-bold text-xs font-display">ERPNext Customizations</h4>
+                  <h3 className="font-bold text-xs font-display">ERPNext Customizations</h3>
                   <p className="text-[11px] text-gray-400 mt-1">High-concurrency Frappe developments with real-time sync networks.</p>
                 </div>
               </div>
               <div className="flex items-start space-x-3">
                 <Server className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="font-bold text-xs font-display">Local Cloud Infrastructure</h4>
+                  <h3 className="font-bold text-xs font-display">Local Cloud Infrastructure</h3>
                   <p className="text-[11px] text-gray-400 mt-1">Multi-region Kubernetes architecture and robust continuous delivery.</p>
                 </div>
               </div>
@@ -133,7 +133,7 @@ export default function AustinLanderView({ isDark, onSubmitInquiry }: AustinLand
         <div className={`p-6 rounded-2xl border ${
           isDark ? 'bg-card-dark border-gray-800' : 'bg-white border-gray-200 shadow-lg'
         }`}>
-          <h4 className="text-sm font-bold font-display mb-4">Request a System Auditing Proposal</h4>
+          <h3 className="text-sm font-bold font-display mb-4">Request a System Auditing Proposal</h3>
           {formSubmitted ? (
             <div className="bg-primary/10 border border-primary/30 p-6 rounded-xl text-center space-y-3">
               <CheckCircle className="w-8 h-8 text-primary mx-auto" />

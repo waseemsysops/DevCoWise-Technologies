@@ -27,9 +27,9 @@ export default function TechBackground() {
   }, [theme]);
 
   return (
-    <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden select-none">
+    <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden select-none" style={{ contain: 'strict' }}>
       {/* 1. Theme-Reactive Glowing Aura Clouds (Wandering Lights resembling modern liquid mesh gradients) */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none" style={{ contain: 'strict' }}>
         {/* Soft core spot left */}
         <motion.div 
           animate={{
@@ -43,6 +43,7 @@ export default function TechBackground() {
             ease: "easeInOut"
           }}
           className="absolute top-[-15%] left-[-15%] w-[65vw] h-[65vw] rounded-full glow-spot opacity-40 dark:opacity-30"
+          style={{ willChange: 'transform' }}
         />
 
         {/* Soft core spot right */}
@@ -58,6 +59,7 @@ export default function TechBackground() {
             ease: "easeInOut"
           }}
           className="absolute bottom-[-20%] right-[-15%] w-[70vw] h-[70vw] rounded-full glow-spot opacity-40 dark:opacity-30"
+          style={{ willChange: 'transform' }}
         />
 
         {/* Dynamic center accent core spotlight */}
@@ -73,6 +75,7 @@ export default function TechBackground() {
             ease: "easeInOut"
           }}
           className="absolute top-[30%] left-[20%] w-[50vw] h-[50vw] rounded-full glow-spot-accent"
+          style={{ willChange: 'transform, opacity' }}
         />
       </div>
 
