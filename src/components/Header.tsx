@@ -316,7 +316,7 @@ export default function Header({ currentTab, setCurrentTab, isDark, setIsDark, o
                 DEVCO<span className="text-primary">WISE</span>
               </span>
               <span className={`text-[8px] tracking-widest font-mono uppercase mt-0.5 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
-                Digital Transformation
+                TECHNOLOGIES
               </span>
             </div>
           </button>
