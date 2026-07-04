@@ -123,7 +123,9 @@ export default function LiveChatWidget({ isDark }: { isDark: boolean }) {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-white shadow-xl hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer relative group"
+          aria-label="Open AI consulting assistant chat"
+          aria-expanded="false"
+          className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-white shadow-xl hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer relative group focus-visible:ring-2 focus-visible:ring-sky-400"
           id="chat-toggle"
         >
           <MessageSquare className="w-6 h-6" />
@@ -158,7 +160,8 @@ export default function LiveChatWidget({ isDark }: { isDark: boolean }) {
             </div>
             <button 
               onClick={() => setIsOpen(false)}
-              className="p-1.5 rounded-lg hover:bg-white/10 transition-colors cursor-pointer"
+              aria-label="Close AI consulting assistant chat"
+              className="p-1.5 rounded-lg hover:bg-white/10 transition-colors cursor-pointer focus-visible:ring-2 focus-visible:ring-white"
             >
               <X className="w-5 h-5" />
             </button>
@@ -233,9 +236,10 @@ export default function LiveChatWidget({ isDark }: { isDark: boolean }) {
             <input
               type="text"
               placeholder="Ask our AI architect anything..."
+              aria-label="Type message for AI architect assistant"
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
-              className={`flex-1 px-3 py-2 rounded-xl text-xs outline-none border transition-all ${
+              className={`flex-1 px-3 py-2 rounded-xl text-xs outline-none border transition-all focus-visible:ring-2 focus-visible:ring-sky-400 ${
                 isDark 
                   ? 'bg-gray-800/40 border-gray-800 text-white focus:border-primary' 
                   : 'bg-gray-50 border-gray-200 text-gray-900 focus:border-primary focus:bg-white'
@@ -243,7 +247,8 @@ export default function LiveChatWidget({ isDark }: { isDark: boolean }) {
             />
             <button
               type="submit"
-              className="p-2 rounded-xl bg-primary text-white hover:bg-primary/95 transition-colors cursor-pointer"
+              aria-label="Send message to AI assistant"
+              className="p-2 rounded-xl bg-primary text-white hover:bg-primary/95 transition-colors cursor-pointer focus-visible:ring-2 focus-visible:ring-sky-400"
             >
               <Send className="w-4 h-4" />
             </button>

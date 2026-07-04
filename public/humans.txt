@@ -1,0 +1,12 @@
+/* TEAM */
+  Senior Google Search Engineer & Core Web Vitals Expert
+  React/Vite Performance Engineer
+  Accessibility (WCAG 2.2 AA) Specialist
+  Enterprise IT Architect
+
+/* SITE */
+  Last Updated: 2026-07-03
+  Standards: HTML5, CSS3, ES2026, WCAG 2.2 AA
+  Components: React 18, Tailwind CSS, Framer Motion, TypeScript, Vite
+  Software: Custom Enterprise Consulting Engine
+  Host: Google Cloud Run (Fully Server-Authoritative)

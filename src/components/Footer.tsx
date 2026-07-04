@@ -66,7 +66,8 @@ export default function Footer({ currentTab, setCurrentTab, isDark, onSubscribe 
         <div className="lg:col-span-4 space-y-4">
           <button 
             onClick={() => handleNav('home')}
-            className="flex items-center space-x-2 text-left cursor-pointer focus:outline-none"
+            aria-label="DEVCOWISE Home Page"
+            className="flex items-center space-x-2 text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 rounded-xl"
           >
             <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-white font-bold text-base shadow-md">
               D
@@ -80,11 +81,11 @@ export default function Footer({ currentTab, setCurrentTab, isDark, onSubscribe 
           </p>
           <div className="flex items-center space-x-3 pt-2">
             {[
-              { icon: Linkedin, url: 'https://pk.linkedin.com/company/devcowisetech' },
-              { icon: Instagram, url: 'https://www.instagram.com/devcowisetech/' },
-              { icon: Facebook, url: 'https://www.facebook.com/devcowisetech/' },
-              { icon: Youtube, url: 'https://www.youtube.com/@DevCoWise' },
-              { icon: X, url: 'https://x.com/devcowisetech' }
+              { icon: Linkedin, name: 'LinkedIn', url: 'https://pk.linkedin.com/company/devcowisetech' },
+              { icon: Instagram, name: 'Instagram', url: 'https://www.instagram.com/devcowisetech/' },
+              { icon: Facebook, name: 'Facebook', url: 'https://www.facebook.com/devcowisetech/' },
+              { icon: Youtube, name: 'YouTube', url: 'https://www.youtube.com/@DevCoWise' },
+              { icon: X, name: 'X', url: 'https://x.com/devcowisetech' }
             ].map((social, idx) => {
               const Icon = social.icon;
               return (
@@ -93,7 +94,8 @@ export default function Footer({ currentTab, setCurrentTab, isDark, onSubscribe 
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`p-2 rounded-lg border transition-all ${
+                  aria-label={`Follow DevCoWise on ${social.name}`}
+                  className={`min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg border transition-all focus-visible:ring-2 focus-visible:ring-sky-400 ${
                     isDark 
                       ? 'border-gray-800 text-gray-400 hover:text-white hover:border-gray-700 hover:bg-gray-800' 
                       : 'border-gray-200 text-gray-500 hover:text-primary hover:border-gray-300 hover:bg-gray-100'
@@ -172,10 +174,11 @@ export default function Footer({ currentTab, setCurrentTab, isDark, onSubscribe 
                 <input
                   type="email"
                   placeholder="Enter email address"
+                  aria-label="Email address for newsletter subscription"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className={`w-full pl-3 pr-10 py-2.5 rounded-xl text-xs outline-none border transition-all ${
+                  className={`w-full pl-3 pr-10 py-2.5 rounded-xl text-xs outline-none border transition-all focus-visible:ring-2 focus-visible:ring-sky-400 ${
                     isDark 
                       ? 'bg-gray-800/50 border-gray-800 focus:border-primary text-white' 
                       : 'bg-white border-gray-200 focus:border-primary text-gray-950'
@@ -183,7 +186,8 @@ export default function Footer({ currentTab, setCurrentTab, isDark, onSubscribe 
                 />
                 <button
                   type="submit"
-                  className="absolute right-2.5 top-2.5 text-primary hover:text-primary/80 transition-colors cursor-pointer"
+                  aria-label="Submit newsletter subscription"
+                  className={`absolute right-1 top-1 w-8 h-8 flex items-center justify-center text-primary hover:text-primary/80 transition-colors cursor-pointer rounded-lg focus-visible:ring-2 focus-visible:ring-sky-400`}
                 >
                   <ArrowRight className="w-4 h-4" />
                 </button>

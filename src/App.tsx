@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 
 // Core Types & Seed Data
@@ -17,17 +17,17 @@ import Footer from './components/Footer';
 import LiveChatWidget from './components/LiveChatWidget';
 import AdminDashboard from './components/AdminDashboard';
 
-// Sub-page Views
-import HomeView from './pages/HomeView';
-import AboutView from './pages/AboutView';
-import ServicesView from './pages/ServicesView';
-import SolutionsView from './pages/SolutionsView';
-import IndustriesView from './pages/IndustriesView';
-import ProductsView from './pages/ProductsView';
-import CaseStudiesView from './pages/CaseStudiesView';
-import InsightsView from './pages/InsightsView';
-import CareersView from './pages/CareersView';
-import ContactView from './pages/ContactView';
+// Sub-page Views lazy-loaded
+const HomeView = lazy(() => import('./pages/HomeView'));
+const AboutView = lazy(() => import('./pages/AboutView'));
+const ServicesView = lazy(() => import('./pages/ServicesView'));
+const SolutionsView = lazy(() => import('./pages/SolutionsView'));
+const IndustriesView = lazy(() => import('./pages/IndustriesView'));
+const ProductsView = lazy(() => import('./pages/ProductsView'));
+const CaseStudiesView = lazy(() => import('./pages/CaseStudiesView'));
+const InsightsView = lazy(() => import('./pages/InsightsView'));
+const CareersView = lazy(() => import('./pages/CareersView'));
+const ContactView = lazy(() => import('./pages/ContactView'));
 
 import { LanguageProvider } from './context/LanguageContext';
 import { useTheme } from './context/ThemeContext';
@@ -140,7 +140,7 @@ export default function App() {
         />
 
         {/* Main Container Core Viewport */}
-        <main className="flex-grow pt-28 max-w-7xl mx-auto w-full px-6 min-h-[70vh]">
+        <main id="main-content" className="flex-grow pt-28 max-w-7xl mx-auto w-full px-6 min-h-[70vh]">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentTab}
@@ -150,28 +150,38 @@ export default function App() {
               transition={{ duration: 0.25, ease: "easeInOut" }}
               className="w-full h-full"
             >
-              {currentTab === 'home' && <HomeView setCurrentTab={handleTabChange} isDark={isDark} />}
-              {currentTab === 'about' && <AboutView isDark={isDark} />}
-              {currentTab === 'services' && <ServicesView isDark={isDark} initialSelected={selectedSubId} />}
-              {currentTab === 'solutions' && <SolutionsView isDark={isDark} setCurrentTab={handleTabChange} initialSelected={selectedSubId} />}
-              {currentTab === 'industries' && <IndustriesView isDark={isDark} setCurrentTab={handleTabChange} initialSelected={selectedSubId} />}
-              {currentTab === 'products' && <ProductsView isDark={isDark} />}
-              {currentTab === 'case-studies' && <CaseStudiesView isDark={isDark} />}
-              {currentTab === 'insights' && <InsightsView blogPosts={blogPosts} isDark={isDark} />}
-              {currentTab === 'careers' && <CareersView jobs={jobs} isDark={isDark} />}
-              {currentTab === 'contact' && <ContactView onSubmitInquiry={handleAddInquiry} isDark={isDark} />}
-              {currentTab === 'admin' && (
-                <AdminDashboard 
-                  jobs={jobs} 
-                  setJobs={setJobs} 
-                  blogPosts={blogPosts} 
-                  setBlogPosts={setBlogPosts} 
-                  inquiries={inquiries}
-                  setInquiries={setInquiries}
-                  newsletters={newsletters}
-                  isDark={isDark}
-                />
-              )}
+              <Suspense fallback={
+                <div className="flex flex-col items-center justify-center min-h-[50vh] space-y-4">
+                  <div className="relative w-12 h-12">
+                    <div className="absolute inset-0 border-4 border-sky-400/20 rounded-full"></div>
+                    <div className="absolute inset-0 border-4 border-sky-400 border-t-transparent rounded-full animate-spin"></div>
+                  </div>
+                  <p className="text-xs font-mono tracking-widest text-sky-400/80 animate-pulse uppercase">loading engine...</p>
+                </div>
+              }>
+                {currentTab === 'home' && <HomeView setCurrentTab={handleTabChange} isDark={isDark} />}
+                {currentTab === 'about' && <AboutView isDark={isDark} />}
+                {currentTab === 'services' && <ServicesView isDark={isDark} initialSelected={selectedSubId} />}
+                {currentTab === 'solutions' && <SolutionsView isDark={isDark} setCurrentTab={handleTabChange} initialSelected={selectedSubId} />}
+                {currentTab === 'industries' && <IndustriesView isDark={isDark} setCurrentTab={handleTabChange} initialSelected={selectedSubId} />}
+                {currentTab === 'products' && <ProductsView isDark={isDark} />}
+                {currentTab === 'case-studies' && <CaseStudiesView isDark={isDark} />}
+                {currentTab === 'insights' && <InsightsView blogPosts={blogPosts} isDark={isDark} />}
+                {currentTab === 'careers' && <CareersView jobs={jobs} isDark={isDark} />}
+                {currentTab === 'contact' && <ContactView onSubmitInquiry={handleAddInquiry} isDark={isDark} />}
+                {currentTab === 'admin' && (
+                  <AdminDashboard 
+                    jobs={jobs} 
+                    setJobs={setJobs} 
+                    blogPosts={blogPosts} 
+                    setBlogPosts={setBlogPosts} 
+                    inquiries={inquiries}
+                    setInquiries={setInquiries}
+                    newsletters={newsletters}
+                    isDark={isDark}
+                  />
+                )}
+              </Suspense>
             </motion.div>
           </AnimatePresence>
         </main>

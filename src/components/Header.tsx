@@ -265,7 +265,8 @@ export default function Header({ currentTab, setCurrentTab, isDark, setIsDark, o
           {/* Logo with stylized DEVCOWISE loop */}
           <button 
             onClick={() => handleNav('home')}
-            className="flex items-center space-x-2.5 group focus:outline-none cursor-pointer"
+            aria-label="DEVCOWISE Home Page"
+            className="flex items-center space-x-2.5 group focus:outline-none cursor-pointer focus-visible:ring-2 focus-visible:ring-sky-400 rounded-xl"
           >
             <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-white font-black text-xl shadow-md shadow-primary/20 group-hover:scale-105 transition-all duration-300">
               D
@@ -315,7 +316,8 @@ export default function Header({ currentTab, setCurrentTab, isDark, setIsDark, o
             {/* Search */}
             <button
               onClick={() => setSearchOpen(true)}
-              className={`p-2 rounded-xl transition-colors cursor-pointer ${
+              aria-label="Open global search dialog"
+              className={`p-2 rounded-xl transition-colors cursor-pointer focus-visible:ring-2 focus-visible:ring-sky-400 ${
                 isDark ? 'text-gray-300 hover:text-white hover:bg-gray-800' : 'text-gray-600 hover:text-gray-955 hover:bg-gray-100'
               }`}
               title="Global Search"
@@ -325,9 +327,12 @@ export default function Header({ currentTab, setCurrentTab, isDark, setIsDark, o
 
             {/* Language Selection Group */}
             <div className="relative group">
-              <button className={`p-2 rounded-xl text-xs font-bold flex items-center space-x-1 cursor-pointer transition-all ${
-                isDark ? 'text-gray-300 hover:text-white hover:bg-gray-800' : 'text-gray-600 hover:text-gray-955 hover:bg-gray-100'
-              }`}>
+              <button 
+                aria-label="Select website language"
+                className={`p-2 rounded-xl text-xs font-bold flex items-center space-x-1 cursor-pointer transition-all focus-visible:ring-2 focus-visible:ring-sky-400 ${
+                  isDark ? 'text-gray-300 hover:text-white hover:bg-gray-800' : 'text-gray-600 hover:text-gray-955 hover:bg-gray-100'
+                }`}
+              >
                 <Globe className="w-3.5 h-3.5" />
                 <span>{language}</span>
               </button>
@@ -362,7 +367,8 @@ export default function Header({ currentTab, setCurrentTab, isDark, setIsDark, o
             {/* Admin shortcut icon - hidden on mobile as per request */}
             <button
               onClick={() => handleNav('admin')}
-              className={`hidden md:inline-flex p-2 rounded-xl transition-colors cursor-pointer ${
+              aria-label="Admin Portal console"
+              className={`hidden md:inline-flex p-2 rounded-xl transition-colors cursor-pointer focus-visible:ring-2 focus-visible:ring-sky-400 ${
                 currentTab === 'admin'
                   ? 'text-primary bg-primary/10'
                   : isDark ? 'text-gray-400 hover:text-white hover:bg-gray-800' : 'text-gray-500 hover:text-gray-955 hover:bg-gray-100'
@@ -383,7 +389,9 @@ export default function Header({ currentTab, setCurrentTab, isDark, setIsDark, o
             {/* Mobile Menu Open trigger */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className={`p-2 rounded-xl lg:hidden transition-colors cursor-pointer ${
+              aria-label={isMobileMenuOpen ? "Close mobile menu" : "Open mobile menu"}
+              aria-expanded={isMobileMenuOpen}
+              className={`p-2 rounded-xl lg:hidden transition-colors cursor-pointer focus-visible:ring-2 focus-visible:ring-sky-400 ${
                 isDark ? 'text-gray-300 hover:text-white hover:bg-gray-800' : 'text-gray-600 hover:text-gray-955 hover:bg-gray-100'
               }`}
             >

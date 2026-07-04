@@ -1,0 +1,36 @@
+# DEVCOWISE Technologies
+
+DEVCOWISE is an enterprise-grade digital transformation, custom ERP integration, high-performance cloud migration, Kubernetes orchestration, and Generative AI consulting partner.
+
+## Core Capabilities
+
+- **Enterprise ERP Deployments**: Specializing in custom SAP S/4HANA migrations, Frappe / ERPNext customizations, and Odoo multi-tenant setups.
+- **AI & Analytics (Generative AI)**: Custom agentic workflows, secure server-authoritative RAG applications, and private LLM model isolation with full data governance.
+- **Cloud & DevOps (Kubernetes)**: Multi-region zero-trust cloud migrations (AWS, Azure, GCP), Terraform Infrastructure as Code (IaC), Istio service meshes, and containerized scale-out architectures.
+- **Cybersecurity & Vulnerability Audits**: Penetration testing, Zero-Trust compliance, and network hardening against modern security threats.
+- **Custom Enterprise Software**: Full-stack tailored React, Node.js, and Python systems backed by high-availability cloud databases.
+
+## Key Subpages
+
+- **Home**: `https://www.devcowise.com/#home` - Main portal, corporate overview, global operations map.
+- **Services**: `https://www.devcowise.com/#services` - Custom Software, ERP Solutions, Cloud DevOps, AI & Analytics, Cybersecurity, UI/UX Design.
+- **Solutions**: `https://www.devcowise.com/#solutions` - Specialized frameworks like WiseSchool LMS, MedFlow HMS, and SmartLogistics.
+- **Industries**: `https://www.devcowise.com/#industries` - Deep domain consulting in Healthcare, Finance, and Retail.
+- **Products**: `https://www.devcowise.com/#products` - Turnkey proprietary SaaS solutions.
+- **Case Studies**: `https://www.devcowise.com/#case-studies` - Proven success histories.
+- **Insights**: `https://www.devcowise.com/#insights` - Industry research, tech blogs, and trend predictions.
+- **Careers**: `https://www.devcowise.com/#careers` - Global vacancies and direct recruitment portal.
+- **About**: `https://www.devcowise.com/#about` - Core values, methodology, and direct certification proofs.
+- **Contact**: `https://www.devcowise.com/#contact` - Inquiries and formal corporate engagement portal.
+
+## Technology Stack
+
+- **Client**: React, TypeScript, Vite, Tailwind CSS, Framer Motion
+- **Server**: Node.js, Express, Python, Drizzle ORM
+- **Deployment**: Google Cloud, AWS, Docker, Kubernetes, Terraform
+
+## Contact
+
+- **Primary Email**: waseem.sysops@gmail.com
+- **Website**: https://www.devcowise.com
+- **Locations**: Multi-national delivery centers.
