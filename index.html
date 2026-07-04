@@ -39,43 +39,78 @@
       <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
     </noscript>
 
-    <!-- JSON-LD Structured Data Schema (Organization & Service) -->
+    <!-- JSON-LD Structured Data Schema (Organization & Service Nested Graph) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Organization",
-      "@id": "https://www.devcowise.com/#organization",
-      "name": "DEVCOWISE",
-      "url": "https://www.devcowise.com",
-      "logo": "https://www.devcowise.com/favicon.svg",
-      "description": "Enterprise Digital Transformation - Enterprise Technology Consulting, Cloud Solutions, AI, and ERP Systems",
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "email": "waseem.sysops@gmail.com",
-        "contactType": "Technical Support",
-        "areaServed": "Global",
-        "availableLanguage": ["English"]
-      },
-      "sameAs": [
-        "https://pk.linkedin.com/company/devcowisetech",
-        "https://www.instagram.com/devcowisetech/",
-        "https://www.facebook.com/devcowisetech/",
-        "https://www.youtube.com/@DevCoWise",
-        "https://x.com/devcowisetech"
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://www.devcowise.com/#organization",
+          "name": "DEVCOWISE",
+          "url": "https://www.devcowise.com",
+          "logo": "https://www.devcowise.com/favicon.svg",
+          "sameAs": [
+            "https://pk.linkedin.com/company/devcowisetech",
+            "https://www.instagram.com/devcowisetech/",
+            "https://www.facebook.com/devcowisetech/",
+            "https://www.youtube.com/@DevCoWise",
+            "https://x.com/devcowisetech"
+          ],
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "email": "waseem.sysops@gmail.com",
+            "contactType": "Technical Support",
+            "areaServed": "Global",
+            "availableLanguage": ["English"]
+          }
+        },
+        {
+          "@type": "TechService",
+          "@id": "https://www.devcowise.com/#service-devops",
+          "name": "Enterprise Managed DevOps & Infrastructure Automation",
+          "provider": {
+            "@id": "https://www.devcowise.com/#organization"
+          },
+          "areaServed": "Global",
+          "category": "Cloud Infrastructure Engineering",
+          "offers": {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Kubernetes Orchestration & CI/CD Pipeline Automation"
+            }
+          }
+        },
+        {
+          "@type": "SoftwareSourceCode",
+          "@id": "https://www.devcowise.com/#source-iac",
+          "name": "DevCoWise Terraform Modules Library",
+          "codeRepository": "https://github.com/devcowise",
+          "programmingLanguage": "HCL",
+          "runtimePlatform": "Terraform",
+          "targetProduct": {
+            "@type": "SoftwareApplication",
+            "name": "Cloud Native Platform Compliance Engine"
+          }
+        },
+        {
+          "@type": "Person",
+          "@id": "https://www.devcowise.com/#leadership-cto",
+          "name": "Waseem",
+          "jobTitle": "Chief Technology Officer & Director of Systems Engineering",
+          "worksFor": {
+            "@id": "https://www.devcowise.com/#organization"
+          },
+          "knowsAbout": [
+            "Kubernetes",
+            "AWS Cloud Architecture",
+            "DevSecOps Pipelines",
+            "ERPNext Enterprise Integrations",
+            "Zero-Trust Compliance Architectures"
+          ]
+        }
       ]
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "@id": "https://www.devcowise.com/#website",
-      "url": "https://www.devcowise.com",
-      "name": "DEVCOWISE",
-      "description": "Engineering Digital Transformation Services",
-      "publisher": {
-        "@id": "https://www.devcowise.com/#organization"
-      }
     }
     </script>
   </head>

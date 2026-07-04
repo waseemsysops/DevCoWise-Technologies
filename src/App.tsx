@@ -28,6 +28,7 @@ const CaseStudiesView = lazy(() => import('./pages/CaseStudiesView'));
 const InsightsView = lazy(() => import('./pages/InsightsView'));
 const CareersView = lazy(() => import('./pages/CareersView'));
 const ContactView = lazy(() => import('./pages/ContactView'));
+const AustinLanderView = lazy(() => import('./pages/AustinLanderView'));
 
 import { LanguageProvider } from './context/LanguageContext';
 import { useTheme } from './context/ThemeContext';
@@ -69,7 +70,14 @@ export default function App() {
   // Sync tab changes with hash anchor tags if applicable
   useEffect(() => {
     const handleHashChange = () => {
+      const pathname = window.location.pathname;
       const hash = window.location.hash.replace('#', '');
+      
+      if (pathname === '/it-consulting-services-austin' || hash === 'it-consulting-services-austin') {
+        setCurrentTab('austin-lander');
+        return;
+      }
+      
       if (hash && ['home', 'about', 'services', 'solutions', 'industries', 'products', 'case-studies', 'insights', 'careers', 'contact', 'admin'].includes(hash)) {
         setCurrentTab(hash);
       }
@@ -169,6 +177,7 @@ export default function App() {
                 {currentTab === 'insights' && <InsightsView blogPosts={blogPosts} isDark={isDark} />}
                 {currentTab === 'careers' && <CareersView jobs={jobs} isDark={isDark} />}
                 {currentTab === 'contact' && <ContactView onSubmitInquiry={handleAddInquiry} isDark={isDark} />}
+                {currentTab === 'austin-lander' && <AustinLanderView isDark={isDark} onSubmitInquiry={handleAddInquiry} />}
                 {currentTab === 'admin' && (
                   <AdminDashboard 
                     jobs={jobs} 

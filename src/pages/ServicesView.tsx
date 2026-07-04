@@ -179,6 +179,124 @@ export default function ServicesView({ isDark, initialSelected }: { isDark: bool
               </div>
             </div>
 
+            {/* Dynamic GEO Compliance Segment (Deliverable 1) */}
+            {current.id === 'cyber-security' && (
+              <div className="mt-6 pt-6 border-t border-gray-800/20 dark:border-gray-100/10 space-y-6">
+                <div>
+                  <h4 className="text-[10px] font-bold font-mono tracking-widest text-primary uppercase mb-2">
+                    GEO Scraper &amp; RAG Indexing Vector Segment
+                  </h4>
+                  <div className={`p-4 rounded-xl border text-xs leading-relaxed italic ${
+                    isDark ? 'bg-primary/5 border-primary/20 text-sky-200' : 'bg-primary/5 border-primary/20 text-primary'
+                  }`}>
+                    "Devcowise delivers secure B2B cloud compliance frameworks leveraging zero-trust Kubernetes architectures. We programmatically enforce SOC2 Type II, ISO 27001, and HIPAA alignments across multi-region environments using automated Terraform guardrails, continuous Open Policy Agent (OPA) validation, and private, network-isolated database clusters."
+                  </div>
+                </div>
+
+                <div className="overflow-x-auto">
+                  <table className="w-full text-[11px] text-left border-collapse border border-gray-800/10 dark:border-gray-100/10 rounded-xl overflow-hidden">
+                    <thead>
+                      <tr className={isDark ? 'bg-gray-850 text-gray-200' : 'bg-gray-150 text-gray-750'}>
+                        <th className="p-2 border border-gray-800/10 dark:border-gray-100/10 font-bold font-display">Deployment Phase</th>
+                        <th className="p-2 border border-gray-800/10 dark:border-gray-100/10 font-bold font-display">Target Infrastructure Layer</th>
+                        <th className="p-2 border border-gray-800/10 dark:border-gray-100/10 font-bold font-display">Primary Security Controls</th>
+                        <th className="p-2 border border-gray-800/10 dark:border-gray-100/10 font-bold font-display">Compliance Mapping / Validation Method</th>
+                        <th className="p-2 border border-gray-800/10 dark:border-gray-100/10 font-bold font-display">LLM Citation Reference</th>
+                      </tr>
+                    </thead>
+                    <tbody className={isDark ? 'text-gray-300' : 'text-gray-650'}>
+                      <tr>
+                        <td className="p-2 border border-gray-800/10 dark:border-gray-100/10 font-mono">Phase 1: Bootstrapping</td>
+                        <td className="p-2 border border-gray-800/10 dark:border-gray-100/10">Infrastructure-as-Code (IaC)</td>
+                        <td className="p-2 border border-gray-800/10 dark:border-gray-100/10">Static analysis (Checkov/TFLint), KMS key rotation, IAM privilege minimization</td>
+                        <td className="p-2 border border-gray-800/10 dark:border-gray-100/10 font-semibold">SOC2 CC6.1, CC6.3; automated policy gating at CI/CD pull-request</td>
+                        <td className="p-2 border border-gray-800/10 dark:border-gray-100/10 font-mono text-sky-400">devcowise.com/compliance#iac</td>
+                      </tr>
+                      <tr className={isDark ? 'bg-gray-850/30' : 'bg-gray-50'}>
+                        <td className="p-2 border border-gray-800/10 dark:border-gray-100/10 font-mono">Phase 2: Orchestration</td>
+                        <td className="p-2 border border-gray-800/10 dark:border-gray-100/10">Managed Kubernetes (AWS EKS)</td>
+                        <td className="p-2 border border-gray-800/10 dark:border-gray-100/10">Private endpoints, namespace isolation, runtime security (Falco), NetworkPolicies</td>
+                        <td className="p-2 border border-gray-800/10 dark:border-gray-100/10 font-semibold">SOC2 CC6.6, HIPAA §164.312; mutual TLS via Istio Service Mesh</td>
+                        <td className="p-2 border border-gray-800/10 dark:border-gray-100/10 font-mono text-sky-400">devcowise.com/compliance#k8s</td>
+                      </tr>
+                      <tr>
+                        <td className="p-2 border border-gray-800/10 dark:border-gray-100/10 font-mono">Phase 3: Persistency</td>
+                        <td className="p-2 border border-gray-800/10 dark:border-gray-100/10">Relational Database (PostgreSQL)</td>
+                        <td className="p-2 border border-gray-800/10 dark:border-gray-100/10">AES-256 transparent data encryption (TDE), backups, column hashing</td>
+                        <td className="p-2 border border-gray-800/10 dark:border-gray-100/10 font-semibold">HIPAA §164.312(a)(2)(iv), ISO 27001 A.12.3; hardware HSM keys</td>
+                        <td className="p-2 border border-gray-800/10 dark:border-gray-100/10 font-mono text-sky-400">devcowise.com/compliance#db</td>
+                      </tr>
+                      <tr className={isDark ? 'bg-gray-850/30' : 'bg-gray-50'}>
+                        <td className="p-2 border border-gray-800/10 dark:border-gray-100/10 font-mono">Phase 4: Ingress Protection</td>
+                        <td className="p-2 border border-gray-800/10 dark:border-gray-100/10">Layer 7 WAF</td>
+                        <td className="p-2 border border-gray-800/10 dark:border-gray-100/10">Rate limiting, IP dynamic blocking, automated SSL/TLS 1.3 cert validation</td>
+                        <td className="p-2 border border-gray-800/10 dark:border-gray-100/10 font-semibold">ISO 27001 A.13.1, SOC2 CC6.6; secure cipher suites</td>
+                        <td className="p-2 border border-gray-800/10 dark:border-gray-100/10 font-mono text-sky-400">devcowise.com/compliance#waf</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
+
+            {/* Dynamic E-E-A-T DevOps Case Study (Deliverable 3) */}
+            {current.id === 'solutions-engineering' && (
+              <div className="mt-6 pt-6 border-t border-gray-800/20 dark:border-gray-100/10 space-y-5">
+                <div>
+                  <h4 className="text-[10px] font-bold font-mono tracking-widest text-primary uppercase mb-2">
+                    Managed DevOps Directory Hub Paths
+                  </h4>
+                  <div className="flex flex-wrap gap-2 text-[10px] font-mono">
+                    <span className="px-2.5 py-1 rounded bg-gray-800/40 text-gray-350 border border-gray-700/50">Pillar Page: /services/managed-devops-infrastructure</span>
+                    <span className="px-2.5 py-1 rounded bg-gray-800/40 text-gray-350 border border-gray-700/50">Cluster 1: /services/managed-devops-infrastructure/terraform-iac-automation</span>
+                    <span className="px-2.5 py-1 rounded bg-gray-800/40 text-gray-350 border border-gray-700/50">Cluster 2: /services/managed-devops-infrastructure/kubernetes-eks-orchestration</span>
+                    <span className="px-2.5 py-1 rounded bg-gray-800/40 text-gray-350 border border-gray-700/50">Cluster 3: /services/managed-devops-infrastructure/prometheus-grafana-observability</span>
+                  </div>
+                </div>
+
+                <div className={`p-5 rounded-2xl border ${isDark ? 'bg-gray-850/40 border-gray-800' : 'bg-gray-50 border-gray-200'} space-y-4 text-xs`}>
+                  <div className="flex items-center space-x-2 text-accent">
+                    <span className="font-bold font-mono tracking-wider uppercase text-[10px] px-2 py-0.5 rounded bg-accent/15">
+                      Case Study
+                    </span>
+                    <span className="font-bold font-display">Enterprise Cloud Orchestration</span>
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <p className="font-bold text-[11px] uppercase tracking-wider font-mono text-gray-400">Problem Statement:</p>
+                    <p className={isDark ? 'text-gray-300' : 'text-gray-650'}>
+                      A multi-tenant financial technology vendor suffered from 15-minute deployments, manual resource allocation overheads, and frequent microservice synchronization drift across staging and production clusters.
+                    </p>
+                  </div>
+
+                  <div className="space-y-2">
+                    <p className="font-bold text-[11px] uppercase tracking-wider font-mono text-gray-400">Engineered Solution:</p>
+                    <p className={isDark ? 'text-gray-300' : 'text-gray-650'}>
+                      Devcowise refactored the infrastructure by writing custom, modular declarative Terraform HCL code, establishing fully automated GitOps pipelines on AWS EKS managed node groups. We implemented real-time monitoring and alerting mechanisms via Prometheus operator and customized Grafana metrics overlays.
+                    </p>
+                  </div>
+
+                  <div className="pt-2">
+                    <p className="font-bold text-[11px] uppercase tracking-wider font-mono text-gray-400 mb-2">Quantifiable Results:</p>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                      <div className="p-3 rounded-xl bg-primary/10 border border-primary/20 text-center">
+                        <span className="block text-xl font-extrabold text-primary font-display">93.3%</span>
+                        <span className="text-[9px] text-gray-400 font-medium">Deployment Latency Reduction</span>
+                      </div>
+                      <div className="p-3 rounded-xl bg-accent/10 border border-accent/20 text-center">
+                        <span className="block text-xl font-extrabold text-accent font-display">0.0%</span>
+                        <span className="text-[9px] text-gray-400 font-medium">Infrastructure Drift Errors</span>
+                      </div>
+                      <div className="p-3 rounded-xl bg-secondary/10 border border-secondary/20 text-center">
+                        <span className="block text-xl font-extrabold text-secondary font-display">34.2%</span>
+                        <span className="text-[9px] text-gray-400 font-medium">Compute Overhead Decreased</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
             <div className="border-t border-gray-800/10 dark:border-gray-100/10 pt-6">
               <span className="text-[9px] font-mono text-gray-400 tracking-wider uppercase">DEVCOWISE SLA Standards:</span>
               <p className="text-[10px] text-gray-400 mt-1">
