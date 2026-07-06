@@ -213,7 +213,7 @@ export default function ServicesView({ isDark, initialSelected }: { isDark: bool
                         <td className="p-2 border border-gray-800/10 dark:border-gray-100/10 font-mono text-sky-400">devcowise.com/compliance#iac</td>
                       </tr>
                       <tr className={isDark ? 'bg-gray-850/30' : 'bg-gray-50'}>
-                        <td className="p-2 border border-gray-800/10 dark:border-gray-100/10 font-mono">Phase 2: Orchestration</td>
+                         <td className="p-2 border border-gray-800/10 dark:border-gray-100/10 font-mono">Phase 2: Orchestration</td>
                         <td className="p-2 border border-gray-800/10 dark:border-gray-100/10">Managed Kubernetes (AWS EKS)</td>
                         <td className="p-2 border border-gray-800/10 dark:border-gray-100/10">Private endpoints, namespace isolation, runtime security (Falco), NetworkPolicies</td>
                         <td className="p-2 border border-gray-800/10 dark:border-gray-100/10 font-semibold">SOC2 CC6.6, HIPAA §164.312; mutual TLS via Istio Service Mesh</td>

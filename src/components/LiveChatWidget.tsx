@@ -113,10 +113,6 @@ export default function LiveChatWidget({ isDark }: { isDark: boolean }) {
     }
   };
 
-  const handleOptionClick = (option: string) => {
-    handleSendMessage(`Tell me more about ${option}`);
-  };
-
   return (
     <div className="fixed bottom-6 right-6 z-50">
       {/* Floating Chat Button */}
@@ -204,25 +200,6 @@ export default function LiveChatWidget({ isDark }: { isDark: boolean }) {
               </div>
             )}
             <div ref={chatEndRef} />
-          </div>
-
-          {/* Quick options */}
-          <div className={`px-4 py-2 flex items-center gap-1.5 overflow-x-auto border-t text-[10px] whitespace-nowrap ${
-            isDark ? 'border-gray-800 bg-gray-900/25' : 'border-gray-100 bg-gray-50'
-          }`}>
-            {['ERPNext Suites', 'Generative AI', 'Cloud Scaling', 'Cybersecurity'].map((opt) => (
-              <button
-                key={opt}
-                onClick={() => handleOptionClick(opt)}
-                className={`px-2.5 py-1 rounded-full border transition-colors cursor-pointer font-medium ${
-                  isDark 
-                    ? 'border-gray-800 bg-gray-800 text-gray-300 hover:border-gray-700 hover:text-white' 
-                    : 'border-gray-200 bg-white text-gray-600 hover:border-gray-300 hover:text-primary'
-                }`}
-              >
-                {opt}
-              </button>
-            ))}
           </div>
 
           {/* Form */}
